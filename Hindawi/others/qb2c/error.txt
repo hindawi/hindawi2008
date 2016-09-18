@@ -1,0 +1,692 @@
+x11int.c:45:22: error: X11/Xlib.h: No such file or directory
+x11int.c:46:23: error: X11/Xutil.h: No such file or directory
+x11int.c:48:28: error: X11/cursorfont.h: No such file or directory
+x11int.c:63: error: expected specifier-qualifier-list before ‘Drawable’
+x11int.c:82: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘oldwin’
+x11int.c:85: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘class_hints’
+x11int.c:87: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:89: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:93: error: expected declaration specifiers or ‘...’ before ‘*’ token
+x11int.c:93: error: ‘Window’ declared as function returning a function
+x11int.c:98: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘external_window’
+x11int.c:100: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘pixmp’
+x11int.c:110: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘colormap’
+x11int.c:125: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘gclist’
+x11int.c:126: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:127: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:128: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:129: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:130: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:131: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:132: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:133: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘GCbuff’
+x11int.c:134: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:136: error: ‘GCForeground’ undeclared here (not in a function)
+x11int.c:136: error: ‘GCBackground’ undeclared here (not in a function)
+x11int.c:137: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘gc_return’
+x11int.c:144: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘gcecho’
+x11int.c:145: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘gcechov’
+x11int.c:149: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘fill_pattern’
+x11int.c:165: error: expected specifier-qualifier-list before ‘XFontStruct’
+x11int.c:168: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:175: error: ‘LineSolid’ undeclared here (not in a function)
+x11int.c:176: error: ‘CapButt’ undeclared here (not in a function)
+x11int.c:177: error: ‘JoinMiter’ undeclared here (not in a function)
+x11int.c:186: error: ‘ButtonPressMask’ undeclared here (not in a function)
+x11int.c:186: error: ‘ButtonReleaseMask’ undeclared here (not in a function)
+x11int.c:187: error: ‘EnterWindowMask’ undeclared here (not in a function)
+x11int.c:187: error: ‘LeaveWindowMask’ undeclared here (not in a function)
+x11int.c:188: error: ‘PointerMotionMask’ undeclared here (not in a function)
+x11int.c:188: error: ‘KeyPressMask’ undeclared here (not in a function)
+x11int.c:189: error: ‘KeyReleaseMask’ undeclared here (not in a function)
+x11int.c:208: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘null_cursor’
+x11int.c:321: error: expected specifier-qualifier-list before ‘XPoint’
+x11int.c: In function ‘setinput’:
+x11int.c:349: error: ‘XSetWindowAttributes’ undeclared (first use in this function)
+x11int.c:349: error: (Each undeclared identifier is reported only once
+x11int.c:349: error: for each function it appears in.)
+x11int.c:349: error: expected ‘;’ before ‘attributes’
+x11int.c:353: error: ‘attributes’ undeclared (first use in this function)
+x11int.c:354: error: ‘CWEventMask’ undeclared (first use in this function)
+x11int.c:355: error: ‘display’ undeclared (first use in this function)
+x11int.c:355: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:359: error: ‘NoEventMask’ undeclared (first use in this function)
+x11int.c:361: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c: In function ‘setcolor’:
+x11int.c:371: error: expected declaration specifiers before ‘GC’
+x11int.c:387: error: ‘display’ undeclared (first use in this function)
+x11int.c:390: error: ‘gc_return’ undeclared (first use in this function)
+x11int.c: In function ‘ixopnds’:
+x11int.c:411: error: ‘Pixmap’ undeclared (first use in this function)
+x11int.c:411: error: expected ‘;’ before ‘pixmp1’
+x11int.c:412: error: ‘XColor’ undeclared (first use in this function)
+x11int.c:412: error: expected ‘;’ before ‘fore’
+x11int.c:424: error: ‘display’ undeclared (first use in this function)
+x11int.c:437: error: ‘screen’ undeclared (first use in this function)
+x11int.c:440: error: ‘colormap’ undeclared (first use in this function)
+x11int.c:450: warning: passing argument 2 of ‘strcpy’ makes pointer from integer without a cast
+x11int.c:456: error: ‘gclist’ undeclared (first use in this function)
+x11int.c:458: error: ‘GCbuff’ undeclared (first use in this function)
+x11int.c:460: error: ‘gctext’ undeclared (first use in this function)
+x11int.c:460: error: ‘gc_return’ undeclared (first use in this function)
+x11int.c:461: error: ‘gcinvt’ undeclared (first use in this function)
+x11int.c:470: error: ‘gcechov’ undeclared (first use in this function)
+x11int.c:473: error: ‘GXxor’ undeclared (first use in this function)
+x11int.c:475: error: ‘GXinvert’ undeclared (first use in this function)
+x11int.c:477: error: ‘gcecho’ undeclared (first use in this function)
+x11int.c:478: error: ‘GCFunction’ undeclared (first use in this function)
+x11int.c:484: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c:485: error: ‘struct <anonymous>’ has no member named ‘name’
+x11int.c:487: warning: assignment makes pointer from integer without a cast
+x11int.c:489: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c:490: error: ‘text_font’ undeclared (first use in this function)
+x11int.c:490: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c:491: error: ‘struct <anonymous>’ has no member named ‘name’
+x11int.c:500: error: ‘pixmp1’ undeclared (first use in this function)
+x11int.c:503: error: ‘pixmp2’ undeclared (first use in this function)
+x11int.c:506: error: ‘null_cursor’ undeclared (first use in this function)
+x11int.c:506: error: ‘fore’ undeclared (first use in this function)
+x11int.c:506: error: ‘back’ undeclared (first use in this function)
+x11int.c: In function ‘ixopnwi’:
+x11int.c:531: error: ‘XSetWindowAttributes’ undeclared (first use in this function)
+x11int.c:531: error: expected ‘;’ before ‘attributes’
+x11int.c:535: error: ‘XWMHints’ undeclared (first use in this function)
+x11int.c:535: error: expected ‘;’ before ‘wm_hints’
+x11int.c:536: error: ‘XSizeHints’ undeclared (first use in this function)
+x11int.c:536: error: expected ‘;’ before ‘size_hints’
+x11int.c:537: error: ‘XEvent’ undeclared (first use in this function)
+x11int.c:537: error: expected ‘;’ before ‘event’
+x11int.c:541: error: expected ‘;’ before ‘root’
+x11int.c:544: error: ‘display’ undeclared (first use in this function)
+x11int.c:544: error: ‘external_window’ undeclared (first use in this function)
+x11int.c:544: error: ‘root’ undeclared (first use in this function)
+x11int.c:567: error: ‘motif_open’ undeclared (first use in this function)
+x11int.c:568: error: ‘struct <anonymous>’ has no member named ‘motif_window’
+x11int.c:569: error: ‘struct <anonymous>’ has no member named ‘motif_window’
+x11int.c:570: error: ‘struct <anonymous>’ has no member named ‘motif_window’
+x11int.c:578: error: ‘attributes’ undeclared (first use in this function)
+x11int.c:579: error: ‘CWBackPixel’ undeclared (first use in this function)
+x11int.c:581: error: ‘CWBorderPixel’ undeclared (first use in this function)
+x11int.c:582: error: ‘NoEventMask’ undeclared (first use in this function)
+x11int.c:583: error: ‘CWEventMask’ undeclared (first use in this function)
+x11int.c:584: error: ‘Always’ undeclared (first use in this function)
+x11int.c:585: error: ‘CWBackingStore’ undeclared (first use in this function)
+x11int.c:587: error: ‘colormap’ undeclared (first use in this function)
+x11int.c:588: error: ‘CWColormap’ undeclared (first use in this function)
+x11int.c:591: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:591: error: ‘struct <anonymous>’ has no member named ‘motif_window’
+x11int.c:592: error: ‘CopyFromParent’ undeclared (first use in this function)
+x11int.c:593: error: ‘InputOutput’ undeclared (first use in this function)
+x11int.c:598: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:604: error: ‘struct <anonymous>’ has no member named ‘motif_window’
+x11int.c:607: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:620: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:621: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:627: error: ‘wm_hints’ undeclared (first use in this function)
+x11int.c:628: error: ‘InputHint’ undeclared (first use in this function)
+x11int.c:629: error: ‘False’ undeclared (first use in this function)
+x11int.c:630: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:634: error: ‘size_hints’ undeclared (first use in this function)
+x11int.c:635: error: ‘USPosition’ undeclared (first use in this function)
+x11int.c:635: error: ‘USSize’ undeclared (first use in this function)
+x11int.c:640: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:642: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:643: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:644: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:649: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:649: error: ‘class_hints’ undeclared (first use in this function)
+x11int.c:653: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:653: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:654: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:654: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:655: error: ‘struct <anonymous>’ has no member named ‘double_buffer’
+x11int.c:656: error: ‘struct <anonymous>’ has no member named ‘clip’
+x11int.c:657: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:658: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c:663: error: ‘gclist’ undeclared (first use in this function)
+x11int.c:663: error: ‘None’ undeclared (first use in this function)
+x11int.c:664: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c: In function ‘ixrscwi’:
+x11int.c:693: error: ‘display’ undeclared (first use in this function)
+x11int.c:693: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:695: error: ‘struct <anonymous>’ has no member named ‘double_buffer’
+x11int.c:696: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:697: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:699: error: ‘gclist’ undeclared (first use in this function)
+x11int.c:699: error: ‘None’ undeclared (first use in this function)
+x11int.c:700: error: ‘gcpxmp’ undeclared (first use in this function)
+x11int.c:701: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:703: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:703: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:705: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:706: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c: In function ‘ixmovwi’:
+x11int.c:729: error: ‘display’ undeclared (first use in this function)
+x11int.c:729: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c: In function ‘ixopnpx’:
+x11int.c:742: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:742: error: expected ‘;’ before ‘pixtemp’
+x11int.c:743: error: expected ‘;’ before ‘root’
+x11int.c:750: error: ‘display’ undeclared (first use in this function)
+x11int.c:750: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:750: error: ‘root’ undeclared (first use in this function)
+x11int.c:766: error: ‘pixtemp’ undeclared (first use in this function)
+x11int.c:766: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c: In function ‘ixclrpx’:
+x11int.c:779: error: expected declaration specifiers before ‘Drawable’
+x11int.c:781: error: expected ‘;’ before ‘root’
+x11int.c:784: error: ‘display’ undeclared (first use in this function)
+x11int.c:784: error: ‘root’ undeclared (first use in this function)
+x11int.c:785: error: ‘gcpxmp’ undeclared (first use in this function)
+x11int.c: In function ‘ixclpx’:
+x11int.c:800: error: ‘display’ undeclared (first use in this function)
+x11int.c:801: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:801: error: ‘oldwin’ undeclared (first use in this function)
+x11int.c: In function ‘ixcppx’:
+x11int.c:815: error: expected declaration specifiers before ‘Drawable’
+x11int.c:818: error: expected ‘;’ before ‘root’
+x11int.c:820: error: ‘XEvent’ undeclared (first use in this function)
+x11int.c:820: error: expected ‘;’ before ‘event’
+x11int.c:822: error: ‘display’ undeclared (first use in this function)
+x11int.c:822: error: ‘root’ undeclared (first use in this function)
+x11int.c:824: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:824: error: ‘gcpxmp’ undeclared (first use in this function)
+x11int.c: In function ‘ixwrpx’:
+x11int.c:844: error: expected declaration specifiers before ‘Drawable’
+x11int.c:850: error: ‘display’ undeclared (first use in this function)
+x11int.c: In function ‘ixwipx’:
+x11int.c:891: error: expected declaration specifiers before ‘Drawable’
+x11int.c:894: error: expected ‘;’ before ‘root’
+x11int.c:897: error: ‘display’ undeclared (first use in this function)
+x11int.c:897: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:897: error: ‘root’ undeclared (first use in this function)
+x11int.c:902: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:902: error: ‘gcpxmp’ undeclared (first use in this function)
+x11int.c: At top level:
+x11int.c:909: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘ixgetpx’
+x11int.c:911: error: expected identifier or ‘(’ before ‘{’ token
+x11int.c: In function ‘ixrmpx’:
+x11int.c:938: error: expected declaration specifiers before ‘Drawable’
+x11int.c:940: error: ‘display’ undeclared (first use in this function)
+x11int.c: In function ‘ixclsds’:
+x11int.c:955: error: ‘display’ undeclared (first use in this function)
+x11int.c:958: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c:959: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c:960: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c: In function ‘ixclswi’:
+x11int.c:992: error: ‘XEvent’ undeclared (first use in this function)
+x11int.c:992: error: expected ‘;’ before ‘event’
+x11int.c:1003: error: ‘display’ undeclared (first use in this function)
+x11int.c:1003: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:1005: error: ‘struct <anonymous>’ has no member named ‘double_buffer’
+x11int.c:1005: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1009: error: ‘struct <anonymous>’ has no member named ‘motif_window’
+x11int.c:1009: error: ‘struct <anonymous>’ has no member named ‘motif_window’
+x11int.c:1018: error: ‘QueuedAlready’ undeclared (first use in this function)
+x11int.c:1018: error: ‘event’ undeclared (first use in this function)
+x11int.c: In function ‘ixselwi’:
+x11int.c:1043: error: ‘XRectangle’ undeclared (first use in this function)
+x11int.c:1043: error: expected ‘;’ before ‘region’
+x11int.c:1051: error: ‘struct <anonymous>’ has no member named ‘clip’
+x11int.c:1051: error: ‘struct <anonymous>’ has no member named ‘double_buffer’
+x11int.c:1052: error: ‘region’ undeclared (first use in this function)
+x11int.c:1052: error: ‘struct <anonymous>’ has no member named ‘xclip’
+x11int.c:1053: error: ‘struct <anonymous>’ has no member named ‘yclip’
+x11int.c:1054: error: ‘struct <anonymous>’ has no member named ‘wclip’
+x11int.c:1055: error: ‘struct <anonymous>’ has no member named ‘hclip’
+x11int.c:1057: error: ‘display’ undeclared (first use in this function)
+x11int.c:1057: error: ‘gclist’ undeclared (first use in this function)
+x11int.c:1057: error: ‘YXBanded’ undeclared (first use in this function)
+x11int.c:1060: error: ‘None’ undeclared (first use in this function)
+x11int.c:1070: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:1072: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c: In function ‘ixgetge’:
+x11int.c:1092: error: expected ‘;’ before ‘temp_win’
+x11int.c:1093: error: ‘Display’ undeclared (first use in this function)
+x11int.c:1093: error: ‘tmp_display’ undeclared (first use in this function)
+x11int.c:1096: error: ‘display’ undeclared (first use in this function)
+x11int.c:1116: error: expected ‘;’ before ‘root’
+x11int.c:1121: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:1121: error: ‘root’ undeclared (first use in this function)
+x11int.c:1123: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:1125: error: ‘temp_win’ undeclared (first use in this function)
+x11int.c:1127: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:1128: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c:1131: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:1132: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c: In function ‘ixgetpl’:
+x11int.c:1151: error: ‘display’ undeclared (first use in this function)
+x11int.c: In function ‘ixrsiz’:
+x11int.c:1167: error: expected ‘;’ before ‘root’
+x11int.c:1174: error: ‘display’ undeclared (first use in this function)
+x11int.c:1174: error: ‘struct <anonymous>’ has no member named ‘motif_window’
+x11int.c:1174: error: ‘root’ undeclared (first use in this function)
+x11int.c:1176: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:1178: error: ‘struct <anonymous>’ has no member named ‘double_buffer’
+x11int.c:1179: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1180: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1182: error: ‘gclist’ undeclared (first use in this function)
+x11int.c:1182: error: ‘None’ undeclared (first use in this function)
+x11int.c:1183: error: ‘gcpxmp’ undeclared (first use in this function)
+x11int.c:1184: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1186: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:1186: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1188: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:1189: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c: In function ‘ixgetwi’:
+x11int.c:1204: error: expected declaration specifiers before ‘Window’
+x11int.c:1206: error: invalid type argument of ‘unary *’
+x11int.c:1206: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c: In function ‘ixclrwi’:
+x11int.c:1218: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1223: error: ‘display’ undeclared (first use in this function)
+x11int.c:1223: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:1225: error: ‘gcbuff’ undeclared (first use in this function)
+x11int.c:1226: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1227: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:1227: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c: In function ‘ixsetbg’:
+x11int.c:1244: error: ‘display’ undeclared (first use in this function)
+x11int.c:1249: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c: In function ‘ixupdwi’:
+x11int.c:1269: error: ‘display’ undeclared (first use in this function)
+x11int.c:1272: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:1276: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1277: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1277: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:1278: error: ‘gcbuff’ undeclared (first use in this function)
+x11int.c:1278: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:1278: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c: In function ‘ixclip’:
+x11int.c:1302: error: ‘XRectangle’ undeclared (first use in this function)
+x11int.c:1302: error: expected ‘;’ before ‘region’
+x11int.c:1306: error: ‘struct <anonymous>’ has no member named ‘xclip’
+x11int.c:1307: error: ‘struct <anonymous>’ has no member named ‘yclip’
+x11int.c:1308: error: ‘struct <anonymous>’ has no member named ‘wclip’
+x11int.c:1309: error: ‘struct <anonymous>’ has no member named ‘hclip’
+x11int.c:1310: error: ‘struct <anonymous>’ has no member named ‘clip’
+x11int.c:1311: error: ‘struct <anonymous>’ has no member named ‘clip’
+x11int.c:1311: error: ‘struct <anonymous>’ has no member named ‘double_buffer’
+x11int.c:1312: error: ‘region’ undeclared (first use in this function)
+x11int.c:1312: error: ‘struct <anonymous>’ has no member named ‘xclip’
+x11int.c:1313: error: ‘struct <anonymous>’ has no member named ‘yclip’
+x11int.c:1314: error: ‘struct <anonymous>’ has no member named ‘wclip’
+x11int.c:1315: error: ‘struct <anonymous>’ has no member named ‘hclip’
+x11int.c:1317: error: ‘display’ undeclared (first use in this function)
+x11int.c:1317: error: ‘gclist’ undeclared (first use in this function)
+x11int.c:1317: error: ‘YXBanded’ undeclared (first use in this function)
+x11int.c: In function ‘ixnocli’:
+x11int.c:1347: error: ‘struct <anonymous>’ has no member named ‘clip’
+x11int.c:1350: error: ‘display’ undeclared (first use in this function)
+x11int.c:1350: error: ‘gclist’ undeclared (first use in this function)
+x11int.c:1350: error: ‘None’ undeclared (first use in this function)
+x11int.c: In function ‘ixsetco’:
+x11int.c:1368: error: ‘XColor’ undeclared (first use in this function)
+x11int.c:1368: error: expected ‘;’ before ‘xcol’
+x11int.c:1371: error: ‘xcol’ undeclared (first use in this function)
+x11int.c:1374: error: ‘DoRed’ undeclared (first use in this function)
+x11int.c:1374: error: ‘DoGreen’ undeclared (first use in this function)
+x11int.c:1374: error: ‘DoBlue’ undeclared (first use in this function)
+x11int.c:1378: error: ‘display’ undeclared (first use in this function)
+x11int.c:1378: error: ‘colormap’ undeclared (first use in this function)
+x11int.c:1380: error: ‘Status’ undeclared (first use in this function)
+x11int.c: In function ‘ixsetln’:
+x11int.c:1418: error: ‘display’ undeclared (first use in this function)
+x11int.c:1418: error: ‘gcline’ undeclared (first use in this function)
+x11int.c:1420: error: ‘gcdash’ undeclared (first use in this function)
+x11int.c: In function ‘ixsetls’:
+x11int.c:1447: error: ‘display’ undeclared (first use in this function)
+x11int.c:1447: error: ‘gcline’ undeclared (first use in this function)
+x11int.c:1454: error: ‘LineOnOffDash’ undeclared (first use in this function)
+x11int.c:1484: error: ‘gcdash’ undeclared (first use in this function)
+x11int.c: In function ‘ixsetlc’:
+x11int.c:1533: error: ‘gcline’ undeclared (first use in this function)
+x11int.c:1534: error: ‘gcdash’ undeclared (first use in this function)
+x11int.c: In function ‘ixline’:
+x11int.c:1548: error: expected declaration specifiers before ‘XPoint’
+x11int.c:1550: error: ‘XPoint’ undeclared (first use in this function)
+x11int.c:1550: error: ‘xy’ undeclared (first use in this function)
+x11int.c:1554: error: expected expression before ‘)’ token
+x11int.c:1556: error: subscripted value is neither array nor pointer
+x11int.c:1556: error: subscripted value is neither array nor pointer
+x11int.c:1557: error: subscripted value is neither array nor pointer
+x11int.c:1557: error: subscripted value is neither array nor pointer
+x11int.c:1571: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1572: error: ‘display’ undeclared (first use in this function)
+x11int.c:1572: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1572: error: ‘gcline’ undeclared (first use in this function)
+x11int.c:1572: error: ‘CoordModeOrigin’ undeclared (first use in this function)
+x11int.c:1574: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:1578: error: ‘gcdash’ undeclared (first use in this function)
+x11int.c:1580: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:1597: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c: In function ‘ixsetms’:
+x11int.c:1623: error: expected declaration specifiers before ‘XPoint’
+x11int.c:1631: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c:1631: error: subscripted value is neither array nor pointer
+x11int.c: In function ‘ixsetmc’:
+x11int.c:1685: error: ‘gcmark’ undeclared (first use in this function)
+x11int.c: In function ‘ixmarke’:
+x11int.c:1699: error: expected declaration specifiers before ‘XPoint’
+x11int.c:1701: error: ‘XPoint’ undeclared (first use in this function)
+x11int.c:1701: error: ‘xy’ undeclared (first use in this function)
+x11int.c:1703: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:1703: error: expected ‘;’ before ‘d’
+x11int.c:1705: error: ‘d’ undeclared (first use in this function)
+x11int.c:1705: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1705: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:1708: error: expected expression before ‘)’ token
+x11int.c:1710: error: subscripted value is neither array nor pointer
+x11int.c:1710: error: subscripted value is neither array nor pointer
+x11int.c:1711: error: subscripted value is neither array nor pointer
+x11int.c:1711: error: subscripted value is neither array nor pointer
+x11int.c:1719: error: ‘display’ undeclared (first use in this function)
+x11int.c:1719: error: ‘gcmark’ undeclared (first use in this function)
+x11int.c:1719: error: ‘CoordModeOrigin’ undeclared (first use in this function)
+x11int.c:1747: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c:1748: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c:1752: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c:1755: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c:1755: error: ‘Nonconvex’ undeclared (first use in this function)
+x11int.c:1757: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c:1758: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c:1765: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c:1765: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c:1766: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c:1766: error: ‘struct <anonymous>’ has no member named ‘xy’
+x11int.c: In function ‘ixarc’:
+x11int.c:1804: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:1804: error: expected ‘;’ before ‘d’
+x11int.c:1806: error: ‘d’ undeclared (first use in this function)
+x11int.c:1806: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:1806: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:1835: error: ‘display’ undeclared (first use in this function)
+x11int.c:1835: error: ‘gcline’ undeclared (first use in this function)
+x11int.c:1840: error: ‘gcfill’ undeclared (first use in this function)
+x11int.c: In function ‘ixsetfs’:
+x11int.c:1865: error: ‘display’ undeclared (first use in this function)
+x11int.c:1865: error: ‘gcfill’ undeclared (first use in this function)
+x11int.c:1865: error: ‘FillSolid’ undeclared (first use in this function)
+x11int.c:1876: error: ‘FillStippled’ undeclared (first use in this function)
+x11int.c:1878: error: ‘fill_pattern’ undeclared (first use in this function)
+x11int.c:1878: error: ‘Pixmap’ undeclared (first use in this function)
+x11int.c: In function ‘ixsetfc’:
+x11int.c:1983: error: ‘gcfill’ undeclared (first use in this function)
+x11int.c:1986: error: ‘fill_pattern’ undeclared (first use in this function)
+x11int.c:1986: error: ‘Pixmap’ undeclared (first use in this function)
+x11int.c:1987: error: ‘display’ undeclared (first use in this function)
+x11int.c: In function ‘ixflare’:
+x11int.c:2003: error: expected declaration specifiers before ‘XPoint’
+x11int.c:2005: error: ‘XPoint’ undeclared (first use in this function)
+x11int.c:2005: error: ‘xy’ undeclared (first use in this function)
+x11int.c:2007: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:2007: error: expected ‘;’ before ‘d’
+x11int.c:2009: error: ‘d’ undeclared (first use in this function)
+x11int.c:2009: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:2009: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:2012: error: expected expression before ‘)’ token
+x11int.c:2014: error: subscripted value is neither array nor pointer
+x11int.c:2014: error: subscripted value is neither array nor pointer
+x11int.c:2015: error: subscripted value is neither array nor pointer
+x11int.c:2015: error: subscripted value is neither array nor pointer
+x11int.c:2022: error: ‘display’ undeclared (first use in this function)
+x11int.c:2022: error: ‘gcfill’ undeclared (first use in this function)
+x11int.c:2022: error: ‘CoordModeOrigin’ undeclared (first use in this function)
+x11int.c:2027: error: ‘Nonconvex’ undeclared (first use in this function)
+x11int.c: In function ‘ixsettf’:
+x11int.c:2102: error: ‘struct <anonymous>’ has no member named ‘name’
+x11int.c:2103: error: ‘text_font’ undeclared (first use in this function)
+x11int.c:2103: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c:2104: error: ‘display’ undeclared (first use in this function)
+x11int.c:2104: error: ‘gctext’ undeclared (first use in this function)
+x11int.c:2105: error: ‘gcinvt’ undeclared (first use in this function)
+x11int.c:2111: warning: assignment makes pointer from integer without a cast
+x11int.c:2115: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c:2116: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c:2117: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c:2118: error: ‘struct <anonymous>’ has no member named ‘id’
+x11int.c:2121: error: ‘struct <anonymous>’ has no member named ‘name’
+x11int.c: In function ‘ixsettc’:
+x11int.c:2144: error: ‘gctext’ undeclared (first use in this function)
+x11int.c:2146: error: ‘display’ undeclared (first use in this function)
+x11int.c:2146: error: ‘gc_return’ undeclared (first use in this function)
+x11int.c:2147: error: ‘gcinvt’ undeclared (first use in this function)
+x11int.c: In function ‘ixtext’:
+x11int.c:2179: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:2179: error: expected ‘;’ before ‘d’
+x11int.c:2181: error: ‘d’ undeclared (first use in this function)
+x11int.c:2181: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:2181: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:2195: error: ‘display’ undeclared (first use in this function)
+x11int.c:2195: error: ‘text_font’ undeclared (first use in this function)
+x11int.c:2196: error: ‘gctext’ undeclared (first use in this function)
+x11int.c: In function ‘ixtxtl’:
+x11int.c:2224: error: ‘text_font’ undeclared (first use in this function)
+x11int.c: In function ‘ixbox’:
+x11int.c:2246: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:2246: error: expected ‘;’ before ‘d’
+x11int.c:2248: error: ‘d’ undeclared (first use in this function)
+x11int.c:2248: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:2248: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:2277: error: ‘display’ undeclared (first use in this function)
+x11int.c:2277: error: ‘gcfill’ undeclared (first use in this function)
+x11int.c: In function ‘ixca’:
+x11int.c:2315: error: ‘display’ undeclared (first use in this function)
+x11int.c:2315: error: ‘gcfill’ undeclared (first use in this function)
+x11int.c:2318: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c: In function ‘ixdrmde’:
+x11int.c:2349: error: ‘display’ undeclared (first use in this function)
+x11int.c:2349: error: ‘gclist’ undeclared (first use in this function)
+x11int.c:2349: error: ‘GXcopy’ undeclared (first use in this function)
+x11int.c:2353: error: ‘GXxor’ undeclared (first use in this function)
+x11int.c:2357: error: ‘GXinvert’ undeclared (first use in this function)
+x11int.c:2361: error: ‘GXand’ undeclared (first use in this function)
+x11int.c:2365: error: ‘GXequiv’ undeclared (first use in this function)
+x11int.c: In function ‘ixsync’:
+x11int.c:2402: error: ‘display’ undeclared (first use in this function)
+x11int.c: In function ‘ixqptr’:
+x11int.c:2424: error: expected ‘;’ before ‘idg’
+x11int.c:2426: error: expected ‘;’ before ‘root_return’
+x11int.c:2431: error: ‘display’ undeclared (first use in this function)
+x11int.c:2431: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2431: error: ‘root_return’ undeclared (first use in this function)
+x11int.c:2432: error: ‘child_return’ undeclared (first use in this function)
+x11int.c: In function ‘ixwarp’:
+x11int.c:2453: error: ‘display’ undeclared (first use in this function)
+x11int.c:2453: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c: In function ‘ixreqlo’:
+x11int.c:2489: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘cursor’
+x11int.c:2489: error: ‘cursor’ undeclared (first use in this function)
+x11int.c:2489: error: ‘Cursor’ undeclared (first use in this function)
+x11int.c:2489: error: expected ‘;’ before numeric constant
+x11int.c:2490: error: ‘XEvent’ undeclared (first use in this function)
+x11int.c:2490: error: expected ‘;’ before ‘event’
+x11int.c:2501: error: ‘display’ undeclared (first use in this function)
+x11int.c:2501: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2501: error: ‘null_cursor’ undeclared (first use in this function)
+x11int.c:2502: error: ‘gcecho’ undeclared (first use in this function)
+x11int.c:2504: error: ‘XC_crosshair’ undeclared (first use in this function)
+x11int.c:2505: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2520: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2521: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c:2522: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2523: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:2528: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2532: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2536: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2544: error: ‘QueuedAlready’ undeclared (first use in this function)
+x11int.c:2545: error: ‘event’ undeclared (first use in this function)
+x11int.c:2547: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2553: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2554: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c:2555: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2556: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:2561: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2565: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2569: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2582: error: ‘LeaveNotify’ undeclared (first use in this function)
+x11int.c:2586: error: ‘EnterNotify’ undeclared (first use in this function)
+x11int.c:2593: error: ‘ButtonPress’ undeclared (first use in this function)
+x11int.c:2598: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2603: error: ‘ButtonRelease’ undeclared (first use in this function)
+x11int.c:2611: error: ‘KeyPress’ undeclared (first use in this function)
+x11int.c:2619: error: ‘KeyRelease’ undeclared (first use in this function)
+x11int.c: In function ‘ixreqst’:
+x11int.c:2659: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘cursor’
+x11int.c:2659: error: ‘cursor’ undeclared (first use in this function)
+x11int.c:2659: error: ‘Cursor’ undeclared (first use in this function)
+x11int.c:2659: error: expected ‘;’ before numeric constant
+x11int.c:2661: error: expected ‘;’ before ‘focuswindow’
+x11int.c:2663: error: ‘XEvent’ undeclared (first use in this function)
+x11int.c:2663: error: expected ‘;’ before ‘event’
+x11int.c:2664: error: ‘KeySym’ undeclared (first use in this function)
+x11int.c:2664: error: expected ‘;’ before ‘keysym’
+x11int.c:2675: error: ‘XKeyboardState’ undeclared (first use in this function)
+x11int.c:2675: error: expected ‘;’ before ‘kbstate’
+x11int.c:2676: error: ‘display’ undeclared (first use in this function)
+x11int.c:2676: error: ‘XC_question_arrow’ undeclared (first use in this function)
+x11int.c:2677: error: ‘kbstate’ undeclared (first use in this function)
+x11int.c:2681: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2686: error: ‘focuswindow’ undeclared (first use in this function)
+x11int.c:2687: error: ‘PointerRoot’ undeclared (first use in this function)
+x11int.c:2687: error: ‘CurrentTime’ undeclared (first use in this function)
+x11int.c:2697: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2697: error: ‘gctext’ undeclared (first use in this function)
+x11int.c:2699: error: ‘text_font’ undeclared (first use in this function)
+x11int.c:2700: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2703: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2703: error: ‘gcinvt’ undeclared (first use in this function)
+x11int.c:2705: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2705: error: ‘event’ undeclared (first use in this function)
+x11int.c:2707: error: ‘ButtonPress’ undeclared (first use in this function)
+x11int.c:2708: error: ‘EnterNotify’ undeclared (first use in this function)
+x11int.c:2709: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2711: error: ‘LeaveNotify’ undeclared (first use in this function)
+x11int.c:2714: error: ‘KeyPress’ undeclared (first use in this function)
+x11int.c:2716: error: ‘keysym’ undeclared (first use in this function)
+x11int.c:2747: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2787: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2815: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:2816: error: expected ‘;’ before numeric constant
+x11int.c: In function ‘ixput_image’:
+x11int.c:2838: error: ‘XSegment’ undeclared (first use in this function)
+x11int.c:2838: error: expected ‘;’ before ‘lines’
+x11int.c:2839: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:2839: error: expected ‘;’ before ‘d’
+x11int.c:2841: error: ‘d’ undeclared (first use in this function)
+x11int.c:2841: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:2841: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:2855: error: ‘lines’ undeclared (first use in this function)
+x11int.c:2858: error: ‘gcline’ undeclared (first use in this function)
+x11int.c:2861: error: ‘display’ undeclared (first use in this function)
+x11int.c: At top level:
+x11int.c:3069: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c: In function ‘get_scline’:
+x11int.c:3084: error: ‘image’ undeclared (first use in this function)
+x11int.c: In function ‘ixdogif’:
+x11int.c:3115: error: ‘display’ undeclared (first use in this function)
+x11int.c:3115: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:3138: error: ‘image’ undeclared (first use in this function)
+x11int.c:3138: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:3139: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:3139: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c:3140: error: ‘AllPlanes’ undeclared (first use in this function)
+x11int.c:3140: error: ‘ZPixmap’ undeclared (first use in this function)
+x11int.c:3143: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:3144: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:3144: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c:3152: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:3152: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c: In function ‘ixwptrq’:
+x11int.c:3170: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘cursor’
+x11int.c:3170: error: ‘cursor’ undeclared (first use in this function)
+x11int.c:3170: error: ‘Cursor’ undeclared (first use in this function)
+x11int.c:3170: error: expected ‘;’ before numeric constant
+x11int.c:3171: error: ‘XEvent’ undeclared (first use in this function)
+x11int.c:3171: error: expected ‘;’ before ‘event’
+x11int.c:3172: error: ‘XSetWindowAttributes’ undeclared (first use in this function)
+x11int.c:3172: error: expected ‘;’ before ‘attributes’
+x11int.c:3178: error: ‘attributes’ undeclared (first use in this function)
+x11int.c:3179: error: ‘CWEventMask’ undeclared (first use in this function)
+x11int.c:3185: error: ‘display’ undeclared (first use in this function)
+x11int.c:3185: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:3207: error: ‘event’ undeclared (first use in this function)
+x11int.c:3210: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:3231: error: ‘LeaveNotify’ undeclared (first use in this function)
+x11int.c:3235: error: ‘EnterNotify’ undeclared (first use in this function)
+x11int.c:3242: error: ‘ButtonPress’ undeclared (first use in this function)
+x11int.c:3252: error: ‘ButtonRelease’ undeclared (first use in this function)
+x11int.c:3260: error: ‘KeyPress’ undeclared (first use in this function)
+x11int.c:3268: error: ‘KeyRelease’ undeclared (first use in this function)
+x11int.c: In function ‘ixcursor’:
+x11int.c:3304: error: ‘Cursor’ undeclared (first use in this function)
+x11int.c:3304: error: expected ‘;’ before ‘cursor’
+x11int.c:3306: error: ‘display’ undeclared (first use in this function)
+x11int.c:3306: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:3307: error: ‘cursor’ undeclared (first use in this function)
+x11int.c:3308: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c: In function ‘ixclrque’:
+x11int.c:3315: error: ‘display’ undeclared (first use in this function)
+x11int.c: In function ‘ixtitle’:
+x11int.c:3338: error: ‘display’ undeclared (first use in this function)
+x11int.c:3338: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c:3339: error: ‘struct <anonymous>’ has no member named ‘window’
+x11int.c: In function ‘ixpget’:
+x11int.c:3349: error: ‘XImage’ undeclared (first use in this function)
+x11int.c:3349: error: ‘image’ undeclared (first use in this function)
+x11int.c: In function ‘ixpset’:
+x11int.c:3372: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:3372: error: expected ‘;’ before ‘d’
+x11int.c:3374: error: ‘d’ undeclared (first use in this function)
+x11int.c:3374: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:3374: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:3385: error: ‘display’ undeclared (first use in this function)
+x11int.c:3385: error: ‘gcline’ undeclared (first use in this function)
+x11int.c: In function ‘ixpicget’:
+x11int.c:3396: error: ‘XImage’ undeclared (first use in this function)
+x11int.c:3396: error: ‘image’ undeclared (first use in this function)
+x11int.c:3401: error: ‘display’ undeclared (first use in this function)
+x11int.c:3401: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:3402: error: ‘struct <anonymous>’ has no member named ‘width’
+x11int.c:3402: error: ‘struct <anonymous>’ has no member named ‘height’
+x11int.c:3403: error: ‘AllPlanes’ undeclared (first use in this function)
+x11int.c:3403: error: ‘ZPixmap’ undeclared (first use in this function)
+x11int.c: In function ‘ixpicput’:
+x11int.c:3438: error: ‘XImage’ undeclared (first use in this function)
+x11int.c:3438: error: ‘image’ undeclared (first use in this function)
+x11int.c:3439: error: ‘Visual’ undeclared (first use in this function)
+x11int.c:3439: error: ‘visual’ undeclared (first use in this function)
+x11int.c:3439: error: expected expression before ‘)’ token
+x11int.c:3444: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:3444: error: expected ‘;’ before ‘d’
+x11int.c:3446: error: ‘d’ undeclared (first use in this function)
+x11int.c:3446: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:3446: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:3449: error: ‘display’ undeclared (first use in this function)
+x11int.c:3457: warning: assignment makes integer from pointer without a cast
+x11int.c:3458: warning: assignment makes integer from pointer without a cast
+x11int.c:3463: error: ‘ZPixmap’ undeclared (first use in this function)
+x11int.c:3465: error: ‘gcpxmp’ undeclared (first use in this function)
+x11int.c: In function ‘ixpicanim’:
+x11int.c:3486: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:3486: error: ‘image’ undeclared (first use in this function)
+x11int.c:3487: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+x11int.c:3487: error: ‘image_old’ undeclared (first use in this function)
+x11int.c:3488: error: ‘Visual’ undeclared (first use in this function)
+x11int.c:3488: error: ‘visual’ undeclared (first use in this function)
+x11int.c:3488: error: expected expression before ‘)’ token
+x11int.c:3494: error: ‘Drawable’ undeclared (first use in this function)
+x11int.c:3494: error: expected ‘;’ before ‘d’
+x11int.c:3496: error: ‘d’ undeclared (first use in this function)
+x11int.c:3496: error: ‘struct <anonymous>’ has no member named ‘buffer’
+x11int.c:3496: error: ‘struct <anonymous>’ has no member named ‘drawing’
+x11int.c:3501: error: ‘display’ undeclared (first use in this function)
+x11int.c:3501: error: ‘gcpxmp’ undeclared (first use in this function)
+x11int.c:3519: warning: assignment makes integer from pointer without a cast
+x11int.c:3520: warning: assignment makes integer from pointer without a cast
+x11int.c:3524: error: ‘ZPixmap’ undeclared (first use in this function)
+x11int.c: In function ‘xtest’:
+x11int.c:3556: error: ‘pixmp’ undeclared (first use in this function)
+x11int.c:3556: error: ‘display’ undeclared (first use in this function)
+x11int.c:3558: error: ‘gcline’ undeclared (first use in this function)
+x11int.c:3559: error: ‘gclist’ undeclared (first use in this function)

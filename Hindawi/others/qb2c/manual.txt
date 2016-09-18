@@ -1,0 +1,3082 @@
+qb2c:      BASIC with X11 graphics for UNIX and Linux
+qb2c:      Quasi - Microsoft's (R) QuickBASIC (C) to ANSI C translator
+QB2C home page: http://random.com.hr/products/qb2c/qb2c.html
+QB2C ftp  page: http://random.com.hr/
+Author:  e-mail: qb2c-support@random.com.hr URL: http://random.com.hr
+Version: 3.41 Free Version 04-May-2000
+ 
+ QB2C is a package which makes possible execution of BASIC programs
+under most of the UNIX systems provided that a C compiler is available 
+on the system. It essentially consists of the BASIC-to-C translator
+(qb2c) which translates BASIC code into C code, graphics included.
+The BASIC syntax largely follows Microsoft's (R) QuickBASIC (C) syntax.
+Normal BASIC graphics is now output to X11 console, therefore X11 
+is also required. Additional possibility to mix BASIC and C code
+within the single program file makes QB2C more than just a translator: 
+it can serve as a tool for easy C programming, especially of small
+programs and compiled substitutes for shell scripts.
+
+ There is some rudimentary X11-windows-based graphics built into
+the QB2C including dot, line and marker drawing, filling polygonal
+areas, mouse pointer and image manipulation, loading/saving GIF format
+on/from screen etc. The extensive source on this topics is given
+in this manual.
+
+ Versions from 3.0 on can deal with more than one (up to 16) X-windows
+at a time. 
+
+ Versions from 3.5 on are payware, price is 25 US$. See the ANNOUNCEMENT
+file for more information.
+
+ Intrinsically qb2c understands only programs written in strict 
+QuickBASIC syntax (BASIC keywords in capital, proper spacing...), 
+but 'bcpp' syntax preprocessor can translate a variety of BASIC styles 
+into QB format thus making the whole thing much more flexible. 
+Currently, there is no support (preprocessing) for Visual Basic
+command style (such as 'While'...). 
+
+ Scripts 'brun' (to run directly BASIC programs) and 'qbcc' (to compile 
+BASIC program and produce an executable) are also provided in order to make
+life easier. Script 'run' may be used to run directly C programs. In either
+case user must supply *only* the bare name (i.e. without the extension .c)
+of a file to be run or compiled. User may change these to suit his/her needs 
+or system specifics.
+
+ BASIC is an easy-to-learn and user friendly programming language which 
+is in principle known to everybody. One of ideas behind this project was
+to be able to use scripts made in BASIC as all-around tool for building 
+user-made commands and interfaces to existing UNIX commands. It is true 
+though that BASIC has a rather limited access to UNIX system, but QB2C 
+allows to circumvent this problem by mixing BASIC and C text in a single 
+program/file. (See the example at the end of the manual.) 
+With time and with addition of some X11-based graphic capabilities, QB2C 
+proved to be an excellent tool for writing small, handy programs that
+execute on virtually any UNIX system, and as a help in writing C programs. 
+Its graphics capabilities also grew to a level where they can be used
+to produce nontrivial programs with less effort when compared to
+some other programming tools. 
+
+ QB2C itself can run on any system which has ANSI C installed. To
+make the executable qb2c available, just compile qb2c.c .
+
+
+QB2C packet consists of:
+
+qb2c         qb2c translator;
+bcpp         BASIC -> C syntax preprocessor. One needs that when the
+             input BASIC text is not exactly in QuickBASIC format;
+calib        Tool used to 'calibrate' key(board) codes of your UNIX
+             system to match QB standard (see the DIFFERENCES section);
+libqbX11.a   QuickBasic's X11-based graphics library 
+bcc          The BASIC compiler
+brun         The script to run BASIC programs in UNIX;
+run          The script to run C programs
+bhelp        The script to display this short manual
+
+and the following example files:
+
+graphic.bas  demonstrates the normal 1-window BASIC graphics
+xtest.bas    demonstrates multi-window graphics and mouse operation
+request.bas  demonstrates use of XREQST function to input text from graphics
+animate.bas  demonstrates animation using XANIM
+button.bas   demonstrates creation and use of simple 3D button
+
+These can simply be run by: brun name , where 'name' is the name of the
+desired example with the extension ".bas" STRIPPED OFF. Example:
+brun animate
+
+QB2C MAIN FEATURES: 
+
+* Recognizes MAIN, SUBroutines and FUNCTIONs
+
+* Declares variables (int, real, char) inside MAIN and inside every SUB.
+  All arguments are passed to user-defined SUBroutines as pointers, so
+  that SUBroutines can affect their values, as in QuickBASIC.
+  Arguments of a SUB are therefore not declared in the SUB.
+
+* Takes care of SHARED variables. 
+  If a variable is SHARED it is not declared inside the respective SUB,
+  but as a global variable seen by every other FUNCTION, SUBroutine and main.
+  A complete list of shared variables appears in preamble of the translated C 
+  program.
+
+* Treats UNIX formatted ASCII (text) files as QB would treat
+  DOS formatted ASCII files. The difference between the two is
+  that DOS line terminator is newline + CR while UNIX uses only newline 
+  character terminate a line of text.
+
+* Translates logical expressions from QB form to C form
+
+* Brakes up multiple lines (:) into single lines in C
+
+* Keeps all original REMarks and places them intelligently. Does add 
+  a few of its own remarks (about shared variables in SUBs, and in preamble)
+
+* Writes out C text neatly
+
+* Recognizes and translates over 80 BASIC keywords: 
+
+ ... the following QB commands and keywords:
+ o SUB ... END SUB
+ o EXIT SUB
+ o FUNCTION ... END FUNCTION
+ o STATIC  (as a qualifier of SUB or FUNCTION)
+ o SHARED
+ o CONST
+ o DECLARE
+ o DIM
+ o IF ... THEN ... ELSE ... END IF
+ o FOR ... TO ... STEP ... NEXT
+ o DO WHILE ... LOOP
+ o WHILE ... WEND
+ o GOTO
+ o GOSUB
+ o RETURN
+ o Labels
+ o CALL
+ o OPEN .. FOR mode AS #n  
+   where 'mode' is INPUT, OUTPUT, APPEND
+ o CLOSE #n
+ o EOF
+ o EXISTS
+ o PRINT #n
+ o PRINT
+ o LOCATE
+ o COLOR
+ o CLS
+ o LINE INPUT #n
+ o INPUT #n
+ o INPUT
+ o COMMAND$
+ o INKEY$()
+ o DATE$
+ o TIME$
+ o TIMER
+ o PAUSE
+ o RANDOMIZE
+ o SHELL
+ o REM
+ o LET
+ o GET (graphics)
+ o PUT (graphics)
+ o END 
+ 
+ ... basic string processing functions: 
+ o SPACE$, MID$, LEFT$, RIGHT$, STR$, CHR$, ASC, VAL, LEN
+
+ ... and mathematical functions:  
+ o LOG, SIN, COS, TAN, ATN, SQR, ABS, EXP, SGN, RND, INT, CINT MIN, MAX,
+   MOD and power ^
+
+ ... and a limited number of graphics statements + some non-BASIC ones:
+ o SCREEN, PALETTE, SET, PSET, PGET, LINE, CIRCLE, PLINE, FAREA, MARKER,
+   PMARKER, XWINDOW, XTEXT, XUPDATE, XCLS, XSELWI, SAVEGIF, LOADGIF, GIFINFO,
+   GCGET, XPOINTER, XCURSOR, XTITLE, XREQST, XCLIP, XNOCLI, XWARP, GET, PUT,
+   XANIM, GETCOL, XGETGE
+   (see the graphics section of this manual).
+
+* If a line cannot be translated a WARNING or ERROR are issued, the  
+  line and its number dumped at the screen and the translating 
+  process stopped.
+
+* There are few syntax or other errors which can be detected  
+  during translation. Translation assumes that the input QuickBASIC
+  program is itself (almost) debugged. Preprocessor bcpp does some additional
+  simple checks like brackets and double quotes balance etc.
+
++ Reference Manual +
+
+DIFFERENCES
+  
+o DIFFERENCES 
+  In BASIC, for example 5 / 8 equals to 0.625 while in C this is equal 
+  to 0 (integer zero) because the binary operator "/" acts as the integer
+  division operator when both operands are integer numbers. QB2C translator
+  will therefore also produce zero for such expressions unless they are 
+  written in one of the following ways:
+  5. / 8., 5. / 8, 5 / 8., 5! / 8, 5 / 8!, 5! / 8!, (0.+ 5) / 8 etc. 
+  A BETTER way is to tell QB2C to translate properly by specifying options
+  "-b -r" in which case the preprocessor bcpp is turned on and it replaces
+  every division operator " / " with " / (double)". This is NOT a default.
+ 
+o DATE$ has more possible formats:
+  DATE$ or DATE$(0)  ->   12-27-1996   (the default QuickBASIC format)
+  DATE$(1)           ->   27.12.1996
+  DATE$(2)           ->   27/12/1996
+  DATE$(3)           ->   27-Dec-1996
+  DATE$(4)           ->   Sun Dec 27 15:14:37 1996
+
+o INKEY$  
+  Usage:   a$ = INKEY$
+  This implementation of INKEY$ waits until a key is pressed
+  and then returns a string associated to a character pressed. Unlike
+  the INKEY$ in QuickBASIC it cannot return empty string (""). This
+  should not cause any noticeable differences in operation of programs
+  since INKEY$ is usually embedded in an outer loop which is exited when
+  a key is pressed. 
+
+  According to QB, when a key is pressed, INKEY$ returns a string which 
+  corresponds to the key. Most keys return a string of length one (single 
+  character). Extended keys are represented with a string of length 2.
+  Key codes of ordinary keys are emulated by QB2C exactly as they are in
+  QuickBASIC whereas codes of extended keys are (hopefully insignificantly) 
+  different. The only difference is that the first code is 1 instead of 0.
+
+  Here is the list of extended keys and their ASCII codes:
+
+  Key   QB2C   QBASIC     Key     QB2C   QBASIC     Key          QB2C  QBASIC  
+  F1    1 59   0 59       F9      1 67   0 67       End          1 79  0 79
+  F2    1 60   0 60       F10     1 68   0 68       Page Down    1 81  0 81
+  F3    1 61   0 61       F11     1 133  0 133      Cursor Up    1 72  0 72
+  F4    1 62   0 62       F12     1 134  0 134      Cursor Left  1 75  0 75
+  F5    1 63   0 63       Insert  1 82   0 82       Cursor Down  1 80  0 80
+  F6    1 64   0 64       Home    1 71   0 71       Cursor Right 1 77  0 77
+  F7    1 65   0 65       Page Up 1 73   0 73
+  F8    1 66   0 66       Delete  1 83   0 83
+
+  This is not all ! As different implementations of screen codes in UNIX 
+  are not unique, it is necessary to 'calibrate' your keyboard in some way.
+  If you are going to use INKEY$ function you should definitely do this 
+  by running program calib. The program will ask you to press extended keys 
+  listed above and will create the file .kbcalib in your $HOME directory. 
+
+o Constants
+
+   Constant numbers may be represented with or without leading and/or 
+  trailing zeros, and in exponential notation. For example the
+  following are equivalent:
+  0.001
+  .001
+  000.001
+  0.001000 
+   Exponential notation allows more convenient and compact writing of very 
+  large or very small numbers:
+  1000000000 is equivalent to: 1E9,  1e9, 1E+9 or 1e+9 .
+  .000000001 is equivalent to: 1E-9 or 1e-9 .
+ 
+  Numbers, whether in ordinary or in exponentioal notation *must be written
+  without any spaces*. For example, the following is invalid:
+  a = 1 000 000
+  b = 1E 9
+  etc.
+  
+   When associted to a variable, constant numbers is always automatically 
+  converted to the variable type. For example:
+  a = 1
+  or
+  a = 1 
+  is equivalent to:
+  a = ((float) 1)
+  in C.
+  
+o IF ... THEN
+  IF ... THEN ... ELSE
+  IF ... GOTO
+  
+
+o LOCATE row, column 
+o COLOR  [bg[, fg]]
+  LOCATE and COLOR appear reduced to their essence. Syntaxes are:
+  x, y, bg and fg may be numerical expressions. Useful ranges are:
+  1<= x <= 80
+  1<= y <= 25
+  0<= bg <= 31
+  0<= fg <= 7
+  For bg or fg out of specified ranges, modulo 32 and modulo 8 respectively
+  are taken.
+  The numeration of colors is different than in QuickBASIC, but all colors
+  are there: 
+         0...7       black, red, green, yellow, blue, magenta, cyan, white   
+  Colors 0...7 are half-brigh. These are the only valid values for background;
+  colors 8..15 are the same as 0...7 but of maximal brightness (i.e. "bold");
+  colors 16..23 are the same as 0...7 but blinking;
+  colors 24..31 are the same as 8..15 (bold) and blinking.
+  
+  If COLOR is called without arguments, the default colors are restored.
+  In case something terrible happened, you may reset the terminal with
+  SHELL "reset"  from within a program, or type 'reset' at the prompt.
+
+o CLS 
+  clears the screen (alternatively, SHELL "clear" does the same).
+  Syntax :
+  CLS [n]
+  Valid arguments are 0, 2 or none. 0 or none clears the whole screen 
+  and places cursor at home while 2 clears all but the last line.
+
+o TIMER 
+  Usage:  a = TIMER
+  function counts only seconds: I do not know how to make it
+  more precise under UNIX. Suggestions welcome.
+
+BASIC COMMANDS
+  
+o TIME$
+  Usage:  a$ = TIME$
+  Returns time in the format hh:mm:ss
+
+o PAUSE sec
+  Program execution pauses 'sec' sec. This is precise to a microsecond 
+  i.e. 1.000001 is a longer interval than 1. seconds.
+
+o PRINT [string[,][;]] ...
+  Print a string, string expression or number.1
+  See also: EPRINT
+
+o EPRINT .......
+  The same as PRINT command except that is prints to the standard error
+  device (stderr). Normally, output of tpe PRINT command can be redirected
+  into a file like this:
+
+  $ program > file
+
+  However, the output of EPRINT will still appear on the screen. Thus, EPRINT
+  is suitable for printing error messages. If you want to redirect both
+  PRINT and EPRINT output use >& :
+
+  $ program >& file
+
+  See also: PRINT
+
+o expression-1 MOD expression-2
+  Calculates remainder of division of expression-1 by expression-2.
+  Before doing so, both expresions are rounded to nearest integer.
+  
+  EXAMPLE:
+  1 + 2 * 19 MOD 6.7 + .5
+  is equivalent to:
+  1 + (CINT(2 * 19) MOD CINT(6.7)) + .5
+  The result is 4.5.
+  
+o EXISTS("filename")
+  Function EXISTS returns TRUE if file or diretory "filename" exists, 
+  FALSE if it doesn't exist. This function normally expands ~.
+  String expression can also be passed as an argument.
+
+  EXAMPLE:
+   name$ = "myfile.dat"
+   IF EXISTS("~/" + name$) THEN
+    ...
+   END IF
+  The block ... will be excuted if a file or a directoy with name 
+  "myfile.dat" exists.
+
+
+o SPACE$(n%)
+
+  SPACE$ is a string processing function that returns a string of spaces
+  of length n%.
+
+  See also: STRING$
+
+o LEFT$(a$, n%)
+  
+  LEFT$ is a string processing function that returns a string consisting
+  of the leftmost n% characters of the string a$. 
+
+  The argument n% is a numeric expression in the range 0-1024 indicating
+  how many characters are to be returned. Natural limit to the
+  number n% is 1024 since in QB2C the default storage for strings ammounts
+  1024 characters. However, this can be overriden by the option -L at
+  translation time (see the OPTIONS section of the manual).
+
+  If n% is greater than the number of characters in stringexpression, the
+  entire string is returned. To find the number of characters in a$
+  use LEN(a$).
+
+  If n% is zero, the null string (length zero) is returned.
+
+  See also: RIGHT$, MID$
+
+
+o RIGHT$(a$, n%)
+
+  RIGHT$ is a string processing function that returns a string consisting
+  of the rightmost n% characters of the string a$.
+
+  The argument n% is a numeric expression in the range 0-1024 indicating
+  how many characters are to be returned.  Natural limit to the
+  number n% is 1024 since in QB2C the default storage for strings ammounts
+  1024 characters. However, this can be overriden by the option -L at
+  translation time (see the OPTIONS section of the manual).
+
+  If n% is greater than the number of characters in stringexpression, the
+  entire string is returned. To find the number of characters in a$
+  use LEN(a$).
+
+  If n% is zero, the null string (length zero) is returned.
+
+  See also: LEFT$, MID$
+
+o LCASE$
+  a string processing function that returns a string expression
+  with all letters in lower-case.
+
+  Syntax:
+  variable$ = LCASE$(stringexpression)
+  stringexpression may be a string constant, string variable, or
+  string expression. It may refer to a fixed- or variable-length
+  string.
+
+  See Also  UCASE$
+
+o UCASE$
+  a string processing function that returns a string expression
+  with all letters in uppercase.
+
+  Syntax:
+  variable$ = UCASE$(stringexpression)
+  stringexpression may be a string constant, string variable, or
+  string expression. It may refer to a fixed- or variable-length
+  string.
+
+  See Also  LCASE$
+  
+o ASC(a$)
+
+  ASC is a string processing function that returns a numeric value
+  that is the ASCII code of the first character in a string.
+  
+  See also: CHR$
+
+  
+o CHR$(code) 
+
+  CHR$ is a string processing function that returns a one-character
+  string whose ASCII code is the argument.
+
+  
+  CHR$ is commonly used to send a special character to the file
+  or printer. For example, the "form feed" character CHR$(12)
+  tells the printer or some editors editor to skip to a new page.
+
+  CHR$ can also be used to include a double quote (") in a string:
+
+  a$ = CHR$(34) + "Quoted string" + CHR$(34)
+
+  This line adds a double-quote character to the beginning and the end
+  of the string.
+
+  See also: ASC
+
+
+o LEN(a$)
+  
+  LEN returns the number of characters in the string a$.
+
+o STR$(numeric_expression)
+
+  STR$ is a string function that returns a string representation of the
+  value of a numeric expression.
+  If numeric_expression is positive, the string returned by the STR$
+  function contains a leading blank.
+
+  See also: VAL function
+
+
+o VAL(a$)
+
+  VAL is a string-processing function that returns the numeric value of
+  a string of digits. It returns a value of the maximum leftmost characters
+  recognizable as a number. Return value is of the type double.
+  Examples:
+
+  x = VAL("123.456")        x = 123.456
+  x = VAL(" 12A13B")        x = 12
+  x = VAL("R34.56")         x = 0
+  x = VAL(-1.23.45.67")     x = -1.23
+  
+  See also: STR$
+
+o HEX$(expression)
+
+  HEX$ is a string function that returns a string that represents the
+  hexadecimal value of the decimal argument expression.
+
+  The argument expression is a numeric expression or a number.
+  It is converted to a long integer by truncating a non-integer part
+  before the HEX$ function evaluates it. Leading zeros are omitted.
+
+  A string consists of only numbers and upper case letters. You may 
+  convert to lower case using LCASE$ function.
+
+  See also: OCT$
+
+  
+
+o MATHEMATICAL FUNCTIONS
+
+o SIN function
+  Syntax: SIN(numeric_expression)
+
+  SIN is a math function that returns the cosine of an angle given in radians.
+  Argument can be of any type.  Value of the SIN is calculated to a 
+  double precision. Return type is the "signed double precision", which 
+  corresponds to a variable with suffix '#'.
+   
+  See also: COS, TAN, ATN 
+
+o COS function
+  Syntax: COS(numeric_expression)
+
+  COS is a math function that returns the cosine of an angle given in radians.
+  Argument can be of any type.  Value of the COS is calculated to a 
+  double precision. Return type is the "signed double precision", which 
+  corresponds to a variable with suffix '#'.
+   
+  See also: SIN, TAN, ATN 
+
+o TAN function
+  Syntax: TAN(numeric_expression)
+
+  TAN is a math function that returns the tangent of an angle given in radians.
+  Argument can be of any type.  Value of the TAN is calculated to a 
+  double precision. Return type is the "signed double precision", which 
+  corresponds to a variable with suffix '#'.
+   
+  See also: SIN, COS, ATN 
+
+o ATN function
+  Syntax: ATN(numeric_expression)
+
+  ATN is a math function that returns the angle, measured in radians,
+  tangent is the numeric_expression. Said in a words of a matematician,
+  ATN returns "arcus tangent" of its argument. The argument can be of 
+  any type. Value of the ATN is calculated to a double precision. 
+  Return type is the "signed double precision", which corresponds to a
+  variable with suffix '#'.
+
+  ATN is the only inverse trigonometric function in BASIC and can
+  be used to perform other inverse functions using the following
+  formulae:
+
+  asin(x) = atn(x/SQR(1-x*x))
+  acos(x) = atn(SQR(1-x*x)/x)
+   
+  See also: SIN, COS, TAN
+
+o EXP(numeric_expression)
+
+  EXP is a math function that calculates the exponential function
+  (that is Euler's number e=2.7182818284... raised to the power of a 
+  numeric expression). Inverse function of EXP is LOG.
+
+
+  See also: LOG
+
+o LOG(numeric_expression)
+
+  LOG is a math function that returns the natural logarithm of a
+  numeric expression, ie. the logarithm with the base e=2.7182818284...
+  Argument can be of any type and the return value is a double float.
+
+  To convert to logarithm with base 10 simply divide with LOG(10). For
+  example, the following function calculates the logarithm with base 10:
+
+  FUNCTION log10(x)
+   log10 = LOG(x) / LOG(10)
+  END FUNCTION
+
+  See also: EXP
+
+o ABS(numeric_expression)
+
+  The absolute value function returns the unsigned magnitude of its
+  argument. For example, ABS(-1.23) and ABS(1.23) are both 1.23
+  Argument can be of any type and the return value is a double float.
+
+  See also: SGN
+
+o RND[(n)]
+
+  RND is a math function that returns a single-precision random number
+  between [0, 1) ie. 0 included, 1 excluded.
+  If the argument is omitted, the RND function returns the next number
+  in the pseudorandom number sequence. The argument 'n' is a numeric 
+  expression of any type. The value of n determines how RND generates
+  the next random number:
+
+  Argument         Return value
+  0 or n omitted   returns the next random number in the sequence
+  n <> 0           returns the last number generated
+ 
+  A tip:
+  To produce random integers in a range between n1% and n2% both
+  included, use the formula:
+
+  INT((n2% - n1% + 1)*RND + n1%)
+
+  For example, to simulate throwing a dice use n1% = 1, n2% = 6:
+  
+  INT(6 * RND) + 1
+
+  NOTE:
+  This implementation of RND uses C library function rand() to generate  
+  random numbers using the following formula:
+  RND = rand()/((double) RAND_MAX))
+
+  See also: RANDOMIZE
+
+o RANDOMIZE [expression]
+
+  RANDOMIZE is a math statement that initializes (reseeds) the 
+  random-number generator. The expression may be any integer
+  number between 0 and 65535. If not specified, the default
+  value of 32767 is taken.
+
+  If a number smaller than 0 or larger than 65535 is specified,
+  then this number modulo 65536 is taken as a seed.
+
+  If the random-number generator is not reseeded, the RND function returns
+  the same sequence of random numbers each time the program is run. To
+  change the sequence of random numbers every time the program is run,
+  place a RANDOMIZE statement at the beginning of the program and change
+  the argument with each run.
+
+  A convenient way to initialize the random-number generator is to use
+  the TIMER function as follows:
+  RANDOMIZE TIMER
+  Using TIMER ensures a new series of random numbers each time you run 
+  the program.
+
+o INT(expression)
+
+  INT is a math function that returns the largest integer less than
+  or equal to a numeric-expression. In other words, the INT function 
+  removes the fractional part of its argument. INT returns long integer,
+  therefore the expression parameter must be in the range of the long
+  integer i.e.  -2 147 483 648 ... +2,147,483,647.
+
+  See also: CINT
+
+o CINT(expression)
+
+  CINT is a conversion function that converts a numeric expression to
+  a long integer by rounding the expression. It is equivalent to 
+  INT(0.5 + expression).
+
+  See also: INT
+
+o MOD
+  Syntax
+  numeric-expression1 MOD numeric-expression2
+
+  The modulus or "remainder" operator. Divides one number by another
+  (real values are rounded to integers) and returns the remainder. 
+  For example, 18 MOD 6.7 equals four.
+
+
+o ARRAYS
+  See the DIM statement.
+
+o SYNTAX ERRORS
+  
+  Diagnostics of syntax and other errors at the translation time is not 
+  one of the greatest thing about QB2C but should be good enough in 
+  most cases. However, some errors are only detected at compilation time of 
+  the C translate. In that case, there is usually a very large number of
+  errors complained by your C compiler. Errors detected at that level 
+  can be hard to back-trace to the original BASIC code. The tip is that 
+  you should always look only at the first error reported by the C compiler
+  and correct for it before looking at any other error reports.
+  Often the first reported error is the only error. 
+
+o DIM [DYNAMIC] array(subscripts)[, array(subscripts) ... 
+
+  Reserve space in memory for arrays of variables. Array list is a
+  list of arrays with specified dimensions delimitd with comma. 
+  An array can be specified as a static or dynamic block of memory.
+
+  Array dimensioned with statement DIM DYNAMIC occupy a dynamic
+  block of memory. Space for such array is allocated at run time
+  and can be freed (see ERASE) or redimensioned (see REDIM) at
+  the run time.
+
+  On the ohher hand, an array dimensioned with DIM statement occupy a
+  static block of memory. Space for such array is predetermined at 
+  compile time and cannot be freed or change its size at the run time.
+
+  Contents of both static and dynamic arrays are set to zero.
+
+  See also: ERASE, REDIM
+
+o REDIM array(subscripts)
+  
+  Changes the size of the memory block pointed to by a dynamic array.
+  The contents of the block will be unchanged to the minimum
+  of the old and new sizes. Newly allocated  memory will be 
+  uninitialized.
+  NOTE: REDIM works correctly only for 1-dimensional ararys of numbers.
+  Example: 
+ 
+  DIM DYNAMIC a(10)
+  ...
+  REDIM a(20)
+
+  See also: DIM, ERASE
+
+o ERASE arraylist
+  
+  Clear and free the memory associated with dynamic arrays in the list. 
+  Arraylist is a list of bare array names separated by a comma.
+  ERASEd can be only dynamic arrays previously created by the 
+  DIM DYNAMIC command.
+  When an array is ERASEd, it's name cannot be reused in another
+  DIM DYNAMIC command. This limitation may dissapear in the future
+  versions of QB2C.
+  Example:
+
+  DIM DYNAMIC a(10), b(100, 10)
+  ...
+  ERASE a, b
+
+  See also: DIM, REDIM
+  
+o CALL name[(argumentlist)]
+  
+  Call a user defined subroutine. Length of the name of the subroutine 
+  is limited to 80 characters, and it can not begin with a number (digit).
+ 
+  See also: SUB, END SUB
+
+o DATA constant[, constant]... 
+
+  DATA is a non-executable statement that defines an unique data block
+       of  numeric and/or string constants. 
+
+  Argument to DATA is the list of numeric or string data separated by 
+  comma. If a string constant contains commas, colons, or leading or 
+  trailing spaces you want to preserve in your program, you must enclose
+  the string in double quotes.
+ 
+  Names of symbolic constants (defined in a CONST statement) appearing
+  in DATA statements are interpreted as strings, rather than names of
+  constants. For example:  
+
+  CONST PI=3.141593
+  .
+  .
+  .
+  DATA 2.20, PI,45,7
+ 
+  in this example, PI is interpreted as string "PI" rather than the number
+  3.141593.
+
+  A DATA statement may contain as many constants as will fit on a line. 
+  A whole line including the DATA statement must not exceed 1023 characters
+  (see LIMITS section).
+  Several DATA lines add up data to the block in the order in which
+  they appear in the program.
+
+  Data from the DATA block are visible from the MAIN and all subroutines
+  in the program file.
+
+  See also: READ, RESTORE
+  
+o READ variable[, variable]...
+
+  READ is an I/O statement that reads values from the DATA block and
+  assigns the values to variables
+
+  Argument variablelist is made up of one or more variables, separated
+  by commas, which are to receive the data. The variables may be string
+  or numeric.
+
+  When a READ statement is
+  called for the first time, it reads data from the DATA block starting 
+  from the first one. It reads as many items as there are in the 
+  valiablelist.  Every new call starts reading from the next item in the
+  DATA block. To reset the reading to the first element, use RESTORE.
+
+  During the READ, data are converted to the type as required/specified
+  in the variablelist.
+
+  See also: DATA, RESTORE
+
+o RESTORE [item%]
+
+  RESTORE is an I/O statement that allows DATA block to be reread from
+  a specified item. Items are counted from 1. If no argument is specified
+  then DATA are reread from the first item.
+ 
+  See also: DATA, READ
+
+o INP(port_number)
+
+  INP is a device I/O function that returns a byte read from an I/O port.
+
+  port_number is a numeric-expression which has an integer value between
+              0 and 1023 (hexadecimal 0x000 to 0x3ff). It identifies the
+              hardware address of the I/O port to read from.
+
+  You must run the program as the superuser or have your program given
+  suid permissions ("chmod u+s program_name", which again can be given 
+  only by the superuser) in order to use INP function.
+
+  The INP function complements the OUT statement.
+
+  See also:  OUT
+
+
+o OUT port_number, data
+
+  OUT is a device I/O statement that sends a byte to a machine I/O port.
+
+  port_number is a numeric-expression which has an integer value between
+              0 and 1023 (hexadecimal 0x000 to 0x3ff). It identifies the 
+              hardware address of the I/O port to write to.
+
+  data        is a numeric expression that has an integer value between
+              0 and 255, and is the data to be sent out the port.
+
+  You must run the program as the superuser or have your program given
+  suid permissions ("chmod u+s program_name", which again can be given 
+  only by the superuser) in order to use OUT statement.
+
+  The OUT function complements the INP statement.
+
+  The INP and OUT statements give a program direct control over
+  the hardware in a system through the I/O ports. These statements must
+  be used with care because they directly manipulate the system hardware.
+
+  See also:  INP
+
+
+o INPUT ["promptstring"{;|,}] variablelist
+
+  INPUT is a device I/O statement that reads input from the keyboard
+  during program execution and stores it into a list of variables.
+
+  variablelist - is one or more variables separated by commas
+
+  Argument       Description
+  promptstring   A string constant printed before the prompt character. 
+                 If used, is displayed on the screen to tell the user of
+                 the program what to enter at the keyboard
+  ;              Print a question mark at the end of the promptstring
+  ,              Print the promptstring without a question mark
+  variablelist   A list of variables, separated by commas, to accept
+                 the input values.
+
+  The INPUT statement causes the program to pause and wait for data.
+  You can then enter the required data at the keyboard.
+
+  This implementation of input expects input numeric tokens to be 
+  delimited with "," and string tokens with ", ". In any case, there
+  may be more white spaces. This allows you to pass strings which contain
+  comma character. However, if input string contains white space it
+  must be enclosed in double quotes. Example of a valid input:
+
+  INPUT "Give one string and two numbers:"; a$, a, b, b$
+  ....
+
+  Execution looks like this:
+  Give one string and two numbers: aa,bb ,2,3,"k l"
+
+  Result: a$ = "aa,bb", a = 2, b = 3, b$ = "k l"
+ 
+
+o SSCAN a$; variablelist
+  where variablelist is a list of variables (numeric and/or string) separated
+  by a comma.
+
+  SSCAN is a string processing function. It scans string a$ for tokens
+  delimited by a comma. Each token is converted in the type of the 
+  corresponding variable and written to it. SSCAN operates on the
+  string a$ in the same way as READ operates on the DATA block.
+  If variablelist contains more variables than there are tokens in a$,
+  the overhead variables are set either to zero (for numeric variables)
+  or to empty string ("") for string variables.
+
+
+o OPEN filename$ FOR mode AS [#]filenumber
+
+  OPEN - a file operation statement that enables input and/or output
+  to a file.
+
+  filename$  - is a string or a string expression denoting the file to be
+              opened
+
+  filenumber - is a small positive integer: 0 is invalid, must be >=1.
+   This number is used to identify an opened file to I/O commands like
+   CLOSE, PUT #, GET #, etc.
+
+  mode       - is one of the following keywords:                 (C equivalent)
+   INPUT     Opens file for reading only. File is not changed.          (r)
+
+   OUTPUT    Creates a new file and opens it for writing. If file of the 
+             same name exists, it is replaced with the new file.        (w)
+
+   APPEND    Opens an existing file for writing at the end of the file.
+             If the file does not exist, it is created.                 (a)
+
+   RANDOM    Opens a file for binary 
+   BINARY
+   READ
+   WRITE
+   READ WRITE
+
+  Keyword   Possible value(s)              Description
+  mode                    
+C      if (memcmp(&a_S[i_int], " FOR ", 5)==0) j_int = i_int;
+C      if (memcmp(&a_S[i_int], "INPUT ", 6)==0 && j_int) strcpy(mode_S, "r");
+C      if (memcmp(&a_S[i_int], "OUTPUT ", 7)==0 && j_int) strcpy(mode_S, "w");
+C      if (memcmp(&a_S[i_int], "APPEND ", 7)==0 && j_int) strcpy(mode_S, "a");
+C      if (memcmp(&a_S[i_int], "RANDOM ", 7)==0 && j_int) strcpy(mode_S, "r+");
+C      if (memcmp(&a_S[i_int], "BINARY ", 7)==0 && j_int) strcpy(mode_S, "r+");
+C      if (memcmp(&a_S[i_int], "ACCESS ", 7)==0) k_int = i_int;
+C      if (memcmp(&a_S[i_int], "READ ", 5)==0) strcpy(access_S, "r");
+C      if (memcmp(&a_S[i_int], "WRITE ", 6)==0) strcpy(access_S, "w");
+C      if (memcmp(&a_S[i_int], "READ WRITE ",11)==0) strcpy(access_S, "rw");
+C      if (memcmp(&a_S[i_int], " AS ", 4)==0) i1_int = i_int + 2;
+
+
+   
+
+  NOTE. Full syntax is:
+  OPEN filename$ FOR mode [ACCESS access] AS [#]filenumber [LEN=reclen]
+  where ACCESS and LEN are read for compatibility with the QuickBASIC but
+  are dummy.
+
+  See also: CLOSE, SEEK, PUT #, GET #, INPUT #, PRINT #, EOF, LOF
+
+o CLOSE [[#]filenumber[,[#] filenumber]...]
+  The filenumber is the number under which the file was opened. A CLOSE
+  statement with no arguments closes all open files and devices.
+
+  The association of a file with a file number ends when a CLOSE statement
+  is executed. You may then reopen the file using the same or a different
+  file number. Once you close a file, you may use that file's number for any
+  unopened file.
+
+  A CLOSE for a file or device that was opened for sequential output writes
+  the final buffer of output to that file or device.
+
+  CLOSE releases all buffer space associated with the closed file or files.
+
+  The END statement closes all files automatically.
+
+  See also: OPEN, EOF, LOF
+
+o LOF function
+  Usage:
+  a% = LOF(filename)
+  returns file length in bytes.
+
+o EOF(filenumber)
+
+  EOF is a file I/O function that tests for the end-of-file condition.
+
+  The EOF function returns TRUE (nonzero integer) if the end of a
+  sequential file open for read has been reached or passed. 
+  IF EOF returns TRUE, further file reading by INPUT # or GET # 
+  commands is not possible and will produce an error. You may
+  use EOF to prevent such error to occur.  
+   
+o GET #filenumber, [recordnumber], variable[, length]
+
+  GET is file I/O statement that reads from an opened file into a variable.
+
+  Argument       Description
+  filenumber   - The number used in the OPEN statement to open the file.
+
+  recordnumber - the number of the record to be read. One record has
+                 that many bytes as the length of the variable. The
+                 length of the variable is determined by its type
+                 (see the VARIABLES section of this manual.)
+                 The first record or byte position in a file is 1.
+                 If you omit recordnumber, the next record or byte 
+                 (the one after the last GET # or PUT #, or the one 
+                 pointed to by the last SEEK) is read into the buffer.
+                 Each time something is read by GET #, the file pointer
+                 points to the next unread byte, or the end-of-file marker
+                 and the next GET # starts with that byte.
+                 The largest possible record number is 2^31 -1, or
+                 2,147,483,647.
+
+  variable     - A numeric variable used to receive input from the file,
+                 it can be single variable or element of an array.
+
+  length       - the number of records to be read in by the GET command. 
+                 If omitted, the default is one record (see above). In
+                 case that a variable is a string, length is a number
+                 of bytes to be read in.
+
+  Example.
+
+  DIM b(10)       :REM Dimension an array of real numbers
+  OPEN "file" FOR INPUT AS #2  :REM Open a file for reading
+  ...
+  GET #2,,i%      :REM Read one integer number (four bytes) into variable i%
+  GET #2,,a?      :REM Read next byte into variable a?
+  GET #2,,b(5)    :REM Read one real number into the array element b(5)
+  GET #2,,b(6),5  :REM Read 5 real numbers into elements b(6)...b(10)
+  ...
+  CLOSE #2
+
+  See also: PUT #, SEEK, EOF
+
+o PUT #filenumber, [recordnumber], variable[, length]
+
+  PUT is a file I/O statement that writes from a variable to an opened file.
+
+  Arguments description is the sam as for the GET # statement except
+  that the variable is written to the file rather than read from it.
+
+  See also: GET #, SEEK, EOF
+
+o SEEK [#]filenumber, position
+
+  SEEK command sets the position of the pointer for file I/O to a specified
+  position.
+
+  The filenumber is an integer number used in the OPEN statement to open
+  the file.
+
+  The position is a numeric expression indicating the byte where the next
+  read or write is to be done. The position must be in the range 1 to 
+  2,147,483,647 (equivalent to 2^31 -1). 
+  The first byte in a file is 1. After a SEEK, the next file I/O operation
+  starts at that byte in the file.
+
+  Note: Record numbers specified in GET # or PUT # will override the file
+        positioning done by SEEK.
+
+  Example: see the GET # example.
+
+  See also: PUT #, GET #
+
+o IF
+  A flow control command. Supported syntax:
+
+  Inline:
+   IF bool THEN expr
+   IF bool THEN expr ELSE expr
+   IF bool THEN expr ELSE IF expr THEN expr
+   IF bool GOTO 100
+   IF bool GOSUB 100
+   In inline syntax, after THEN and ELSE may be only a label, for example:
+   IF a = b THEN 100 ELSE 200
+
+  Multiline:
+   IF bool THEN
+    expr
+   [[ELSEIF bool THEN
+    expr]
+   [ELSE
+    expr]]
+   END IF
+
+
+o LOCATE row, column
+  A device I/O statement that moves the cursor to the specified position
+  on a text-mode window.
+ 
+  row        The number of a row on the screen; row is a numeric
+             expression returning an integer. If row is not specified,
+             then the line (row) does not change.
+  column     The number of a column on the screen; column is a numeric
+             expression returning an integer. If column is not
+             specified, then the column location does not change.
+
+  For normal text-mode screen the usefull ranges are:
+  1<= row <= 80
+  1<= column <= 25
+
+  LOCATE is usually used just before the PRINT command in order to 
+  print the output starting at the specified position on the window.
+  See also: PRINT, COLOR
+ 
+o COLOR  [bg[, fg]]
+  COLOR appears reduced to its essence
+  The bg and fg may be numerical expressions. Useful ranges are:
+  0<= bg <= 31
+  0<= fg <= 7
+  For bg or fg out of specified ranges, modulo 32 and modulo 8 respectively
+  are taken.
+  The numeration of colors is different than in QuickBASIC, but all colors
+  are there: 
+         0...7       black, red, green, yellow, blue, magenta, cyan, white   
+  Colors 0...7 are half-brigh. These are the only valid values for background;
+  colors 8..15 are the same as 0...7 but of maximal brightness (i.e. "bold");
+  colors 16..23 are the same as 0...7 but blinking;
+  colors 24..31 are the same as 8..15 (bold) and blinking.
+  
+  If COLOR is called without arguments, the default colors are restored.
+  In case something terrible happened, you may reset the terminal with
+  SHELL "reset"  from within a program, or type 'reset' at the prompt.
+
+o CLS 
+  clears the screen (alternatively, SHELL "clear" does the same).
+  Syntax :
+  CLS [n]
+  Valid arguments are 0, 2 or none. 0 or none clears the whole screen 
+  and places cursor at home while 2 clears all but the last line.
+
+o LABELS
+
+  A line may be labeled so that "GOSUB label" or "GOTO label" may jump to 
+  the line. Labels must be numbers only. A line may consist only of a label.
+  It is not necessary that a label defined must be used, but a label used
+  (by GOTO, GOSUB) must be defined or compile-time error will occur.
+
+  Label examples:
+  Good label: 1000    
+  Bad labels: A1000 1000A Abcd 10A00
+
+  Usage:
+
+  10 PRINT "This is line labeled 10"
+
+  or:
+
+  10
+     PRINT "This is line after the line labeled 10"
+
+  See also: GOTO, GOSUB
+
+o GOTO label
+
+  GOTO performs unconditional jump to a line labeled with 'label'.
+  This line must be in the same procedure or subroutine as the GOTO
+  statement. GOTO may be used to exit from loops.
+ 
+  See also: LABELS, GOSUB
+  
+o GOSUB label
+
+  GOSUB...RETURN are a control flow statements that jumps to, and
+  returns from a local subroutine. A local subroutine is a piece of code
+  within the sam subroutine or the main program. GOSUB unconditionally
+  jumps to a line labeled with 'label'. When a program flow enounters
+  the RETURN statement for the first time it returns to the line 
+  immediately after the GOSUB statement.
+
+  You may call a local subroutine any number of times in a program. You
+  may also call a local subroutine from within another local subroutine. 
+  In QB2C the terminal GOSUB depth is 16 levels. Local subroutines that
+  call themselves (recursive subroutines) can easily run out of stack space.
+
+  GOSUB is very versatile because you may jump to different parts of
+  a piece of code, which can contain more than one RETURN statements,
+  returning from the first one that happens to be executed. However,
+  this style of programming may be made very unclear and hard to debug
+  even to its creator.
+
+  See also: RETURN, LABELS, GOTO
+
+o RETURN
+
+  Return from a local subroutine.
+
+  See also: GOSUB
+
+o TIMER
+  TIMER  - a function of type double, which returns the number of seconds
+           elapsed since midnight
+
+Syntax
+  a = TIMER
+  z# = TIMER
+
+  TIMER returns a number of seconds down to a microsecond, i.e. 6 decimal
+  places. However true timing accuracy is machine dependent and can be 
+  less than that. 
+ 
+  The TIMER function can be used with the RANDOMIZE statement to generate a
+  random number. It can also be used to time programs or parts of programs.
+
+
+BASIC COMMANDS
+  
+o TIME$
+  Usage:  a$ = TIME$
+  Returns time in the format hh:mm:ss
+
+o PAUSE sec
+  Program execution pauses 'sec' sec. This is precise to a microsecond 
+  i.e. 1.000001 is a longer interval than 1. seconds.
+
+o PRINT [outputlist] 
+  where outputlist is [string[,][;]] ...
+
+  PRINT is a device I/O statement that outputs data to the screen.
+
+  Print a string, string expression or number.
+  IF outputlist is omitted then print an empty line.
+
+  See also: PRINT USING, EPRINT
+
+o PRINT USING format$; outputlist
+  where outputlist is [string[,][;]] ...
+
+  PRINT USING is a device I/O statement that outputs formatted data to
+  the screen.
+
+  Print a string, string expression or number, under a control of format.
+  Format may contain only characters "#" and/or ".". For example:
+  PRINT USING "###.##"; a
+  will print a as a float number which occupy exactly 6 places, and is 
+  print with precision to two decimal places.
+  Example:
+
+  i% = 123: j% = 123456: k% = 1
+  h$ = "#####"
+  PRINT USING h$; i%; j%; k%
+  
+  will print the string 15 characters wide, in which each of integer 
+  numbers i%, j%, k% will occupy at most 5 characters, other characters
+  will be blank:
+
+    12323456    1 
+
+  See also: PRINT, EPRINT
+
+o EPRINT .......
+  The same as PRINT command except that is prints to the standard error
+  device (stderr) rather than to the standard output evice (screen). 
+  Normally, output of the PRINT command can be redirected into a file 
+  like this:
+
+  $ program > file
+
+  However, the output of EPRINT will still appear on the screen. Thus, EPRINT
+  is suitable for printing error messages. If you want to redirect both
+  PRINT and EPRINT output use >& :
+
+  $ program >& file
+
+  See also: PRINT
+
+o expression-1 MOD expression-2
+  Calculates remainder of division of expression-1 by expression-2.
+  Before doing so, both expresions are rounded to nearest integer.
+  
+  EXAMPLE:
+  1 + 2 * 19 MOD 6.7 + .5
+  is equivalent to:
+  1 + (CINT(2 * 19) MOD CINT(6.7)) + .5
+  The result is 4.5.
+  
+o EXISTS("filename")
+  Function EXISTS returns TRUE if file or diretory "filename" exists, 
+  FALSE if it doesn't exist. This function normally expands the ~ (tilda).
+  String expression can also be passed as an argument.
+
+  EXAMPLE:
+   name$ = "myfile.dat"
+   IF EXISTS("~/" + name$) THEN
+    ...
+   END IF
+  The block ... will be excuted if a file or a directoy with name 
+  "myfile.dat" exists.
+
+o SHELL commands$
+  SHELL executes.... 
+
+
+GRAPHICS
+
+  Set of graphics commands to work under X11 windows system is included. 
+  They are similar in syntax to the original Quick Basic commands, except 
+  for some intrinsic differences between DOS and X11 graphics display.
+  For example, the 'SCREEN 10' command will open an 820x485 pixel 
+  X-window to which subsequent graphics will be sent. Both text 
+  and graphics screens live at the same time, so there is no need to
+  switch between two modes ('SCREEN 0' is obsolete).
+
+  There is a small demo program 'graphic.bas' included in this package.
+  Try to compile it and understand how it works: 
+  bcc graphic
+  graphic
+  
+
+  Below is the short review of syntax.
+
+o SCREEN (x, y)[, width, height[, title$[, Xfont_name$]]]
+  SCREEN 10
+  
+  SCREEN command establishes connection to the X server, initializes 
+  graphics (colors, fonts, etc.) and opens an X11 graphic window with 
+  identifier ID = 0 at the position (x, y) pixels. It has two supported
+  syntaxes.
+
+  SCREEN 10
+  Initializes graphics and opens an X11 graphic window of the size 
+  width=820; height=485 pixels using default title and font.
+
+  SCREEN (x, y)[, width, height[, title$[, Xfont_name$]]]
+  Initializes graphics and opens X11 graphic window with identifier ID = 0 
+  at the position (x, y) pixels. The window ID number is used in commands
+  like: XSELWI, XCLS etc.
+  The optional width and height of the window are specified in pixels.
+  If not specified, the default is: width=820, height=485.
+  The default background colour is white and foreground black. These
+  may be changed (individually for each window) via SET BG or XCLS.
+  The default global font is:
+  "-misc-fixed-medium-r-normal-*-20-140-*-100-c-100-iso8859-1"
+  and it fits exactly 80 rows and 25 columns in the default window size.
+  Initial title for the window can be set via title$ parameter. By default
+  title will be written in the form: title@hostname. To avoid printing of
+  the hostname, start the title with "-". Title of an already open window
+  can be redefined via XTITLE command, which behaves the same way.
+
+  SCREEN must be the first graphics command and must be executed exactly
+  once. If more than one X-windows are needed they may be opened via 
+  XWINDOW command.
+
+  The background color of an already opened window can be changed via 
+  XCLS command.
+
+
+o [win% =] XWINDOW (x, y)[, width, height[, title$]]
+  Open an X11 graphic window at the position (x, y) pixels. The window
+  identification number is the next unused integer number and will be 
+  written to variable win% if specified. The first window (ID = 0) must
+  be opened with the SCREEN command. The window ID number is used in
+  commands as: XSELWI, XCLS etc.
+  The optional width and height of the window are specified in pixels.
+  If not specified, the default is: width=820, height=485.
+  The default background colour is white and foreground black. These
+  may be changed (individually for each window) via SET BG or XCLS.
+
+  The background color of an already opened window can be changed via 
+  XCLS command.
+
+  See also SCREEN command.
+
+
+o PALETTE color_index%, r%, g%, b%
+  Sets one color in the palette (2 <= color_index <= 255),
+  where r%, g%, and b% are the color intensities (red, green, blue) between
+  0 and 255 each.
+  Color indexes 0 and 1 are used by the system for the window background
+  and foreground colors respectively, when graphics is initialized (SCREEN)
+  and should never be changed by user directly. You can alter the background
+  of each opened window individually using XCLS and/or SET BG.
+  (See LOADGIF for more details when GIF's are manipulated.)
+
+o XTITLE title$[, win%]
+  title$ = title
+  win%  =  window identifier number
+  Title of an already open window can be set via XTITLE command.
+  By default title will be written in the form: title@hostname. To avoid
+  printing of the hostname, start title with "-". 
+  If win% omitted, set the title of the current window.
+  If window win% is not existing, command has no effect.
+
+o PSET (x, y)[, color%]
+  Draws one point of a given colour index.
+  If color index is omitted then the line is drawn in the current color.
+  This can be overriden with '-col' option to the compiler, in which case
+  the default color is the foreground color (color = 1).
+
+  See also: SET LCOL
+
+o PGET (x, y)[, color%]
+  Gets the colour index of a point at the location (x, y).
+  NOTE: NOT IMPLEMENTED
+
+o LINE (x1, y1)-(x2, y2)[, [color%][, [B[F]][,style%]]]
+  LINE [[STEP] (x1,y1)]-[STEP] (x2,y2) [,[color][,[B[F]][,style]]]
+  LINE - [STEP] (x, y)[, color%[, B[F]]
+  /* Other uses of STEP keyword are not yet supported ! */
+  Draws a line, where 'color' index is defined via PALETTE. 
+  If color index is omitted then the line is drawn in the current color.
+  This can be overriden with '-col' option to the compiler, in which case
+  the default color is the foreground color (color = 1).
+  The dashing style may be set with SET DMOD command (see below).
+
+  LINE Statement Details
+
+  Syntax
+  LINE [[STEP] (x1,y1)]-[STEP] (x2,y2) [,[color][,[B[F]][,style]]]
+
+  The coordinates (x1,y1) and (x2,y2) specify the endpoints of the line;
+  note that the order in which these endpoints appear is unimportant,
+  since a line from (10,20) to (120,130) is the same as a line from
+  (120,130) to (10,20).
+
+  The STEP option makes the specified coordinates relative to the most recent
+  point, instead of absolute, mapped coordinates. For example, if the most
+  recent point referred to by the program is (10,10), then
+
+  LINE -STEP (10,5)
+
+  draws a line from (10,10) to the point with x coordinate equal to
+  10 + 10 and y coordinate equal to 10 + 5, or (20,15).
+
+  You may establish a new most recent point by initializing the screen
+  with the CLS and SCREEN statements. Using the PSET, PRESET, CIRCLE,
+  and DRAW statements will also establish a new most recent point.
+
+  Variations of the STEP argument are shown below. For the following
+  examples, assume that the last point plotted was (10,10):
+
+  Statement                      Description
+
+  LINE -(50,50)                  Draws from (10,10) to (50,50)
+
+  LINE -STEP(50,50)              Draws from (10,10) to (60,60); that
+                                 is, to 10 plus offset 50
+
+  LINE (25,25)-STEP(50,50)       Draws from (25,25) to (75,75); that
+                                 is, to 25 plus offset 50
+
+  LINE STEP(25,25)-STEP(50,50)   Draws from (35,35) to (85,85); that
+                                 is, from 10 plus offset 25 to that
+                                 point plus offset 50
+
+  LINE STEP(25,25)-(50,50)       Draws from (35,35) to (50,50); that
+                                 is, from 10 plus offset 25 to
+                                 absolute 50
+
+  The color is the number of the color in which the line is drawn.
+  (If the B or BF options are used, the box is drawn in this color.)
+  See the COLOR statement details and the SCREEN statement details for
+  information about how to specify a color number in different screen
+  modes.
+
+  The B option draws a box with the points (x1,y1) and (x2,y2) specifying
+  diagonally opposite corners.
+
+  The BF option draws a filled box. This option is similar to the B option;
+  BF also paints the interior of the box with the selected color.
+
+  The style is a 16-bit integer mask used to put pixels on the screen. Using
+  the style argument is called "line styling." With line styling, LINE reads
+  the bits in style from left to right. If a bit is 0, then no point is
+  plotted; if the bit is 1, a point is plotted. After plotting a point, LINE
+  selects the next bit position in style.
+
+  Because a 0 bit in style does not change the point on the screen, you may
+  want to draw a background line before using styling so you can have a known
+  background. Style is used for normal lines and boxes, but has no effect on
+  filled boxes.
+
+  When coordinates specify a point that is not in the current viewport, the
+  line segment is clipped to the viewport.
+
+o PLINE n%, array_%[, color%]
+  Connects first n% points given in the array 'array_%' with the straight line
+  which attributes may be set with SET command (see below). See the notes
+  about the array in PMARKER command. It works also for n% = 1 in which case
+  a point is drawn.
+  Color may both be specified by SET LCOL command or with the third argument,
+  which is equivalent.
+
+o MARKER (x, y)[, color%]
+  Plots a marker at the point (x, y). Attributes of the marker may be set 
+  with the SET PMTS, SET PMCI command.
+
+o PMARKER n%, array_%[(j%)][, color%]
+  Plots n% markers using points from the 2-dimensional array 'array_%' 
+  which must be of type single short (therefore the '_%' suffix) and 
+  must have the second dimension equal to 1, for example:
+  DIM array_%(10, 1) 
+  Then the first three points are:
+  (x0, y0) -> (array_%(0, 0), array_%(0, 1))
+  (x1, y1) -> (array_%(1, 0), array_%(1, 1))
+  (x2, y2) -> (array_%(2, 0), array_%(2, 1))
+  etc.
+  If an argument to array_% is omited then only first n% points are drawn.
+  If the argument j% is given then draw n% points starting from the j%-th 
+  point (points are counted from zero).
+  Attributes of the marker may be set with the SET PMCI (colour) and
+  SET PMTS (type and size) commands.
+
+  Examples.
+ 
+o CIRCLE (x, y), radius, [,[color][,[start][,[end][,aspect]]]]
+  Draws a circle (or ellipse) with the center at the position (x, y)
+  and 'radius'. It is possible to give 'start' and 'end' angles in
+  radians: they are connected in positive sense. For ellipses, horizontal
+  radius is given by 'radius' while 'aspect' is the ratio of vertical to
+  horizontal radius. Color of the circle may be also set via SET FACI.
+  For filled circles and ellipses use ixarc routine directly from C:
+  C ixarc(x, y, rx, ry, angle1, angle2, ifill);
+  with all parameters being integers:
+   (x, y)  is the center;
+   rx      is the horizontal radius;
+   ry      is the vertical   radius;
+   angle1  start angle in degrees;
+   angle1  end   angle in degrees;
+   ifill   0=hollow, 1=filled according to SET FASI (style) and 
+           SET FACI (color) attributes 
+   Examples.
+
+   Draw a circle of radius 20, with the center at x=150, y=100 :
+   CIRCLE (150, 100), 20, 1
+
+   Draw an elipse with horizontal radius 20, vertical radius 10, and
+   the center at x=150, y=100 :
+   CIRCLE (150, 100), 20, 1, 0, 6.3, .5
+
+
+o XTEXT (x%, y%), text$[, angle[, magn]]
+  Draws the text 'text$' at the position (x%, y%) with an 'angle' (in 
+  degrees) and magnification factor 'magn'. 
+  By default angle=0.,  magn=1. .
+  By default the text is aligned to left lower (descenders') corner.
+  Text alignment may be changed with SET TXAL command.  Text colour 
+  and font may be set with SET TXCI and SET TFON commands.
+  NOTE: Use of a magnification factor different from default may 
+  cause the letters to look very crude. It is better to use a font of
+  appropriate size.
+
+  Related topics: SET TFON, XLEN
+
+o XLEN(text$)
+  Function XLEN retuns integer which corresponds to the length of the
+  text$ in pixels in the current X11-font. In other words, if printed
+  using command XTEXT, the text would have this length in pixels.
+
+  Related topics: SET TFON, XTEXT, LEN
+  
+o FAREA n%, array_%[, color%]
+  Fills polygonal area described by n% points the polygon. Fill area 
+  attributes may be set with SET FASI (style) and SET FACI (color).
+  Polygonal line describing the area may not be closed: in such a case
+  it is assumed that the last point is connected with the first one.
+
+o XTRAN (x%, y%)
+  Set the graphics origin to the point (x%, y%) of the window.
+  Subsequent graphics output will be drawn with respect to the new origin. 
+  The command MRESET among other things, sets the normal origin (0, 0).
+
+  This comand affects the following drawing comands:
+  LINE, PLINE, PSET, MARKER, PMARKER, FAREA, CIRCLE, XTEXT. 
+
+  See also: XROT, XSCAL, MRESET
+
+o XROT [(x%, y%),] angle
+  Rotate subsequent graphics output by an angle 'angle' in degrees arround
+  the central point (x%, y%). If only the angle is specified, rotation
+  central point is left unchanged. MRESET resets rotation point to (0, 0).
+  The 'XROT 0' command disables rotation, i.e. sets rotation angle to zero,
+  but keeps rotation central point unchanged for further use.
+
+  This comand affects the following drawing comands:
+  LINE, PLINE, PSET, MARKER, PMARKER, FAREA, CIRCLE (aspect=1 only), XTEXT.
+
+  See also: XTRAN, XSCAL, MRESET
+
+o XSCAL sx, sy
+  Scale subsequent graphics output. Scale x values by 'sx' and y values
+  by y.
+  The command MRESET among other things, sets scales to 1, 1.
+
+  This comand affects the following drawing comands:
+  LINE, PLINE, PSET, MARKER, PMARKER, FAREA, CIRCLE, but not XTEXT.
+
+  See also: XTRAN, XROT, MRESET
+
+o MRESET
+  Reset graphics transformation matrix: set rotation angle to zero,
+  rotation point to (0, 0) and scale  to 1, 1. This is equivalent to: 
+  XTRAN (0, 0): XROT (0, 0), 0: XSCAL 1, 1
+  
+  Graphics transformations (XTRAN, XROT and XSCAL) are done using 
+  the following formula:
+
+  x' = xT + cos(phi) * scalex * (x - xR) + sin(phi) * scaley * (y - yR)
+  y' = yT - sin(phi) * scalex * (x - xR) + cos(phi) * scaley * (y - yR)
+
+  where:
+  (xT, yT)        = new origin set by XTRAN
+  (xR, yR)        = rotation central point by XROT
+  phi             = rotation angle set by XROT
+  scalex, scaley  = scaling factors set by XSCAL
+  
+  That is, the object is first moved to the origin (xO, yO), then scaled 
+  by (scalex, scaley) and then rotated by an angle phi with respect to
+  the origin (xO, yO).
+
+  This comand affects the following drawing comands:
+  LINE, PLINE, PSET, MARKER, PMARKER, FAREA, CIRCLE, XTEXT. 
+ 
+  See also: XTRAN, XROT, XSCAL
+
+o GCGET (x%, y%), answ%[, typ%[, mode%]] 
+  Get pointer (mouse) position in the currently selected (see XSELWI) 
+  X-window. The position is written to (x%, y%) after a mouse button 
+  is pressed, released or mouse moved within the window. 
+
+  The answ% contains button information:
+  answ% = 1      left button pressed
+          11     left button released
+          2      middle button pressed
+          12     middle button released
+          3      right button pressed
+          13     right button released.
+  Input parameters are: 
+  typ% (mouse type) = 0 previous type       mode% (request mode) = 0 Request
+                      1 Tracking cross                             1 Sample. 
+                      2 Cross-hair          (default mode = 0)
+                      3 Rubber circle
+                      4 Rubber band
+                      5 Rubber rectangle.
+  (default type = 0)
+
+  NOTE: User should normally use this mouse-reading function only if
+  program uses only one X-window, because GCGET can read only one window
+  at a time. If more than one X-window is opened, XPOINTER should be 
+  used instead.
+
+  See also: XPOINTER, XCURSOR
+
+
+o XPOINTER (x%, y%), win%, answ%[, typ%[, mode%]]
+  Get pointer (mouse) position. The function waits untill the mouse 
+  is moved or a mouse button pressed or released. After one of these
+  events has happened, the function returns the following:
+
+  Output parameters:
+  (x%, y%) = the position of of the pointer;
+  win%     = window on which the pointer is logically positioned;
+  answ%    = 1      left button pressed
+             11     left button released
+             2      middle button pressed
+             12     middle button released
+             3      right button pressed
+             13     right button released.
+  Input parameters are: 
+  typ% (mouse type) = 1 Tracking cross      mode% (request mode) = 0 Request
+  (default = 1)       2 Cross-hair          (default = 1)          1 Sample.
+                      3 Rubber circle
+                      4 Rubber band
+                      5 Rubber rectangle.
+
+  If a key is pressed, XPOINTER returns a window number of the active
+  window (active window s recognized by its border color) and answ%
+  equals to +char_code (key pressed) or -char_code (key depressed).
+
+  Character codes at the moment are not understood well and ar probably
+  not portable....
+
+  See also: GCGET, XCURSOR
+
+o XCURSOR ctype%
+  Defines cursor shape for the current window. The cursor for that particular
+  window remains unchanged everafter, except if GCGET is called for this
+  window. On the other hand, XPOINTER doesn't change windows' pointer.
+  Cursor types are listed in <X11/cursorfont.h> file for the particular
+  system. Quite standard are the following types:
+  XC_X_cursor (SCREEN and XWINDOW default), XC_crosshair, XC_arrow, 
+  XC_left_ptr, XC_right_ptr, XC_hand1, XC_hand2, XC_watch,
+  XC_based_arrow_down, XC_based_arrow_up, XC_boat, XC_bottom_left_corner,
+  XC_bottom_right_corner, XC_bottom_side, XC_bottom_tee, XC_box_spiral,
+  XC_center_ptr, XC_circle, XC_cross, XC_cross_reverse,
+  XC_diamond_cross, XC_dot, XC_dotbox, XC_double_arrow etc...
+
+o XREQST (x%, y%), text$[, status%]
+  Request input text at the position (x%, y%) in the current window, and
+  optionally return status. XREQST waits untill either <Return>, <Esc> or
+  <Ctrl>-<char> where <char> is a character key, from <a>..<z> and <A>..<Z>.
+  Usual editing keys are active: cursors, Ins, Del, Ctrl-D etc.
+
+  (x%, y%)      point in the current window at which the cursor is drawn 
+                for input from the keyboard;
+
+  text$         string variable to which the input text is written after
+                an <Return> or <Alt>-<Return> is pressed. If <Esc> key is
+                pressed, function terminates, and text$ remains unchanged.
+                The only difference in ending the call to XREQST by 
+                <Return> or <Alt>-<Return> is the value of the status
+                on exit. This allows user a more flexible programming.
+
+  status%       integer variable to which status flag is written if specified.
+                Status can have one of the following values:
+                status             meaning
+                 0              call was terminated by pressing <Esc>
+                 1              call was terminated by pressing <Return>
+                 65-90, 97-122  call was terminated by pressing <Ctrl>-<char>
+                                and status has the meaning of ASCII code
+                                of the <char>, except for <d> and <D> which
+                                has special meaning, namely deleting part
+                                of the input line from cursor to the end.
+
+o SAVEGIF filename$
+  Saves contents of the current graphics window into a GIF87a file.
+
+
+o SAVEPS filename$
+
+  Saves contents of the current graphics window into a PostScript file.
+  Figure is resized proportionally in width and height to fit the A4 paper.
+
+
+o SAVEEPS filename$
+o SAVEEPSL filename$
+
+  Saves contents of the current graphics window into the file in 
+  Encapsulated PostScript format.
+  Figure is resized proportionally in width and height to fit the A4 paper.
+  SAVEPSL creates the same picture in Landscape orientation, also to
+  fit the paper.
+
+
+o LOADGIF (x%, y%), filename$[, ipal%], bgcolor%]
+  Loads a GIF from a file into the current graphics window, such that
+  the upper left corner of a picture is placed at the pixel position x%, y%
+  It works well for GIF87a and non-extended GIF89a file formats.
+  If ipal% = 0 (default) then the picture is loaded using its own color
+  palette, whether if ipal% = 1 the unique standard 6x6x6 palette is used.
+  This language supports only 256 colors at the time.
+  In the case ipal% = 0, palette ocupies colors from 16 up to max 255.
+  In the case ipal% = 1, palette ocupies colors from 32 up to max 255.
+  Therefore safe user-defined colors are from 2 - 15 (or 31) (see the SCREEN
+  command).
+   GIF's background can be specified by index 0 <= bgcolor% <= 255 in the
+  palette which will be present after the GIF is loaded. Default is -1 
+  which means GIF's own background. Specify bgcolor% = 0 to set GIF's
+  backgroun to the current window background.
+
+
+o GIFINFO filename$, width[, height[, ncolor]]
+  Obtain width, height and number of colors used in the GIF file 'filename$'
+  Variable types of width, height and ncolor may be any.
+
+
+o GET (x%, y%), array?, w%, h%
+  Copy a rectangular area of the current window into an one-dimensional
+  array of color pixels.
+  Point (x%, y%) specifies the top-left corner of the rectangle, and w%, h%
+  are width and height of the rectangle in pixels. 
+  User must make sure that the array has enough space to receive the image.
+  Each pixel is represented with one byte of information. Number of bytes
+  required to store image is w% * h%. The byte representing one pixel contains
+  a value between 0 and 255 which is a code color of that pixel, corresponding
+  to the current palette. Pixels are stored in the natural order i.e. pixel
+  at the coordinate (x, y) of the rectangular is placed at the (x + w% * y)-th
+  byte of the array.
+
+  It is recommended to use byte-type array (suffix "?") if some kind of
+  picture manipulation is intended by the user, since in this case 
+  one element of the array corresponds to exactly one pixel of image.
+
+  NOTE: See the PUT and GETCOL commands and the example program getput.bas.
+
+
+o GETCOL icol%, r%, g%, b%
+  Retreive information about the color icol% in the current palette.
+  Returns red (r%), green (g%) and blue (b%) components of the color icol%.
+
+  Related information:  PALETTE, GET, PUT
+
+
+o PUT (x%, y%), array?, w%, h%[, (xs%, ys%)[, sw%, sh%]]
+  Put contents of an color array onto the current window.
+  Contents of the array is interpreted as a square image of the width
+  w% and height h%. Pixels are retrieved in the natural order i.e. pixel
+  at the coordinate (x%, y%) of the rectangular is placed at the 
+  (x% + w% * y%)-th byte of the array. A subimage of this is copied on the 
+  window. Subimage starts at the upper left corner (xs%, ys%) relative
+  to the image stored in the array and has the width sw%, height sh%.
+  The image is drawn on the window according to the current draw mode
+  (SET DRMD).
+  Parameters:
+   (x%, y%) - point in the destination window where to put the image
+   array?   - name of the byte-type array of pixels (one byte per pixel)
+   w%, h%   - dimensions of the image stored in the array
+   (xs%, ys%) - upper left corner of subimage to be copied, default = (0, 0)
+   sw%, sh%   - window dimensions, default = w% - xs%, h% - ys%
+
+  Related topics: PUT, GET, PALETTE, GETCOL, SET DRMD
+
+  NOTE: See the GET and GETCOL command for the additional information.
+  NOTE: In order to produce correct image, color palette must not be
+        changed between GET and PUT commands, since `array?' only contains
+        color codes of pixels.
+  NOTE: Using multiple PUT commands it is possible to achieve animation.
+        However, simpler and faster way is to use XANIM command.
+ 
+o XANIM (x%, y%), array?, w%, h%[, (xs%, ys%)[, sw%, sh%]] 
+  Animate series of images stored in arrays. Similar to PUT command.
+  XANIM is similar to PUT command, but unlike the PUT command it remembers
+  the last image drawn. With each call XANIM performs two actions: 1) draw
+  the old picture (if one exists), and 2) draw a new picture (specified in
+  the array). If the drawing mode is set to 2 (SET DRMD 2) this performs
+  animation. Other drawing modes can be also useful to achieve visual effects.
+  For parameters description, please refer to the command PUT. 
+
+  Animation is achieved by a series of calls to XANIM with different arrays.
+  You are allowed to change all of parameters in every call.
+
+  At the end of animation, XANIM *must* be called once more with 0 or NULL 
+  as the array name, in order to free the memory which is not used anymore
+  and to reset the animation for a fresh new start. Values of the other 
+  parameters then have no effect. For example: XANIM (0, 0), 0, 0, 0 .
+
+  Before doing that, drawing mode may be changed to obtain a desired effect.
+  Set DRMD to the following value:
+
+   SET DRMD          effect
+    0          leave the last image as it is (usually xor with the background)
+    1          overwrite the area with the last image
+    2          erase the last image, leaving background
+    3          invert the last image and overwrite the area with it
+
+  Related topics: PUT, GET, PALETTE, GETCOL, SET DRMD
+
+  NOTE: see the example program animate.bas
+
+o XBUF [win%]
+  Create a buffer plane for a window win%, or the current window if the
+  parameter win% is omitted, and copy the curent window contents into the
+  buffer. Subsequent graphics output to the window is redirected to the 
+  buffer. Buffer is flushed on the window with every call to XUPDATE
+  Redirection of graphics output affects:
+  LINE, PLINE, PSET, MARKER, PMARKER, FAREA, CIRCLE, XTEXT, XANIM, PUT
+  and LOADGIF.
+
+  See also: XRMBUF, XUPDATE
+ 
+o XRMBUF [win%]
+  Destroy buffer associated with the window win%, or the current window
+  if parameter is not specified. This releases memory allocated for the
+  buffer. Such buffer may be created with XBUF. 
+  If buffer does not exist (either it was never created or is already 
+  destroyed) command has no effect.
+
+  See also: XBUF, XUPDATE
+  
+
+o SET LCOL cindex%              (or SET PLCI cindex%)
+  Sets line color to the 'cindex%' defined by PALETTE; 
+
+o SET LWID n%
+  sets line width in pixels;
+
+o SET DMOD d1[, d2[, d3[, ... ]]...]
+  Sets dashing style for lines. If there is only one argument, the dashing
+  style is as follows:
+  0  =  full line
+  1  =  dashed line (6,6)
+  2  =  dashed-dotted line (6,3,1,3)
+  3  =  dotted line (1,6)
+  4  =  densely dotted line (1,3) 
+
+  Other dashing styles may be obtained supplying more than one argument
+  (max. 10 arguments). For example SET DMOD 6, 3, 1, 3 will produce a
+  dashed-dotted line of 6 drawn pixels followed by 3 blank pixels, 1 drawn
+  pixel and 3 blank pixels.
+  (Note that a reasonable description always has an even number of arguments.)
+
+
+o SET DRMD mode%
+  Set the drawing mode for drawing src to dest as follows.
+  Set the drawing mode:     mode% = 0  Keep the previous mode
+                            mode% = 1  Copy src       (i.e. overwrite dest)
+                            mode% = 2  src XOR dest
+                            mode% = 3  NOT src        (i.e. invert)
+                            mode% = 4  src AND dest
+                            mode% = 5  NOT (src XOR dest)
+ 
+o SET PMTS type%, width%
+  sets marker type and width in pixels. This settings will be used in 
+  subsequent calls to MARKER and PMARKER;
+  type%: 0 or 20 = filled circle
+         1 or 21 = filled box
+         2 or 22 = filled triangle pointing up
+         3 or 23 = filled triangle pointing down
+         4 or 24 = hollow circle
+         5 or 25 = hollow box
+         6 or 26 = hollow triangle pointing up
+         7 or 27 = hollow triangle pointing down
+
+o SET PMCI cindex%
+  sets marker color index as defined by PALETTE; 
+
+o SET TXCI cindex%
+  sets XTEXT color index as defined by PALETTE;
+
+o SET TFON font$
+  SET TFON font[, size%, [enc$]]
+  sets font used by XTEXT. There are two distinct syntaxes. 
+
+  SET TFON font$
+  The font$ is the full X font name. 
+  These X fonts can be seen with the UNIX command 'xfontsel'. The default 
+  font, set by the call to the SCREEN command is: 
+  "-misc-fixed-medium-r-normal-*-20-140-*-100-c-100-iso8859-1". 
+  A nicer font is, for example, Adobes' Helvetica:
+  "-adobe-helvetica-medium-r-normal-*-14-0-100-100-p-*-iso8859-1".
+  The number '14' there is the pixelsize and should be scaled if
+  font of a different size is needed.
+
+  SET TFON font[, size, [enc]]
+  Here, 'font' is a keyword defining the font to be used. Optional second and 
+  third parameters define the size and encoding (see below). All parameters
+  MUST be explicit constants (keywords) because true font name is substituted
+  at compilation time.
+  To make selection of frequently used fonts easier, there is a limited
+  set of font keyword names as follows:
+  __________________________________________________________________
+  | Abbreviated name      |       Font description                  |
+  +-----------------------+-----------------------------------------+
+  | Hel                   |       Helvetica                         |
+  | HelB                  |       Helvetica bold                    | 
+  | HelI                  |       Helvetica italic                  |
+  | HelBI                 |       Helvetica bold italic             |
+  | Tim                   |       Times                             |
+  | TimB                  |       Times bold                        |
+  | TimI                  |       Times italic                      |
+  | TimBI                 |       Times bold italic                 |
+  | Sym                   |       Symbol                            |
+  | SymB                  |       Symbol bold                       |
+  | SymI                  |       Symbol italic                     |
+  | SymBI                 |       Symbol bold italic                |
+  | Fix                   |       Courier (fixed width)             |
+  | FixB                  |       Courier bold (fixed width)        |
+  | FixI                  |       Courier italic (fixed width)      |
+  | FixBI                 |       Courier bold italic (fixed width) |
+  +-----------------------+-----------------------------------------+
+
+  The default value of the second parameter is: size = 20 pixels.
+  The default value of the third parameter, encoding is: enc = iso8859-1
+  You can specify other sizes and encondings if they are supported by
+  your X server.
+
+  EXAMPLES.
+
+  SET TFON "-adobe-helvetica-medium-r-normal-*-20-0-100-100-p-*-iso8859-1"
+  SET TFON Hel
+  SET TFON Hel, 20
+  SET TFON Hel, 20, is08859-1
+
+  All these examples invoke the same font - Adobe Helvetica, of the height of 
+  20 pixels and encoding iso8859-1.
+
+o SET TXAL h%, v%
+  set XTEXT alignment
+  h% = 0 left (default)             v% = 0 down (default)
+       1 left                            1 down
+       2 middle                          2 middle 
+       3 right                           3 up
+
+o SET FASI style%[, hatch%]
+  Sets fill area style. Description:
+  style% = 0   interior is not filled
+  style% = 1   interior is filled with solid of a given (SET FACI) color
+  style% = 3   interior is hatched with hatch% type.
+  Valid numbers for hatch% are 0...25, there are that many different
+  hatch types. If hatch% not specified, the default is 0 .
+  
+o SET FACI cindex%
+  sets fill area colour index.
+
+o SET BG cindex%
+  set the background color for the current window, but do not clear the
+  window.
+
+
+o XSELWI win%
+  Select and rise the window to which the subsequent graphics output will 
+  be send. Window must exist or error will occur.
+
+
+o XUPDATE
+  Update the current X11 window. Normally every drawing command will update 
+  the X11 screen. However, if -u flag is specified during translation
+  no update is made other than with XUPDATE command. It may greatly
+  improve the speed if XUPDATE is used only once in the while, for example
+  when drawing of the whole scene (or a bigger portion) is done.
+ 
+  See also: XBUF
+
+
+o XCLOSE [win%]
+  Close the window win%. If the window win% doesn't exist, the command
+  has no effect. If win% not specified, close the current window.
+  If win% is the last existing window, XCLOSE also closes the graphics
+  mode alltogether (XCLOSEDS). To open it again you must call the SCREEN 
+  function.
+   
+o XCLOSEDS
+  Delete all windows and close connection to the X server.
+  To open the graphics mode again you must call the SCREEN function.
+
+o XCLS [icol%]
+  If icol% is not specified, clear the current X11 graphics window
+  according to the current background of that window. If icol% specified,
+  set the new background color to color icol% and then clear the window.
+  The icol% is the color index as defined with PALETTE.
+  NOTE: see SET BG.
+
+
+o XCLIP (x1%, y1%)-(x2%, y2%), win%
+  Set clipping rectangular region in the window win%. The clipping
+  rectangle is defined with upper left (x1%, y1%) and lower right 
+  (x2%, y2%) points.  Nothing could be drawn outside the clipping region
+  of the window. To disable this, do XNOCLI win%. It is possible to set
+  only one clipping rectangle per window with this command.
+
+  See also: WINDOW, XNOCLI
+
+ 
+o XNOCLI win%
+  Unset any clipping region for the window win%.
+
+  See also: XCLIP, WINDOW
+
+o XWARP (x%, y%)
+  Move graphical cursor (pointer) to the position (x%, y%) in the current 
+  window.
+
+
+o XGETGE (x%, y%), w%, h%, win%
+  Get geometry of a window win%. The window position is written to (x%, y%),
+  window width and height are written to w% and h% respectively. If win%=-1
+  get geometry of the root window.
+
+  NOTE: This command works even if graphics has not been opened with the
+  SCREEN command. In such a case it is only possible to get geometry of 
+  the root window.
+
+o 
+
+ABOUT THE FORMAT OF INPUT FILES 
+
+* A BASIC file input to qb2c must be in ASCII format (compressed QuickBASIC  
+  format is not acceptable).
+
+* In DOS, ASCII files have the carriage-return (Ctrl-M) character at the end 
+  of each line. Input BASIC files to QB2C may be either in UNIX format 
+  (i.e. without Ctrl-M's) or in DOS format. If a BASIC file to be translated 
+  originates from DOS, Ctrl-M's are automatically striped off prior to 
+  translation. However, all other files which are input to translated 
+  programs must be in UNIX format, ie. without CR's at the end of each line.
+
+TRANSLATOR OPTIONS
+
+* Translation can be called with one or more of the following option flags:
+
+   Option                        Meaning
+
+  -i or -int        assume variables with first letter i,j,k,l,m,n 
+                    (upper or lower case) to be of the C type 'int' 
+                    if not a string;
+
+  -D                assume variables starting with 'd' or 'D'
+                    be of C type 'double', if not a string;
+
+  -b or -bcpp       do not be sensitive about the case of QB command 
+                    and function names or exact QB spacing of commands 
+                    and variables. This actually turns on the bcpp 
+                    preprocessor.
+                    (However, mixed case is not acceptable even with this     
+                    option.);
+
+  -c64 or -C64      this option should be used with the option '-b' 
+                    since it is passed to bcpp. It switches on some 
+                    syntax features specific to C-64 (Commodore 64); 
+
+  -l or -long       all integer variables except those declared 'short integer'
+                    became of type 'long' and all real variables became
+                    are declared as type 'long';
+
+  -d or -double     all float variables are declared as type 'double'; 
+
+  -p or -post       do not perform post-processing which changes variable                  
+                    names like i%, i&, x#, a$, a? into C-acceptable forms:
+                    i_int, i_long, x_double, a_S, a_byte and adds headers to
+                    the C text. This is only useful for debugging output
+                    C code or qb2c itself;
+
+  -c or -C          this flag enables special handling of lines commented 
+                    with "C", "CH " or "CM ". This makes possible direct 
+                    insertion of lines written in C. For more information 
+                    see the section "INSERTION OF LINES IN C" below;
+
+  -m or -M          disallow logical expressions to combine with math.
+                    expressions (eg. i = (a = 1) AND (b <> 2) );
+
+  -w                logical operators AND, OR operate bitwise;
+
+  -n or -N          disable SHELL "..." argument interpreter, i.e. the
+                    argument of SHELL command in the BASIC program will be
+                    send as it is to the system() command in the C translate.
+                    By default argument of the SHELL command is translated
+                    (for example: "dir" -> "ls -l" etc.);
+
+  -u                do not XUPDATE the X-window after every drawing 
+                    command, such as LINE, PSET, BOX... 
+                    This permits speedup of the drawing, if XUPDATE
+                    is used only once in the while, when necessary
+
+  -r                this option tells bcpp to replace every division
+                    " / " with " / (double)". This is to comply with
+                    BASIC's convention that division operator / always
+                    convert both left and right side to real numbers
+                    before dividing them, so that the result is also real.
+                    For example 5 / 8 equals 0.625 rahter than 0 
+                    This option is *NOT* a default.
+
+  -s                by default, QB2C changes the names of numerical 
+                    variables, arrays and functions by replacing    
+                    suffixes '%', '&', '#' and '?' with respectively '_int',
+                    '_long', '_double' and '_byte'.
+                    Specifying flag -s tells QB2C to strip off suffixes 
+                    '%', '&', '#' and '?' instead. 
+                    WARNING ! It is up to user to ensure that there are
+                    no variables with similar names in the program, which
+                    will become the same after stripping suffixes, for
+                    example 'a% and 'a'. In such a case, the translated code
+                    will be invalid.
+
+  -g                debug mode (experts only). Releases some debug output 
+
+  -A                convert array arguments to integer (as in true BASIC)
+                    This is NOT a default.
+
+  -L  (length)      set maximum string length. By default 1024 bytes is 
+                    allocated for every string variable, or string array
+                    element. To change this default, specify `length' which
+                    must be between 1 and 32766.
+                    
+  -P                treat PRINT as print to the current graphics screen
+                    NOT OPERATIONAL in versions <= 3.4t
+
+  -col              default color for graphics commands such as LINE, PSET... 
+                    is the foreground (else the last set color)
+
+  -B                maximum compliance with BASIC: -A -r -b -P -I -col -w
+
+  -O[x]             optimization option(s) such as -O, -O2, ... passed to 
+                    the C compiler;
+
+  -h, -?            print help message with short summary of options.
+
+REMINDER
+
+ Following pieces of syntax rules are a bit more restrictive than is 
+common in various implementations of BASIC including QuickBASIC.
+We want to stress their importance since QB2C may produce a bad C code 
+without warnings if they are not obeyed:
+
+* all used arrays must be explicitely declared (with DIM, or DIM DYNAMIC);
+
+* static array (DIM), constant or function declarations must occur first in a
+  given module (MAIN, SUB...) ie. before any other expression or 
+  command or an error will occur. Exception are dynamically declared
+  arrays (DIM DYNAMIC) declaration of which can occur anywhere in the
+  program;
+
+* by default arguments to arrays must be explicite integers. However,
+  you can change this using the option -A at the translation time;
+
+* all SHARED arrays must be declared in MAIN module (even if they are not
+  used in the MAIN);
+
+* SHARED array names are passed with empty brackets eg. name();
+
+* Files open in any module (MAIN, SUB or function) are "visible" from 
+  all other modules;
+
+* Return type of a FUNCTION is determined by its name, the rules are the
+  same as for variables and arrays.
+
+RESTRICTIONS
+
+* Type of a constant, variable or array is determined by suffix in
+  its name. The "AS" statement in variable type definition is *not* 
+  supported.
+  Here is the list of legal suffixes (as used by QuickBASIC) and
+  their correspondence in C:
+
+              QuickBASIC                         C
+  $         -> string (or single character)     char *
+  %         -> single integer                   int
+  &         -> long integer                     long
+  #         -> double float                     double
+  ?         -> single byte integer              unsigned char
+  _%        -> 2 byte integer                   signed short int
+  no suffix -> single float                     float
+
+  Note two additional types which did not exist in original QuickBASIC:
+  single byte integer, and two byte integer, both introduced to minimize
+  memory usage in graphics applications.
+
+  If a numerical constant contains "." or ends up with an "!" then it is a
+  single float (example: 100 is integer, 100. and 100! are single floats).
+  On top of that, user can modify types during translation (options -l, -d, -D)
+  and/or using DEFxxx commands.
+    
+* All arrays MUST be declared explicitly (static arrays: DIM, dinamic arrays:
+  DIM DYNAMIC). 
+  In opposite case NO ERROR WILL BE DETECTED at translation time !
+
+* The syntax must be strictly the one as written out by the QBASIC editor
+  including case and spacing conventions. If not, preprocessor bcpp 
+  should be used on the file:
+  bcpp  infile  outfile
+  or the option -b used to the qb2c translator (see the option list).
+  The bcc compiling script already uses -b option.
+
+  The bcpp preprocessor may be run with one or more of the following 
+  option flags:
+
+  -c64 or -C64      this option switches on recognition of some 
+                    syntax features specific to C-64 (Commodore 64)
+
+  -q                bcpp works quietly (suppresses warnings but not
+                    errors).
+
+* Arrays cannot be passed as variables to SUBroutines or functions - use 
+  SHARED instead.
+
+* There is practically no support for sound except directly from C.
+  However, the BASIC keyword "SOUND" is recognized
+
+
+EXAPMLE
+
+I) As a simple example you may put the following text into a file named 
+test.bas:
+
+ for i=1 to 5 
+  print i, i^2
+ next
+
+ Then do:
+ bcpp -i -b test
+
+ This will create the file test.c. Compile and run it with:
+ cc -o test test.c -lm
+ test
+
+ The result should look like: 
+ 1          1
+ 2          4
+ 3          9
+ 4          16
+ 5          25
+
+ Instead of all this you may just have typed: 
+
+ brun test
+
+ This will translate, compile and run the file test.bas .
+
+INSERTION OF LINES IN C
+
+  It is possible to mix BASIC and C. Lines written in C must be commented
+  with "C " *at the beginning of a line* and -C option issued to qb2c 
+  translator. For example:
+
+  pi = 3.1415
+C printf("%f\n",pi);
+  END
+
+  is equivalent to:
+
+ pi = 3.1415
+ PRINT pi
+ END 
+
+  The first example must be translated with the -C option:
+  qb2c -C name
+
+  During translation names of variables, open file pointers and labels are 
+  changed in order to conform C conventions. This is done in the following 
+  way:
+
+  Variables: "$" at the end of variable name becomes "_S", "%" becomes "_int",
+             "&" becomes "_long", "#" becomes "_double", and "?" becomes
+             "_byte".
+
+  Open files: An open file identified in BASIC with number 'n', becomes 
+              identified with a pointer of name 'fp_n'.
+
+  Labels:     Label numbers are added "Lab_" prefix, for example 
+              "100" is renamed to "Lab_100".
+
+  To make things more convenient it is possible to specify lines which
+  are insert among the declaration lines of main routine with "CM " comment
+  or in the overall header of the translated C program with "CH ". Variables
+  and constants declared with "CH " are, of course, global.
+
+  An example (the program asks for a word and then it prints out character
+  codes and their squares):
+
+   print "This is a small test of";
+C  printf("mixing BASIC and C\n");
+   REM We need to declare a variable in main:
+CM static char c;
+   input "Say a word"; a$
+   for i%=1 to len(a$)      
+C  c=a_S[i_int-1]; 
+C  printf("%5d %.f\n",c, pow(c,2)); 
+   next
+C  /* I have used a math library function (pow) only in C, therefore 
+C     a header <math.h> will not be specified. I must do it myself */
+CH #include <math.h>
+   end
+
+ This program should be run in the following way:
+ qb2c -b -C name
+ run name
+-----------------------------------------------------------------------------
+
+ACKNOWLEDGEMENTS
+
+ I wish to thank to E. Chernyaev for letting me use parts of his 
+graphics code from various packages and his help in understanding
+this code. This has been a great help in development of the graphics
+library of QB2C. I also thank to many people arround the globe 
+who helped me with their suggestions, wishes and bug reports in
+past years of development of QB2C. I hope to have such encouragement
+to continuue this work also in future. Finally, I hope you will have 
+as much fun programming in QB2C as I had in developping it.
+
+-----------------------------------------------------------------------------
+QB2C manual
+First version:  4-Apr-1996
+Last revision: 21-Apr-1999
+Author:  Stipcevic Mario, E-mail:  support@random.com.hr
+
+GRAPHICS
+
+  Set of graphics commands to work under X11 windows system is included. 
+  They are similar in syntax to the original Quick Basic commands, except 
+  for some intrinsic differences between DOS and X11 graphics display.
+  For example, the 'SCREEN 10' command will open an 820x485 pixel 
+  X-window to which subsequent graphics will be sent. Both text 
+  and graphics screens live at the same time, so there is no need to
+  switch between two modes ('SCREEN 0' is obsolete).
+
+  There is a small demo program 'graphic.bas' included in this package.
+  Try to compile it and understand how it works: 
+  bcc graphic
+  graphic
+  
+
+  Below is the short review of syntax.
+
+o SCREEN 10
+  Opens an X11 graphic window of the size width=820; height=485 pixels.
+
+  SCREEN (x, y)[, width, height[, title$[, Xfont_name$]]]
+  Initializes graphics and opens X11 graphic window with identifier ID = 0 
+  at the position (x, y) pixels. The window ID number is used in commands
+  like: XSELWI, XCLS etc.
+  The optional width and height of the window are specified in pixels.
+  If not specified, the default is: width=820, height=485.
+  The default background colour is white and foreground black. These
+  may be changed (individually for each window) via SET BG or XCLS.
+  The default global font is:
+  "-misc-fixed-medium-r-normal-*-20-140-*-100-c-100-iso8859-1"
+  and it fits exactly 80 rows and 25 columns in the default window size.
+  Initial title for the window can be set via title$ parameter. By default
+  title will be written in the form: title@hostname. To avoid printing of
+  the hostname, start the title with "-". Title of an already open window
+  can be redefined via XTITLE command, which behaves the same way.
+
+  SCREEN must be the first graphics command and must be executed exactly
+  once. If more than one X-windows are needed they may be opened via 
+  XWINDOW command.
+
+  The background color of an already opened window can be changed via 
+  XCLS command.
+
+
+o [win% =] XWINDOW (x, y)[, width, height[, title$]]
+  Open an X11 graphic window at the position (x, y) pixels. The window
+  identification number is the next unused integer number and will be 
+  written to variable win% if specified. The first window (ID = 0) must
+  be opened with the SCREEN command. The window ID number is used in
+  commands as: XSELWI, XCLS etc.
+  The optional width and height of the window are specified in pixels.
+  If not specified, the default is: width=820, height=485.
+  The default background colour is white and foreground black. These
+  may be changed (individually for each window) via SET BG or XCLS.
+
+  The background color of an already opened window can be changed via 
+  XCLS command.
+
+  See also SCREEN command.
+
+
+o PALETTE color_index%, r%, g%, b%
+  Sets one color in the palette (2 <= color_index <= 255),
+  where r%, g%, and b% are the color intensities (red, green, blue) between
+  0 and 255 each.
+  Color indexes 0 and 1 are used by the system for the window background
+  and foreground colors respectively, when graphics is initialized (SCREEN)
+  and should never be changed by user directly. You can alter the background
+  of each opened window individually using XCLS and/or SET BG.
+  (See LOADGIF for more details when GIF's are manipulated.)
+
+o XTITLE title$[, win%]
+  title$ = title
+  win%  =  window identifier number
+  Title of an already open window can be set via XTITLE command.
+  By default title will be written in the form: title@hostname. To avoid
+  printing of the hostname, start title with "-". 
+  If win% omitted, set the title of the current window.
+  If window win% is not existing, command has no effect.
+
+o PSET (x, y)[, color%]
+  Draws one point of a given colour index. If the color index is omitted,
+  point is drawn in the current line color (see SET LCOL).
+
+o PGET (x, y)[, color%]
+  Gets the colour index of a point at the location (x, y).
+  NOTE: NOT IMPLEMENTED
+
+o LINE (x1, y1) - (x2, y2)[, color%[, B[F]]
+  /* LINE -[STEP] (x, y)  is not yet supported ! */
+  Draws a line, 
+  where 'color' index is defined via PALETTE. The rest of the
+  syntax is as in QuickBasic. The dashing style may be set with
+  SET DMOD command (see below).
+
+o PLINE n%, array_%[, color%]
+  Connects first n% points given in the array 'array_%' with the straight line
+  which attributes may be set with SET command (see below). See the notes
+  about the array in PMARKER command. It works also for n% = 1 in which case
+  a point is drawn.
+  Color may both be specified by SET LCOL command or with the third argument,
+  which is equivalent.
+
+o MARKER (x, y)[, color%]
+  Plots a marker at the point (x, y). Attributes of the marker may be set 
+  with the SET command.
+
+o PMARKER n%, array_%[, color%]
+  Plots n% markers using points from the 2-dimensional array 'array_%' 
+  which must be of type single short (therefore the '_%' suffix) and 
+  must have the second dimension equal to 1, for example: DIM array_%(10,1). 
+  Then the first three points are:
+  (x1, y1) -> (array_%(0,0), array_%(0,1))
+  (x2, y2) -> (array_%(1,0), array_%(1,1))
+  (x3, y3) -> (array_%(2,0), array_%(2,1))
+  etc.
+  Attributes of the marker may be set with the SET command.
+ 
+o CIRCLE (x, y), radius, [,[color][,[start][,[end][,aspect]]]]
+  Draws a circle (or ellipse) with the center at the position (x, y)
+  and 'radius'. It is possible to give 'start' and 'end' angles in
+  radians: they are connected in positive sense. For ellipses, horizontal
+  radius is given by 'radius' while 'aspect' is the ratio of vertical to
+  horizontal radius. Color of the circle may be also set via SET FACI.
+  For filled circles and ellipses use ixarc routine directly from C:
+  C ixarc(x, y, rx, ry, angle1, angle2, ifill);
+  with all parameters being integers:
+   (x, y)  is the center;
+   rx      is the horizontal radius;
+   ry      is the vertical   radius;
+   angle1  start angle in degrees;
+   angle1  end   angle in degrees;
+   ifill   0=hollow, 1=filled according to SET FASI (style) and 
+           SET FACI (color) attributes 
+
+o XTEXT (x%, y%), text$[, angle[, magn]]
+  Draws the text 'text$' at the position (x%, y%) with an 'angle' (in 
+  degrees) and magnification factor 'magn'. 
+  By default angle=0.,  magn=1. .
+  By default the text is aligned to left lower (descenders') corner.
+  Text alignment may be changed with SET TXAL command.  Text colour 
+  and font may be set with SET TXCI and SET TFON commands.
+  NOTE: Use of a magnification factor different from default may 
+  cause the letters to look very crude. It is better to use a font of
+  appropriate size.
+
+  Related topics: SET TFON, XLEN
+
+o XLEN(text$)
+  Function XLEN retuns integer which corresponds to the length of the
+  text$ in pixels in the current X11-font. In other words, if printed
+  using command XTEXT, the text would have this length in pixels.
+
+  Related topics: SET TFON, XTEXT, LEN
+
+o FAREA n%, array_%[, color%]
+  Fills polygonal area described by n% points the polygon. Fill area 
+  attributes may be set with SET FASI (style) and SET FACI (color).
+  Polygonal line describing the area may not be closed: in such a case
+  it is assumed that the last point is connected with the first one.
+
+o GCGET (x%, y%), answ%[, typ%[, mode%]] 
+  Get pointer (mouse) position in the currently selected (see XSELWI) 
+  X-window. The position is written to (x%, y%) after a mouse button 
+  is pressed, released or mouse moved within the window. 
+
+  The answ% contains button information:
+  answ% = 1      left button pressed
+          11     left button released
+          2      middle button pressed
+          12     middle button released
+          3      right button pressed
+          13     right button released.
+  Input parameters are: 
+  typ% (mouse type) = 0 previous type       mode% (request mode) = 0 Request
+                      1 Tracking cross      (default = 1)          1 Sample. 
+  (default type = 1)  2 Cross-hair
+                      3 Rubber circle
+                      4 Rubber band
+                      5 Rubber rectangle.
+
+  NOTE: User should normally use this mouse-reading function only if
+  program uses only one X-window, because GCGET can read only one window
+  at the time. If more than one X-window is opened, XPOINTER should be 
+  used instead.
+
+
+o XPOINTER (x%, y%), win%, answ%[, typ%[, mode%]]
+  Get pointer (mouse) position. The function waits untill the mouse 
+  is moved or a mouse button pressed or released. After one of these
+  events has happened, the function returns the following:
+
+  Output parameters:
+  (x%, y%) = the position of of the pointer;
+  win%     = window on which the pointer is logically positioned;
+  answ%    = 1      left button pressed
+             11     left button released
+             2      middle button pressed
+             12     middle button released
+             3      right button pressed
+             13     right button released.
+  Input parameters are: 
+  typ% (mouse type) = 1 Tracking cross      mode% (request mode) = 0 Request
+  (default = 1)       2 Cross-hair          (default = 1)          1 Sample.
+                      3 Rubber circle
+                      4 Rubber band
+                      5 Rubber rectangle.
+
+  If a key is pressed, XPOINTER returns a window number of the active
+  window (active window s recognized by its border color) and answ%
+  equals to +char_code (key pressed) or -char_code (key depressed).
+
+
+o XCURSOR ctype%
+  Defines cursor shape for the current window. The cursor for that particular
+  window remains unchanged everafter, except if GCGET is called for this
+  window. On the other hand, XPOINTER doesn't change windows' pointer.
+  Cursor types are listed in <X11/cursorfont.h> file for the particular
+  system. Quite standard are the following types:
+  XC_X_cursor (SCREEN and XWINDOW default), XC_crosshair, XC_arrow, 
+  XC_left_ptr, XC_right_ptr, XC_hand1, XC_hand2, XC_watch,
+  XC_based_arrow_down, XC_based_arrow_up, XC_boat, XC_bottom_left_corner,
+  XC_bottom_right_corner, XC_bottom_side, XC_bottom_tee, XC_box_spiral,
+  XC_center_ptr, XC_circle, XC_cross, XC_cross_reverse,
+  XC_diamond_cross, XC_dot, XC_dotbox, XC_double_arrow etc...
+
+o XREQST (x%, y%), text$
+  Request input text at the position (x%, y%) in the current window. 
+
+o SAVEGIF filename$
+  Saves contents of the graphics window into a GIF87a file
+
+o LOADGIF (x%, y%), filename$[, ipal%], bgcolor%]
+  Loads a GIF from a file into the current graphics window, such that
+  the upper left corner of a picture is placed at the pixel position x%, y%
+  It works well for GIF87a and non-extended GIF89a file formats.
+  If ipal% = 0 (default) then the picture is loaded using its own color
+  palette, whether if ipal% = 1 the unique standard 6x6x6 palette is used.
+  This language supports only 256 colors at the time.
+  In the case ipal% = 0, palette ocupies colors from 16 up to max 255.
+  In the case ipal% = 1, palette ocupies colors from 32 up to max 255.
+  Therefore safe user-defined colors are from 2 - 15 (or 31) (see the SCREEN
+  command).
+   GIF's background can be specified by index 0 <= bgcolor% <= 255 in the
+  palette which will be present after the GIF is loaded. Default is -1 
+  which means GIF's own background. Specify bgcolor% = 0 to set GIF's
+  backgroun to the current window background.
+
+
+o GIFINFO filename$, width[, height[, ncolor]]
+  Obtain width, height and number of colors used in the GIF file 'filename$'
+  Variable types of width, height and ncolor may be any.
+
+
+o GET (x%, y%), w%, h%, array?
+  Copy a rectangular area of the current window into an one-dimensional
+  array of color pixels.
+  Point (x%, y%) specifies the top-left corner of the rectangle, and w%, h%
+  are width and height of the rectangle in pixels. 
+  User must make sure that the array has enough space to receive the image.
+  Each pixel is represented with one byte of information. Number of bytes
+  required to store image is w% * h%. The byte representing one pixel contains
+  a value between 0 and 255 which is a code color of that pixel, corresponding
+  to the current palette. Pixels are stored in the natural order i.e. pixel
+  at the coordinate (x, y) of the rectangular is placed at the (x + w% * y)-th
+  byte of the array.
+
+  It is recommended to use byte-type array (suffix "?") if some kind of
+  picture manipulation is intended by the user, since in this case 
+  one element of the array corresponds to exactly one pixel of image.
+
+  NOTE: See the PUT and GETCOL commands and the example program getput.bas.
+
+
+o GETCOL icol%, r%, g%, b%
+  Retreive information about the color icol% in the current palette.
+  Returns red (r%), green (g%) and blue (b%) components of the color icol%.
+
+  Related information:  PALETTE, GET, PUT
+
+
+o PUT (x%, y%), array?, w%, h%[, (xs%, ys%)[, sw%, sh%]]
+  Put contents of an color array onto the current window.
+  Contents of the array is interpreted as a square image of the width
+  w% and height h%. Pixels are retrieved in the natural order i.e. pixel
+  at the coordinate (x%, y%) of the rectangular is placed at the 
+  (x% + w% * y%)-th byte of the array. A subimage of this is copied on the 
+  window. Subimage starts at the upper left corner (xs%, ys%) relative
+  to the image stored in the array and has the width sw%, height sh%.
+  The image is drawn on the window according to the current draw mode
+  (SET DRMD).
+  Parameters:
+   (x%, y%) - point in the destination window where to put the image
+   array?   - name of the byte-type array of pixels (one byte per pixel)
+   w%, h%   - dimensions of the image stored in the array
+   (xs%, ys%) - upper left corner of subimage to be copied, default = (0, 0)
+   sw%, sh%   - window dimensions, default = w% - xs%, h% - ys%
+
+  Related topics: PUT, GET, PALETTE, GETCOL, SET DRMD
+
+  NOTE: See the GET and GETCOL command for the additional information.
+  NOTE: In order to produce correct image, color palette must not be
+        changed between GET and PUT commands, since array? only contains
+        color codes of pixels.
+  NOTE: Using multiple PUT commands it is possible to achieve animation.
+        However, simpler and faster way is to use XANIM command.
+ 
+o XANIM (x%, y%), array?, w%, h%[, (xs%, ys%)[, sw%, sh%]] 
+  Animate series of images stored in arrays. Similar to PUT command.
+  XANIM is similar to PUT command, but unlike the PUT command it remembers
+  the last image drawn. With each call XANIM performs two actions: 1) draw
+  the old picture (if one exists), and 2) draw a new picture (specified in
+  the array). If the drawing mode is set to 2 (SET DRMD 2) this performs
+  animation. Other drawing modes can be also useful to achieve visual effects.
+  For parameters description, please refer to the command PUT. 
+
+  Animation is achieved by a series of calls to XANIM with different arrays.
+  You are allowed to change all of parameters in every call.
+
+  At the end of animation, XANIM *must* be called once more with 0 or NULL 
+  as the array name, in order to free the memory which is not used anymore
+  and to reset the animation for a fresh new start. Values of the other 
+  parameters then have no effect. For example: XANIM (0, 0), 0, 0, 0 .
+
+  Before doing that, drawing mode may be changed to obtain a desired effect.
+  Set DRMD to the following value:
+
+   SET DRMD          effect
+    0          leave the last image as it is (usually xor with the background)
+    1          overwrite the area with the last image
+    2          erase the last image, leaving background
+    3          invert the last image and overwrite the area with it
+
+  Related topics: PUT, GET, PALETTE, GETCOL, SET DRMD
+
+  NOTE: see the example program animate.bas
+
+
+o SET LCOL cindex%              (or SET PLCI cindex%)
+  Sets line color to the 'cindex%' defined by PALETTE; 
+
+o SET LWID n%
+  sets line width in pixels;
+
+o SET DMOD d1[, d2[, d3[, ... ]]...]
+  Sets dashing style for lines. If there is only one argument, the dashing
+  style is as follows:
+  0  =  full line
+  1  =  dashed line (6,6)
+  2  =  dashed-dotted line (6,3,1,3)
+  3  =  dotted line (1,6)
+  4  =  dense dotted line (1,3) 
+
+  (Note that a reasonable description always has an even number of arguments.)
+  Other dashing styles may be obtained supplying more than one argument
+  (max. 10 arguments). For example SET DMOD 6, 3, 1, 3 will produce a
+  dashed-dotted line of 6 drawn pixels followed by 3 blank pixels, 1 drawn
+  pixel and 3 blank pixels.
+
+
+o SET DRMD mode%
+  Set the drawing mode for drawing src to dest as follows.
+  Set the drawing mode:     mode% = 0  Keep the previous mode
+                            mode% = 1  Copy src       (i.e. overwrite dest)
+                            mode% = 2  src XOR dest
+                            mode% = 3  NOT src        (i.e. invert)
+                            mode% = 4  src AND dest
+                            mode% = 5  NOT (src XOR dest)
+ 
+o SET PMTS type%, width%
+  sets marker type and width in pixels. This settings will be used in 
+  subsequent calls to MARKER and PMARKER;
+  type%: 0 or 20 = filled circle
+         1 or 21 = filled box
+         2 or 22 = filled triangle pointing up
+         3 or 23 = filled triangle pointing down
+         4 or 24 = hollow circle
+         5 or 25 = hollow box
+         6 or 26 = hollow triangle pointing up
+         7 or 27 = hollow triangle pointing down
+
+o SET PMCI cindex%
+  sets marker color index as defined by PALETTE; 
+
+o SET TXCI cindex%
+  sets XTEXT color index as defined by PALETTE;
+
+o SET TFON font$
+  sets font used by XTEXT. These X fonts can be seen with the command
+  xfontsel. The default set by the SCREEN command is: 
+  "-misc-fixed-medium-r-normal-*-20-140-*-100-c-100-iso8859-1". 
+  A nicer font is, for example, Adobes' Helvetica:
+  "-adobe-helvetica-medium-r-normal-*-14-0-100-100-p-*-iso8859-1".
+  The number '14' there is the pixelsize and should be scaled if
+  font of a different size is needed.
+
+o SET TXAL h%, v%
+  set XTEXT alignment
+  h% = 0 left (default)             v% = 0 down (default)
+       1 left                            1 down
+       2 middle                          2 middle 
+       3 right                           3 up
+
+o SET FASI style%, hatch%
+  Sets fill area style. Description:
+  style% = 0   interior is not filled
+  style% = 1   interior is filled with solid of a given (SET FACI) color
+  style% = 3   interior is hatched with hatch% type.
+  Valid numbers for hatch% are 0...25, there are that many different
+  hatch types.
+  
+o SET FACI cindex%
+  sets fill area colour index.
+
+o SET BG cindex%
+  set the background color for the current window, but do not clear the
+  window.
+
+
+o XSELWI win%
+  Select and rise the window to which the subsequent graphics output will 
+  be send. Window must exist or error will occur.
+
+
+o XUPDATE
+  Update an X11 window. Normally every drawing command will update 
+  the X11 screen. However, if -u flag is specified during translation
+  no update is made other than with XUPDATE command. This should
+  improve speed if XUPDATE is used only when necessary. 
+
+
+o XCLOSE [win%]
+  Close the window win%. If the window win% doesn't exist, the command
+  has no effect. If win% not specified, close the current window.
+  If win% is the last existing window, XCLOSE also closes the graphics
+  mode axlltogether. To open it again you must call the SCREEN function.
+   
+
+o XCLS [icol%]
+  If icol% is not specified, clear the current X11 graphics window
+  according to the current background of that window. If icol% specified,
+  set the new background color to color icol% and then clear the window.
+  The icol% is the color index as defined with PALETTE.
+  NOTE: see SET BG.
+
+
+o XCLIP (x1%, y1%)-(x2%, y2%), win%
+  Set clipping rectangular region in the window win%. The clipping
+  rectangle is defined with upper left (x1%, y1%) and lower right 
+  (x2%, y2%) points.  Nothing could be drawn outside the clipping region
+  of the window. To disable this, do XNOCLI win%. It is possible to set
+  only one clipping rectangle per window with this command.
+
+ 
+o XNOCLI win%
+  Unset any clipping region for the window win%.
+
+
+o XWARP (x%, y%)
+  Move graphical cursor (pointer) to the position (x%, y%) in the current 
+  window.
+
+
+o XGETGE (x%, y%), w%, h%, win%
+  Get geometry of a window win%. The window position is written to (x%, y%),
+  window width and height are written to w% and h% respectively. If win%=-1
+  get geometry of the root window.
+
+  NOTE: This command works even if graphics has not been opened with the
+  SCREEN command. In such a case it is only possible to get geometry of 
+  the root window.
+
+o 
+
+ABOUT THE FORMAT OF INPUT FILES 
+
+* A BASIC file input to qb2c must be in ASCII format (compressed QuickBASIC  
+  format is not acceptable).
+
+* In DOS, ASCII files have the carriage-return (Ctrl-M) character at the end 
+  of each line. Input BASIC files to QB2C may be either in UNIX format 
+  (i.e. without Ctrl-M's) or in DOS format. If a BASIC file to be translated 
+  originates from DOS, Ctrl-M's are automatically striped off prior to 
+  translation. However, all other files which are input to translated 
+  programs must be in UNIX format, ie. without CR's at the end of each line.
+
+TRANSLATOR OPTIONS
+
+* Translation can be called with one or more of the following option flags:
+
+   Option                        Meaning
+
+  -i or -int        assume variables with first letter i,j,k,l,m,n 
+                    (upper or lower case) to be of the C type 'int' 
+                    if not a string;
+
+  -D                assume variables starting with 'd' or 'D'
+                    be of C type 'double', if not a string;
+
+  -b or -bcpp       do not be sensitive about the case of QB command 
+                    and function names or exact QB spacing of commands 
+                    and variables. This actually turns on the bcpp 
+                    preprocessor.
+                    (However, mixed case is not acceptable even with this     
+                    option.);
+
+  -c64 or -C64      this option should be used with the option '-b' 
+                    since it is passed to bcpp. It switches on some 
+                    syntax features specific to C-64 (Commodore 64); 
+
+  -l or -long       all integer variables except those declared 'short integer'                     became of type 'long' and all real variables became 
+                    are declared as type 'long';
+
+  -d or -double     all float variables are declared as type 'double'; 
+
+  -p or -post       do not perform post-processing which changes variable                  
+                    names like i%, i&, x#, a$, a? into C-acceptable forms:
+                    i_int, i_long, x_double, a_S, a_byte and adds headers to
+                    the C text. This is only useful for debugging output
+                    C code or qb2c itself;
+
+  -c or -C          this flag enables special handling of lines commented 
+                    with "C", "CH " or "CM ". This makes possible direct 
+                    insertion of lines written in C. For more information 
+                    see the section "INSERTION OF LINES IN C" below;
+
+  -m or -M          disallow logical expressions to combine with math. 
+                    expressions (eg. i = (a = 1) AND (b <> 2) ). 
+
+  -n or -N          disable SHELL "..." argument interpreter, i.e. the
+                    argument of SHELL command in the BASIC program will be
+                    send as it is to the system() command in the C translate.
+                    By default argument of the SHELL command is translated
+                    (for example: "dir" -> "ls -l" etc.)
+
+  -u                do not XUPDATE the x-screen after every drawing 
+                    command, such as LINE, PSET, BOX... 
+                    This permits speedup of the drawing, if XUPDATE
+                    is used only once in the while, when necessary
+
+  -r                this option tells bcpp to replace every division
+                    " / " with " / (double)". This is to comply with
+                    BASIC's convention that division operator / always
+                    convert both left and right side to real numbers
+                    before dividing them, so that the result is also real.
+                    For example 5 / 8 equals 0.625 rahter than 0 
+                    This option is *NOT* a default.
+
+  -s                by default, QB2C changes the names of numerical 
+                    variables, arrays and functions by replacing    
+                    suffixes '%', '&', '#' and '?' with respectively '_int',
+                    '_long', '_double' and '_byte'.
+                    Specifying flag -s tells QB2C to strip off suffixes 
+                    '%', '&', '#' and '?' instead. 
+                    WARNING ! It is up to user to ensure that there are
+                    no variables with similar names in the program, which
+                    will become the same after stripping suffixes, for
+                    example 'a% and 'a'. In such a case, the translated code
+                    will be invalid.
+
+REMINDER
+
+ Following pieces of syntax rules are a bit more restrictive than is 
+common in various implementations of BASIC including QuickBASIC.
+We want to stress their importance since QB2C may produce a bad C code 
+without warnings if they are not obeyed:
+
+* all used arrays must be explicitely declared (with DIM);
+
+* array, constant or function declarations must occur first in a
+  given module (MAIN, SUB...) ie. before any other expression or 
+  command. THIS MAKES IT IMPOSSIBLE TO CHANGE ARRAY SIZE AT RUN-TIME,
+  if you want to do so, you must do it directly from C;
+
+* arguments to arrays *must* be integers. I could do differently, but
+  it would both slow down both the translation and execution, besides,
+  it is a good programming style to think of array arguments as integers;
+
+* all SHARED arrays must be declared in MAIN module (even if they are not
+  used in the MAIN);
+
+* SHARED array names are passed with empty brackets eg. name();
+
+* Files open in any module (MAIN, SUB or function) are "visible" from 
+  all other modules;
+
+* Return type of a FUNCTION is determined by its name, the rules are the
+  same as for variables and arrays.
+
+RESTRICTIONS
+
+* Type of a constant, variable or array is determined by suffix in
+  its name. The "AS" statement in variable type definition is *not* 
+  supported.
+  Here is the list of legal suffixes (as used by QuickBASIC) and
+  their correspondence in C:
+
+              QuickBASIC                         C
+  $         -> string (or single character)     char *
+  %         -> single integer                   int
+  &         -> long integer                     long
+  #         -> double float                     double
+  ?         -> single byte integer              unsigned char
+  _%        -> 2 byte integer                   signed short int
+  no suffix -> single float                     float
+
+  Note two additional types which did not exist in original QuickBASIC:
+  single byte integer, and two byte integer, both introduced to minimize
+  memory usage in graphics applications.
+
+  If a numerical constant contains "." or ends up with an "!" then it is a
+  single float (example: 100 is integer, 100. and 100! are single floats).
+  On top of that, user can modify types during translation (options -l, -d).
+    
+* All array names MUST be declared explicitly (DIM) at the top of each
+  module where they are used.
+  In opposite case NO ERROR WILL BE DETECTED at translation time !
+
+* The syntax must be strictly the one as written out by the QBASIC editor
+  including case and spacing conventions. If not, preprocessor bcpp 
+  should be used on the file:
+  bcpp  infile  outfile
+  or the option -b used to the qb2c translator (see the option list).
+  The bcc compiling script already uses -b option.
+
+  The bcpp preprocessor may be run with one or more of the following 
+  option flags:
+
+  -c64 or -C64      this option switches on recognition of some 
+                    syntax features specific to C-64 (Commodore 64)
+
+  -q                bcpp works quietly (suppresses warnings but not
+                    errors).
+
+* Arrays cannot be passed as variables to SUBroutines or functions - use 
+  SHARED instead.
+
+* IF clauses without THEN such as:  'IF a$ = "a" GOTO 100'
+  are not allowed at this moment. In this particular case one should
+  use instead: 'IF a$ = "a" THEN GOTO 100' or 'IF a$ = "a" THEN 100'.
+
+* There is no support for sound except directly from C
+
+
+EXAPMLE
+
+I) As a simple example you may put the following text into a file named 
+test.bas:
+
+ for i=1 to 5 
+  print i, i^2
+ next
+
+ Then do:
+ bcpp -i -b test
+
+ This will create the file test.c. Compile and run it with:
+ cc -o test test.c -lm
+ test
+
+ The result should look like: 
+ 1          1
+ 2          4
+ 3          9
+ 4          16
+ 5          25
+
+ Instead of all this you may just have typed: 
+
+ brun test
+
+
+INSERTION OF LINES IN C
+
+  It is possible to mix BASIC and C. Lines written in C must be commented
+  with "C " *at the beginning of a line* and -C option issued to qb2c 
+  translator. For example:
+
+  pi = 3.1415
+C printf("%f\n",pi);
+  END
+
+  is equivalent to:
+
+ pi = 3.1415
+ PRINT pi
+ END 
+
+  The first example must be translated with the -C option:
+  qb2c -C name
+
+  During translation names of variables, open file pointers and labels are 
+  changed in order to conform C conventions. This is done in the following 
+  way:
+
+  Variables: "$" at the end of variable name becomes "_S", "%" becomes "_int",
+             "&" becomes "_long", "#" becomes "_double", and "?" becomes
+             "_byte".
+
+  Open files: An open file identified in BASIC with number 'n', becomes 
+              identified with a pointer of name 'fp_n'.
+
+  Labels:     Label numbers are added "Lab_" prefix, for example 
+              "100" is renamed to "Lab_100".
+
+  To make things more convenient it is possible to specify lines which
+  are insert among the declaration lines of main routine with "CM " comment
+  or in the overall header of the translated C program with "CH ". Variables
+  and constants declared with "CH " are, of course, global.
+
+  An example (the program asks for a word and then it prints out character
+  codes and their squares):
+
+   print "This is a small test of";
+C  printf("mixing BASIC and C\n");
+   REM We need to declare a variable in main:
+CM static char c;
+   input "Say a word"; a$
+   for i%=1 to len(a$)      
+C  c=a_S[i_int-1]; 
+C  printf("%5d %.f\n",c, pow(c,2)); 
+   next
+C  /* I have used a math library function (pow) only in C, therefore 
+C     a header <math.h> will not be specified. I must do it myself */
+CH #include <math.h>
+   end
+
+ This program should be run in the following way:
+ bcpp -b -C name
+ run name
+-----------------------------------------------------------------------------
+
+ACKNOWLEDGEMENTS
+
+ I wish to thank to the people from CERN, Geneve, for developing the 
+interface to X11 library: O. Couet, I. Mclaren and E. Chernyaev, and for 
+their help in understanding this package. A part of their so called HIGZ 
+package only needed small changes to be runable from C, and included in QB2C.
+
+-----------------------------------------------------------------------------
+QB2C manual
+First version:  4-Apr-1996
+Last revision: 28.Apr-1998
+Author: Stipcevic Mario, Zagreb  

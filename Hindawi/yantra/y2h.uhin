@@ -1,0 +1,390 @@
+%{
+/*
+Copyright (C) 2003,2004,2005,2006 Abhishek Choudhary
+This file is part of the Hindawi Indic Programming System.
+
+The Hindawi Indic Programming Systemis free software; 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the 
+Free Software Foundation; either version 2 of the License, or 
+(at your option) any later version.
+
+The Hindawi Indic Programming System is distributed in the hope 
+that it will be useful, but WITHOUT ANY WARRANTY; without 
+even the implied warranty of MERCHANTABILITY or FITNESS FOR 
+A PARTICULAR PURPOSE. See the GNU General Public License for 
+more details.
+
+You should have received a copy of the GNU General Public
+License along with this file; see the file COPYING. If
+not, write to the Free Software Foundation,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+*/
+
+/*
+Modifications: (Please maintain reverse chronological order)
+
+	dd-mmm-yyyy, Nature of modification,
+                        Name of modifier <alias>,
+			email adress of modifier
+
+        31-Jul-2006, Added the modifications section,
+                        Abhishek Choudhary <hi_pedler>,
+                        choudhary@indicybers.net
+
+End of modifications.
+*/
+%}
+
+ 
+%%
+\'("\\\'"|.*)*\'                       {printf("%s",yytext);}
+AH         {printf("कउ");}
+AL         {printf("कन");}
+AX         {printf("कक्ष");}
+BH         {printf("खउ");}
+BL         {printf("खन");}
+BX         {printf("खक्ष");}
+CH         {printf("गउ");}
+CL         {printf("गन");}
+CX         {printf("गक्ष");}
+DH         {printf("घउ");}
+DL         {printf("घन");}
+DX         {printf("घक्ष");}
+EAX         {printf("बकक्ष");}
+EBX         {printf("बखक्ष");}
+ECX         {printf("बगक्ष");}
+EDX         {printf("बघक्ष");}
+EBP         {printf("बआस");}
+EIP         {printf("बनस");}
+EDI         {printf("बतक");}
+ESI         {printf("बढक");}
+BP         {printf("आस");}
+IP         {printf("नस");}
+SP         {printf("ढस");}
+CS         {printf("कख");}
+DS         {printf("तख");}
+ES         {printf("बख");}
+FS         {printf("दख");}
+GS         {printf("गख");}
+SS         {printf("ढख");}
+DI         {printf("तक");}
+SI         {printf("ढक");}
+AND         {printf("और");}
+BYTE         {printf("बाइट");}
+COMMENT         {printf("टिप्पणी");}
+EQ         {printf("बर");}
+FAR         {printf("दूर");}
+GE         {printf("जब");}
+GT         {printf("जय");}
+HIGH         {printf("उच्च");}
+LE         {printf("कब");}
+LENGTH         {printf("नाप");}
+LINE         {printf("पंक्ति");}
+LOW         {printf("न्यून");}
+LT         {printf("कम");}
+MASK         {printf("नकाब");}
+MOD         {printf("शेष");}
+NE         {printf("नब");}
+NEAR         {printf("निकट");}
+NOT         {printf("नहीं");}
+NOTHING         {printf("कुछ_नहीं");}
+OFFSET         {printf("दुरत्व");}
+OR         {printf("या");}
+PTR         {printf("सूचक");}
+SEG         {printf("खंड");}
+SHORT         {printf("लघु");}
+SIZE         {printf("माप");}
+STACK         {printf("ढेर");}
+THIS         {printf("यह");}
+TYPE         {printf("प्रकार");}
+WHILE         {printf("जबतक");}
+WIDTH         {printf("चौड़ाई");}
+WORD         {printf("शब्द");}
+XOR         {printf("अथवा");}
+ALIGN         {printf("मिलाओ");}
+\.ALPHA         {printf(".सजाओ");}
+ASSUME         {printf("मानो");}
+\.CODE         {printf(".कूट");}
+COMM         {printf("साधारण");}
+\.CONST         {printf(".स्थिर");}
+\.CREF         {printf(".संदर्भ");}
+\.DATA         {printf(".तथ्य");}
+\.DATA\?         {printf(".तथ्य\?");}
+DB         {printf("तब");}
+DWORD         {printf("तथ्य_द्विगुन");}
+DD         {printf("तद");}
+DF         {printf("तदूर");}
+FWORD         {printf("तथ्य_दूर");}
+DOSSEG         {printf("डॉसखंड");}
+QWORD         {printf("तथ्य_चौथ");}
+DQ         {printf("तच");}
+DT         {printf("दब");}
+TWORD         {printf("दस_बाइट");}
+DW         {printf("तश");}
+ELSE         {printf("अन्था");}
+END         {printf("पूर्ण");}
+ENDIF         {printf("पूर्ण_अगर");}
+ENDM         {printf("पूर्ण_सक्रिया");}
+ENDP         {printf("पूर्ण_क्रिया");}
+ENDS         {printf("पूर्ण_खंड");}
+EQU         {printf("सम");}
+\.ERR         {printf(".त्रुटि");}
+\.ERR1         {printf(".त्रुटि1");}
+\.ERR2         {printf(".त्रुटि2");}
+\.ERRE         {printf(".त्रुटि_सत");}
+\.ERRNZ         {printf(".त्रुटि_असत");}
+\.ERRDEF         {printf(".त्रुटि_घोषित");}
+\.ERRNDEF         {printf(".त्रुटि_अघोषित");}
+\.ERRB         {printf(".त्रुटि_खाली");}
+\.ERRNB         {printf(".त्रुटि_न_खाली");}
+\.ERRIDN[I]         {printf(".त्रुटि_सम_माला");}
+\.ERRDIF[I]         {printf(".त्रुटि_असम_माला");}
+EVEN         {printf("जोड़_मिल");}
+\.EXIT         {printf(".निकास");}
+EXITM         {printf("निकासक");}
+EXTRN         {printf("बाह्य");}
+\.FARDATA         {printf(".दूरतथ्य");}
+\.FARDATA\?         {printf(".दूरतथ्य\?");}
+GROUP         {printf("समूह");}
+IF         {printf("अगर");}
+IF1         {printf("अगर1");}
+IF2         {printf("अगर2");}
+IFB         {printf("अगर_खाली");}
+IFDEF         {printf("अगर_घोषित");}
+IFDIF         {printf("अगर_असम");}
+IFE         {printf("अगर_असत");}
+IFIDN         {printf("अगर_सम");}
+IFNB         {printf("अगर_भरा");}
+IFNDEF         {printf("अगर_अघोषित");}
+INCLUDE         {printf("समावेश");}
+INCLUDELIB         {printf("समाकोष");}
+IRP         {printf("क्रम");}
+IRPC         {printf("क्रमअ");}
+LABEL         {printf("मोहर");}
+\.LIST         {printf(".दिखाओ");}
+LOCAL         {printf("स्थानीय");}
+\.MODEL         {printf(".स्वरूप");}
+MACRO         {printf("सक्रिया");}
+NAME         {printf("नाम");}
+ORG         {printf("शुरू");}
+\%OUT         {printf("%cलिखो",37);}
+PAGE         {printf("पृष्ठ");}
+PROC         {printf("क्रिया");}
+PUBLIC         {printf("सार्व");}
+PURGE         {printf("सीमित");}
+\.RADIX         {printf(".आधार");}
+RECORD         {printf("अभिलेख");}
+REPT         {printf("दोहराओ");}
+\.SALL         {printf(".मत_यंत्र");}
+SEGMENT         {printf("अखंड");}
+\.SEQ         {printf(".मूल");}
+\.STACK         {printf(".ढेर");}
+STRUC         {printf("ढाँचा");}
+SUBTTL         {printf("उपशीर्षक");}
+TITLE         {printf("शीर्षक");}
+UNI0N         {printf("जोड़");}
+\.XALL         {printf(".मत_कोई");}
+\.XCREF         {printf(".असंदर्भ");}
+\.XLIST         {printf(".मत_दिखाओ");}
+AAA         {printf("जठ");}
+AAD         {printf("भाठ");}
+AAM         {printf("गठ");}
+AAS         {printf("घठ");}
+ADC         {printf("जढ");}
+ADD         {printf("जमा");}
+ARPL         {printf("छसठ");}
+BOUND         {printf("सीमा");}
+BSF         {printf("अब");}
+BSR         {printf("पब");}
+BT         {printf("बिटज");}
+BTC         {printf("बजविप");}
+BTR         {printf("बजप");}
+BTS         {printf("बजव");}
+CALL         {printf("आरम्भ");}
+CBW         {printf("बसश");}
+CDQ         {printf("दसच");}
+CLC         {printf("सढझ");}
+CLD         {printf("सदझ");}
+CLI         {printf("वब");}
+CLTS         {printf("सकब");}
+CMC         {printf("वढ");}
+CMP         {printf("भेद");}
+CMPSB         {printf("भमाब");}
+CMPSW         {printf("भमाश");}
+CMPXCHG         {printf("भेद_बदल");}
+CMPXCHG8B         {printf("भेद_बदल_8ब");}
+CWD         {printf("शसद");}
+DAA         {printf("दजठ");}
+DAS         {printf("दघठ");}
+DEC         {printf("नफा");}
+DIV         {printf("भाग");}
+ENTER         {printf("प्रवेश");}
+HLT         {printf("रुको");}
+IDIV         {printf("पभ");}
+IMUL         {printf("पग");}
+IN         {printf("अंदर");}
+INC         {printf("लाभ");}
+INSB         {printf("अमब");}
+INSW         {printf("अमश");}
+INT         {printf("विघ्न");}
+INT3         {printf("विघ्न3");}
+INTO         {printf("विघ्नअ");}
+IRET         {printf("ववाप");}
+JA         {printf("लऊ");}
+JAE         {printf("लऊब");}
+JB         {printf("लन");}
+JBE         {printf("लनीब");}
+JCXZ         {printf("लगश");}
+JE         {printf("लब");}
+JECXZ         {printf("लबगश");}
+JG         {printf("लज");}
+JGE         {printf("लजब");}
+JL         {printf("लक");}
+JLE         {printf("लकब");}
+JMP         {printf("लाँघ");}
+JNA         {printf("लनऊ");}
+JNAE         {printf("लनऊब");}
+JNB         {printf("लनन");}
+JNBE         {printf("लननब");}
+JNE         {printf("लनब");}
+JNG         {printf("लनज");}
+JNGE         {printf("लनजब");}
+JNL         {printf("लनक");}
+JNLE         {printf("लनकब");}
+JNO         {printf("लनअ");}
+JNP         {printf("लनम");}
+JNS         {printf("लनच");}
+JNZ         {printf("लनश");}
+JO         {printf("लअ");}
+JP         {printf("लम");}
+JPE         {printf("लमब");}
+JPO         {printf("लमअ");}
+JS         {printf("लच");}
+JZ         {printf("लश");}
+LAHF         {printf("भकझ");}
+LAR         {printf("भअ");}
+LDS         {printf("भतख");}
+LEA         {printf("भठ");}
+LEAVE         {printf("निकलो");}
+LES         {printf("भबख");}
+LFS         {printf("भदख");}
+LGDT         {printf("भव्या");}
+LGS         {printf("भगख");}
+LIDT         {printf("भविघ्न");}
+LLDT         {printf("भस्था");}
+LMSW         {printf("भयअ");}
+LOCK         {printf("ताला");}
+LODSB         {printf("भमब");}
+LODSW         {printf("भमश");}
+LOOP         {printf("फिर");}
+LOOPE         {printf("फिरबर");}
+LOOPNE         {printf("फिरनब");}
+LOOPNZ         {printf("फिरनश");}
+LOOPZ         {printf("फिरश");}
+LSL         {printf("भखस");}
+LSS         {printf("भढख");}
+LTR         {printf("भखर");}
+MOV         {printf("डालो");}
+MOVSB         {printf("डालोमब");}
+MOVSW         {printf("डालोमश");}
+MOVSX         {printf("डचअ");}
+MOVZX         {printf("डशअ");}
+MUL         {printf("गुणा");}
+NEG         {printf("नकार");}
+NOP         {printf("वक्रि");}
+OUT         {printf("बाहर");}
+OUTSB         {printf("बमब");}
+OUTSW         {printf("बमश");}
+POP         {printf("लो");}
+POPA         {printf("लोस");}
+POPAD         {printf("लोसद");}
+POPF         {printf("लोझ");}
+POPFD         {printf("लोझद");}
+PUSH         {printf("दो");}
+PUSHA         {printf("दोस");}
+PUSHAD         {printf("दोसद");}
+PUSHF         {printf("दोझ");}
+PUSHFD         {printf("दोझद");}
+RCL         {printf("घढब");}
+RCR         {printf("घढद");}
+REP         {printf("पुनः");}
+REPE         {printf("पुनःब");}
+REPNE         {printf("पुनःनब");}
+REPNZ         {printf("पुनःनश");}
+REPZ         {printf("पुनःश");}
+RET         {printf("वापस");}
+RETF         {printf("वापद");}
+ROL         {printf("घब");}
+ROR         {printf("घद");}
+SAHF         {printf("रकझ");}
+SAL         {printf("हगब");}
+SAR         {printf("हगद");}
+SHL         {printf("हब");}
+SHR         {printf("हद");}
+SHLD         {printf("हबद");}
+SHRD         {printf("हदद");}
+SBB         {printf("घउध");}
+SCASB         {printf("पमब");}
+SCASW         {printf("पमश");}
+SETA         {printf("रऊ");}
+SETAE         {printf("रऊब");}
+SETB         {printf("रन");}
+SETBE         {printf("रनब");}
+SETE         {printf("रब");}
+SETG         {printf("रज");}
+SETGE         {printf("रजब");}
+SETL         {printf("रक");}
+SETLE         {printf("रकब");}
+SETNA         {printf("रनऊ");}
+SETNAE         {printf("रनऊब");}
+SETNB         {printf("रनन");}
+SETNBE         {printf("रननब");}
+SETNE         {printf("रनाब");}
+SETNG         {printf("रनज");}
+SETNGE         {printf("रनजब");}
+SETNL         {printf("रनक");}
+SETNLE         {printf("रनकब");}
+SETNO         {printf("रनअ");}
+SETNP         {printf("रनम");}
+SETNS         {printf("रनच");}
+SETNZ         {printf("रनश");}
+SETO         {printf("रअ");}
+SETP         {printf("रम");}
+SETPE         {printf("रमब");}
+SETPO         {printf("रमअ");}
+SETS         {printf("रच");}
+SETZ         {printf("रश");}
+SGDT         {printf("रखो_व्याख्या");}
+SIDT         {printf("रखो_विघ्न");}
+SLDT         {printf("रखो_स्थानीय");}
+SMSW         {printf("रयअ");}
+STC         {printf("रढझ");}
+STD         {printf("रदझ");}
+STI         {printf("वश");}
+STOSB         {printf("रखमब");}
+STOSW         {printf("रखमश");}
+STR         {printf("रक्रिर");}
+SUB         {printf("घटा");}
+TEST         {printf("जाँच");}
+VERR         {printf("सल");}
+VERRW         {printf("सप");}
+WAIT         {printf("विलंब");}
+XADD         {printf("बज");}
+XCHG         {printf("बदलो");}
+XLAT         {printf("अनु");}
+ 
+TINY   {printf("ढाँचा_क्षुद्र");}
+SMALL   {printf("ढाँचा_छोटा");}
+COMPACT   {printf("ढाँचा_कठोर");}
+LARGE   {printf("ढाँचा_बड़ा");}
+HUGE   {printf("ढाँचा_बृहत");}
+
+ENTRY			{printf("प्रथम");}
+FORMAT			{printf("विधि");}
+EXECUTABLE		{printf("प्रयोग");}
+READABLE		{printf("पाठक");}
+WRITEABLE		{printf("लेखक");}
+
+%%
+ 

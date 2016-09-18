@@ -1,0 +1,2110 @@
+Hindawi Indic Programming System Release 2.1 (Linux) Version 0.1.2 Alpha
+User Guide and Reference Manual
+Copyright (C) 2006 Abhishek Choudhary
+Permission is granted to copy, distribute and / or modify this document 
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with Invariant Sections being Technical Description, Hindi BASIC commands reference,
+Hindi C commands reference, Hindi C++ commands reference, 
+Hindi Lex commands reference, Shaili Wyaakaran commands reference, 
+Hindi Assembly commands reference, Shaili Kritrim commands reference,
+no Front-Cover Texts, and no Back-Cover Texts.
+*ALL TRADEMARKS ACKNOWLEDGED AS BELONGING TO THEIR RESPECTIVE OWNERS*
+*THIS DOCUMENT DOES NOT IMPLY ANY WARRANTY AS TO THE ACCURATENESS OF CONTENTS OR ANY COMMITMENT TO PROVIDE ANY SERVICE WHATSOEVER. IT IS ONLY INTENDED TO FACILITATE THE USER EXPERIENCE, HOWEVER NO FITNESS FOR ANY PURPOSE IS GUARANTEED, NOT EVEN THE FITNESS FOR MERCHANTABILITY.*
+*The keywords of programming languages Hindi BASIC (Shaili Praathamik), Hindi C (Shaili Guru), Hindi C++ (Shaili Shraeni), Hindi Lex (Shaili Shabda), Hindi Yacc (Shaili Wyaakaran), Hindi Assembly (Shaili Yaantrik) and Shaili Kritrim are copyrights of Abhishek Choudhary and Sweta Karwa. Hindawi, Romenagri, Shaili Praathamik, Shaili Guru, Shaili Shraeni, Shaili Shabda, Shaili Wyaakaran, Shaili Yaantrik and Shaili Kritrim are trademarks of Abhishek Choudhary and Sweta Karwa. The copyrights and trademarks for the English equivalent programming languages are held by their respective owners.*
+
+हिंदवी क्रमानुशीलन प्रणाली
+~~~~~~~~~~~~~~~~
+
+सूची					
+~~~
+पाठ									पृष्ठ सं.
+१. लघु संकलित विकास क्षेत्र से परिचय						 1
+२. शैली प्राथमिक शब्दकोष (Shaili Praathamik command reference)			 2
+३. शैली गुरू शब्दकोष (Shaili Guru command reference)				 5
+४. शैली श्रेणी शब्दकोष (Shaili Shraeni command reference)			12
+५. शैली शब्द शब्दकोष (Shaili Shabda command reference)			20
+६. शैली व्याकरण शब्दकोष (Shaili Wyaakaran command reference)			20
+७. शैली यांत्रिक शब्दकोष (Shaili Yaantrika command reference)			21
+८. शैली कृत्रिम शब्दकोष (Shaili Kritrima command reference)			32
+९. तकनीकि जानकारी (Technical description)					36
+
+लघु संकलित विकास क्षेत्र से परिचय
+~~~~~~~~~~~~~~~~~~~~~~~
+
+१. प्रोग्राम खण्ड (Source code)
+	इस खण्ड में प्रोग्राम लिखें अथवा निवेश करें।
+
+२. प्रोग्राम खातानाम प्रविष्टि खण्ड (Source filename)
+	पूर्वासित खाते से प्रोग्राम प्रविष्ट करने के लिए खातानाम यहाँ लिखें।	
+
+३. प्रोग्राम खातानाम चयन बटन (Source select)
+	प्रोग्राम खातानाम चयन करने के लिए यह बटन दबाएँ। चयनित खातानाम प्रोग्राम खातानाम प्रविष्टि खण्ड में स्वतः प्रविष्ट हो जाएगा। निवेश करें बटन दबाने पर वह खाता प्रोग्राम खण्ड में दिखेगा।
+
+४. नया बटन (New)
+	यह बटन दबाने पर सब प्रविष्टि खण्ड साफ हो जाएँगे। नया प्रोग्राम लिखने के पूर्व यह बटन अवश्य दबाएँ।
+
+५. संचय करें बटन (Save)
+	यह बटन दबाने पर प्रोग्राम खण्ड में लिखा पाठ प्रोग्राम खातानाम प्रविष्टि खण्ड में लिखे खातानाम में संचित हो जाएगा। संकलन के पूर्व यह बटन अवश्य दबाएँ।
+
+६. निवेश करें बटन (Open)
+	यह बटन दबाने पर प्रोग्राम खातानाम प्रविष्टि खण्ड में चयनित खाता प्रोग्राम खण्ड में दिखेगा।
+
+७. संकलन बटन (Compile)
+	प्रोग्राम संकलन के लिए यह बटन दबाएँ। परिक्षण / प्रसार के पूर्व यह बटन अवश्य दबाएँ।
+
+८. परिक्षण बटन (Run in IDE)
+	यह बटन दबाने पर प्रोग्राम के परिणाम लघु सवक्ष के परिणाम खण्ड में दिखेंगे।
+
+९. प्रसार बटन (Run on external shell)
+	यह बटन दबाने पर प्रोग्राम के परिणाम बाह्य खण्ड में दिखेंगे।
+
+१०. परिणाम खण्ड (Output - stdout)
+	प्रोग्राम के परिणाम यहाँ देखें।
+
+११. संकलन त्रुटि खण्ड (Compilation errors)
+	संकलन की त्रुटियाँ यहाँ देखें।
+
+१२. प्रविष्टि खण्ड (Input - stdin)
+	प्रोग्राम की अपेक्षित प्रविष्टियाँ यहाँ लिखें।
+
+१३. सहायता बटन (Help)
+	सहायता के लिए यह बटन दबाएँ।
+
+१४. निकास बटन (Exit)
+	निकास के लिए यह बटन दबाएँ।
+
+
+शैली प्राथमिक शब्दकोष (Shaili Praathamik command reference)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+टिप्पणी		REM
+टिप		REM
+साफ		CLS
+स्थान             LOCATE
+लिखो             PRINT
+पूछो              INPUT
+रंग               COLOR
+रंगकोष		PALETTE
+चित्र_लिखो		XTEXT
+दिनांक$            DATE$
+समय$            TIME$
+खाली$              SPACE$
+बीच$              MID$
+पूर्व$              LEFT$
+अंत$              RIGHT$
+माला$              STRING$
+अंक_माला         STR
+लिपी$             CHR$
+बड़े$               UCASE$
+छोटे$               LCASE$
+पूर्वक्षय$          LTRIM$
+अंतक्षय$          RTRIM$
+अंश              INSTR
+इस्कि             ASC
+इस               ASC
+मान              VAL
+माप              LEN
+षष्ठ$              HEX$
+षष्ठादशक$        HEX$
+अष्ट$              OCT$
+आष्टक$            OCT$
+चाबी$              INKEY$
+चाबी_दबाया$        INKEY$
+च_दबाया$          INKEY$
+ 
+घड़ी            TIMER
+समयक          TIMER
+बेक्रम_क्रिया      RANDOMIZE
+अक्रम_क्रिया      RANDOMIZE
+ 
+मानो              LET
+आयाम            DIM
+सार्वजनिक        SHARED
+सार्व              SHARED
+स्थिर             CONST
+ 
+अगर             IF
+है तो             THEN
+हो तो             THEN
+अन्यथा           ELSE
+ 
+क्रम              FOR
+से                TO
+गति              STEP
+क्रमान्त           NEXT
+ 
+करो              DO
+दोहराओ           LOOP
+फिर              LOOP
+ 
+जब तक             WHILE
+तब तक             WEND
+ 
+खोलो              OPEN
+हेतु               FOR
+पाठ               INPUT
+लेखन            OUTPUT
+नत्थी             APPEND
+पंथ              AS
+बंद               CLOSE
+खाता_पूर्ण         EOF
+ख_प             EOF
+पूर्वासित          EXISTS
+खाता_लिखो        PRINT #
+ख_लिखो          PRINT #
+खाता_पढ़ो         LINE INPUT #
+ख_पढ़ो           LINE INPUT #
+खाता_शब्द         INPUT #
+ख_शब्द           INPUT #
+ 
+पूर्ण              END
+इति             END
+समाप्त           END
+अवकाश          SHELL
+ 
+अगला            GOTO
+जाओ              GOSUB
+वापस            RETURN
+ 
+क्रिया             FUNCTION
+अणु              SUB
+निकास           EXIT SUB
+अवरोध           BREAK
+जारी रखो         CONTINUE
+जड़               STATIC
+घोषणा            DECLARE
+घोष              DECLARE
+अनुक्रम          CALL
+
+लॉग              LOG
+साइन             SIN
+कॉस              COS
+टैन               TAN
+अटैन             ATN
+मूल              SQR
+वर्गमूल          SQR
+सम             ABS
+समपूर्ण          ABS
+प्रतिपादक         EXP
+चिंह              SGN
+अक्रमान्क         RND
+अंक              INT
+पूर्णांक            CINT
+शेष              MOD
+ 
+पर्दा              SCREEN
+वृत              CIRCLE
+रेखा              LINE
+बिन्दु             PSET
+ 
+तथा              AND
+और               AND
+और_बिट          &
+और_ब            &
+या                OR
+या_बिट           |
+या_ब             |
+नहीं              NOT
+अथवा            XOR
+केवल            XOR
+ 
+#गस           C header
+#गम           C main
+#ग            C 
+ 
+पूर्वादेश$		COMMAND$
+
+
+शैली गुरू शब्दकोष (Shaili Guru command reference)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+मुख्य                     main
+प्राथमिक.स                  basstub.c
+भाग.स                  alloc.h
+निश्चित.स              assert.h
+मूलप्रण.स              bios.h
+पट्टपन.स              conio.h
+प्रकार.स                 ctype.h
+सूची.स                  dir.h
+डॉस.स                  dos.h
+त्रुटिसं.स                 errno.h
+भग्न.स                 float.h
+पन.स                  io.h
+सीमा.स                  limits.h
+क्षेत्र.स                  locale.h
+गणित.स                math.h
+स्मृति.स                 mem.h
+क्रिया.स                 process.h
+समलाँघ.स              setjmp.h
+संकेत.स                signal.h
+मानकतर्क.स            stdarg.h
+मानकघोष.स            stddef.h
+मानकपन.स            stdio.h
+मानककोष.स            stdlib.h
+माला.स                  string.h
+स्थिति.स                stat.h
+समय.स                time.h
+ब_समय.स             timeb.h
+ 
+अणु                     {
+पूर्ण                     }
+#घोषणा                   #define
+#या_अगर                 #elif
+#अन्यथा                  #else
+#पूर्ण_अगर               #endif
+#त्रुटि                      #error
+#अगर                    #if
+#अगर_घोषित             #ifdef
+#अगर_अघोषित           #ifndef
+#समावेश                 #include
+#पंक्ति                     #line
+#आशय                   #pragma
+#अघोषित                 #undef
+बफ_मान                 BUFSIZ
+अक्षर_बिट                CHAR_BIT
+अक्षर_उच्च                CHAR_MAX
+अक्षर_न्यून               CHAR_MIN
+शिशु_उच्च                CHILD_MAX
+घड़ी_टिक                 CLK_TCK
+द्विग_भग्न              DBL_DIG
+द्विग_अंतर              DBL_EPSILON
+द्विग_पूर्ण               DBL_MANT_DIG
+द्विग_उच्च               DBL_MAX
+द्विग_न्यून               DBL_MIN
+सूची                       DIR
+गलत_तर्क                EDOM
+खातापूर्ण                       EOF
+दुस्फल                     ERANGE
+निकास_त्रुटि                EXIT_FAILURE
+निकास_सफल             EXIT_SUCCESS
+खाता                       FILE
+खातानाम_उच्च              FILENAME_MAX
+भग्न_भग्न                FLT_DIG
+भग्न_अंतर                FLT_EPSILON
+भग्न_पूर्ण                 FLT_MANT_DIG
+भग्न_उच्च                 FLT_MAX
+भग्न_न्यून                FLT_MIN
+भग्न_आधार                FLT_RADIX
+ख_खोलो_उच्च               FOPEN_MAX
+विशाल_मान               HUGE_VAL
+अनन्त                    INFINITY
+पूर्णांक_उच्च                INT_MAX
+पूर्णांक_न्यून               INT_MIN
+द_द्वि_भग्न               LDBL_DIG
+द_द्वि_अंतर               LDBL_EPSILON
+द_द्वि_पूर्ण                LDBL_MANT_DIG
+द_द्वि_उच्च                LDBL_MAX
+द_द्वि_न्यून               LDBL_MIN
+दीर्घ_उच्च                  LONG_MAX
+दीर्घ_न्यून                 LONG_MIN
+ब_क्षणिक                  L_tmpnam
+न_अंक                    NAN
+न_संशोधन                NDEBUG
+शून्य                      NULL
+अक्रम_उच्च                RAND_MAX
+च_अक्षर_उच्च              SCHAR_MAX
+च_अक्षर_न्यून             SCHAR_MIN
+प्रस्तुत_से                 SEEK_CUR
+अंत_से                    SEEK_END
+शुरू_से                     SEEK_SET
+लघु_उच्च                  SHRT_MAX
+लघु_न्यून                 SHRT_MIN
+संक_पात                  SIBGABRT
+संक_भ_त्रुटि                SIGFPE
+संक_अवैध                SIGILL
+संक_विघ्न                SIGINT
+संक_अंश                  SIGSEGV
+संक_इति                  SIGTERM
+संक_पूर्व                  SIG_DFL
+संक_त्रुटि                   SIG_ERR
+संक_छोड़ो                  SIG_IGN
+क्षणिक_उच्च                TMP_MAX
+अच_अक्षर_उच्च            UCHAR_MAX
+अच_पूर्णांक_उच्च           UINT_MAX
+अच_दीर्घ_उच्च             ULONG_MAX
+अच_लघु_उच्च             USHRT_MAX
+__दिन__                   __DATE__
+__खाता__                   __FILE__
+__पंक्ति__                   __LINE__
+__मानक__                 __STDC__
+__समय__                 __TIME__
+_निकास                   _exit
+पात                        abort
+असल                        abs
+समय_ठीक                    asctime
+यंत्र                       asm
+निश्चित                   assert
+निकास_पर                   atexit
+म_से_भ                     atof
+म_से_प                     atoi
+म_से_द                     atol
+स्वतः                      auto
+अवरोध                   break
+द्वा_खोज                   bsearch
+सुस्मृति                   calloc
+हाल                       case
+उच्चमान                    ceil
+अक्षर                      char
+स_बदलो                   chdir
+साफ_त्रुटि                 clearerr
+घड़ी                       clock
+घड़ी_प्रकार                 clock_t
+बंद                        close
+बंद_सूची                   closedir
+स्थिर                      const
+जारी                       continue
+स_समय                      ctime
+शेष                       default
+स_अंतर                     difftime
+स_नाम                    dirname
+भाग                       div
+भाग_प्रकार                 div_t
+करो                       do
+द्विगुन                   double
+अन्यथा                    else
+क्रमागत                   enum
+त्रुटि_सं                     errno
+निकास                    exit
+बाह्य                      extern
+भ_असल                      fabs
+ख_बंद                     fclose
+ख_पूर्ण                    feof
+ख_त्रुटि                ferror
+ख_साफ                      fflush
+ख_अक्षर_लो                 fgetc
+ख_स्थान_लो                    fgetpos
+ख_माला_लो                  fgets
+भग्न                      float
+न्यूनमान                   floor
+भ_शेष                      fmod
+ख_खोलो                    fopen
+क्रम                       for
+विभाजन                  fork
+ख_स्थान_प्रकार             fpos_t
+ख_लिखो                   fprintf
+ख_अक्षर_दो             fputc
+ख_माला_दो              fputs
+ख_पढ़ो                    fread
+मुक्त                       free
+ख_व_खोलो                    freopen
+मित्र                      friend
+ख_पूछो                    fscanf
+ख_जाओ                      fseek
+ख_स्थान_दो                   fsetpos
+ख_स्थिति                  fstat
+ख_बताओ                     ftell
+ख_डालो                     fwrite
+अ_लो                       getc
+अक्षर_लो                   getchar
+दो_पर्या                   getenv
+माला_लो                    gets
+स_जमट                      gmtime
+जाओ                       goto
+अगर                      if
+अंतरभूत                  inline
+पूर्णांक                     int
+है_अक्षर_अंक               isalnum
+है_अक्षर                    isalpha
+है_नियंत्रण                iscntrl
+है_अंक                     isdigit
+है_सीमित                   isfinite
+है_चित्र                    isgraph
+है_छोटा                     islower
+है_अष्टक                   isodigit
+है_छाप                     isprint
+है_विराम                   ispunct
+है_खाली                     isspace
+है_बड़ा                     isupper
+है_षष्ठादशक                isxdigit
+लाँघ_बफ                  jmp_buf
+समाप्त                    kill
+द_असल                      labs
+स्था_बदल                   lconv
+द_भाग                     ldiv
+द_भाग_प्रकार               ldiv_t
+क्षेत्र_बदलो               localeconv
+स_स्थानीय                  localtime
+दीर्घ                       long
+दीर्घ_लाँघ                 longjmp
+दो_स्मृति                   malloc
+स_प्रथम                    memchr
+स_भेद                      memcmp
+स_नकल                      memcpy
+स_हटाओ                     memmove
+स_रखो                      memset
+सूची_गढ़ो                  mkdir
+स_गढ़ो                     mktime
+दुरत्व                      offsetof
+खोलो                       open
+सूची_खोलो                  opendir
+चालक                     operator
+छोड़ो                       pause
+लिखो_त्रुटि                perror
+घात                        pow
+म_लिखो                     printf
+निजी                      private
+रक्षित                     protected
+सूचक_भेद_प्रकार           ptrdiff_t
+खुला                       public
+अ_दो                       putc
+अक्षर_दो                   putchar
+माला_दो                    puts
+क्विक                      qsort
+उठाओ                       raise
+अक्रम                      rand
+पढ़ो                       read
+सूची_पढ़ो                  readdir
+पुनः_स्मृति                realloc
+रेजिस्टर                    register
+हटाओ                       remove
+नाम                       rename
+वापस                     return
+शुरुआत                      rewind
+सूची_शुरु                   rewinddir
+सूची_हटाओ                 rmdir
+म_पूछो                     scanf
+रखो_बफ                     setbuf
+बनाओ_लाँघ                  setjmp
+रखो_क्षेत्र                setlocale
+रखो_भबफ                    setvbuf
+लघु                       short
+संक_पूर्ण_प्रकार            sig_atomic_t
+संकेत                     signal
+चिन्हित                    signed
+संक_बाकी                  sigpending
+संक_रोको                  sigsuspend
+माप_प्रकार                 size_t
+माप                       sizeof
+प्र_लिखो                   sprintf
+वर्ग_मूल                  sqrt
+बेक्रम                     srand
+माला_पूछो                  sscanf
+अटल                        static
+मानक_त्रुटि                 stderr
+मानक_निवेश             stdin
+मानक_निकास             stdout
+म_जोड़ो                  strcat
+म_अक्षर                    strchr
+म_भेद                      strcmp
+म_नकल                strcpy
+म_खोज                      strcspn
+म_त्रुटि                   strerror
+स_माला                     strftime
+म_माप                  strlen
+म_जोड़न                    strncat
+म_भेदन                     strncmp
+म_नकलन                  strncpy
+म_खोजप                     strrchr
+म_अखोज                     strspn
+म_माला                     strstr
+म_से_भग्न               strtod
+म_मोहर                  strtok
+म_से_दीर्घ              strtol
+म_से_अदीर्घ           strtoul
+काष्ठा                      struct
+चयन                     switch
+प्रणाली                     system
+ढाँचा                       template
+समय                     time
+समय_प्रकार               time_t
+बार                        times
+पंचांग                     tm
+क्षणिक_ख                   tmpfile
+क्षणिक                     tmpnam
+छोटे                        tolower
+बड़े                        toupper
+प्रकार                      typedef
+अक्षर_वापस                 ungetc
+जोड़                        union
+अचिन्हित                   unsigned
+बहु_तर्क              va_arg
+बहु_पूर्ण              va_end
+बहु_सूची              va_list
+बहु_शुरू               va_start
+भख_लिखो                    vfprintf
+भव                       virtual
+व्योम                      void
+अस्थिर                     volatile
+भ_लिखो                     vprintf
+भम_लिखो                    vsprintf
+रुको                        wait
+ब_अक्षर_प्रकार             wchar_t
+जबतक                   while
+ग_लिखो                      write
+ 
+समय_लो      gettime
+समय_रखो     settime
+
+
+शैली श्रेणी शब्दकोष (Shaili Shraeni command reference)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+मुख्य                     main
+भाग.स                  alloc.h
+निश्चित.स              assert.h
+मूलप्रण.स              bios.h
+पट्टपन.स              conio.h
+प्रकार.स                 ctype.h
+सूची.स                  dir.h
+डॉस.स                  dos.h
+त्रुटिसं.स                 errno.h
+भग्न.स                 float.h
+पन.स                  io.h
+सीमा.स                  limits.h
+क्षेत्र.स                  locale.h
+गणित.स                math.h
+स्मृति.स                 mem.h
+क्रिया.स                 process.h
+समलाँघ.स              setjmp.h
+संकेत.स                signal.h
+मानकतर्क.स            stdarg.h
+मानकघोष.स            stddef.h
+मानकपन.स            stdio.h
+मानककोष.स            stdlib.h
+माला.स                  string.h
+स्थिति.स                stat.h
+समय.स                time.h
+ब_समय.स             timeb.h
+ 
+अणु                     {
+पूर्ण                     }
+#घोषणा                   #define
+#या_अगर                 #elif
+#अन्यथा                  #else
+#पूर्ण_अगर               #endif
+#त्रुटि                      #error
+#अगर                    #if
+#अगर_घोषित             #ifdef
+#अगर_अघोषित           #ifndef
+#समावेश                 #include
+#पंक्ति                     #line
+#आशय                   #pragma
+#अघोषित                 #undef
+बफ_मान                 BUFSIZ
+अक्षर_बिट                CHAR_BIT
+अक्षर_उच्च                CHAR_MAX
+अक्षर_न्यून               CHAR_MIN
+शिशु_उच्च                CHILD_MAX
+घड़ी_टिक                 CLK_TCK
+द्विग_भग्न              DBL_DIG
+द्विग_अंतर              DBL_EPSILON
+द्विग_पूर्ण               DBL_MANT_DIG
+द्विग_उच्च               DBL_MAX
+द्विग_न्यून               DBL_MIN
+सूची                       DIR
+गलत_तर्क                EDOM
+खातापूर्ण                       EOF
+दुस्फल                     ERANGE
+निकास_त्रुटि                EXIT_FAILURE
+निकास_सफल             EXIT_SUCCESS
+खाता                       FILE
+खातानाम_उच्च              FILENAME_MAX
+भग्न_भग्न                FLT_DIG
+भग्न_अंतर                FLT_EPSILON
+भग्न_पूर्ण                 FLT_MANT_DIG
+भग्न_उच्च                 FLT_MAX
+भग्न_न्यून                FLT_MIN
+भग्न_आधार                FLT_RADIX
+ख_खोलो_उच्च               FOPEN_MAX
+विशाल_मान               HUGE_VAL
+अनन्त                    INFINITY
+पूर्णांक_उच्च                INT_MAX
+पूर्णांक_न्यून               INT_MIN
+द_द्वि_भग्न               LDBL_DIG
+द_द्वि_अंतर               LDBL_EPSILON
+द_द्वि_पूर्ण                LDBL_MANT_DIG
+द_द्वि_उच्च                LDBL_MAX
+द_द्वि_न्यून               LDBL_MIN
+दीर्घ_उच्च                  LONG_MAX
+दीर्घ_न्यून                 LONG_MIN
+ब_क्षणिक                  L_tmpnam
+न_अंक                    NAN
+न_संशोधन                NDEBUG
+शून्य                      NULL
+अक्रम_उच्च                RAND_MAX
+च_अक्षर_उच्च              SCHAR_MAX
+च_अक्षर_न्यून             SCHAR_MIN
+प्रस्तुत_से                 SEEK_CUR
+अंत_से                    SEEK_END
+शुरू_से                     SEEK_SET
+लघु_उच्च                  SHRT_MAX
+लघु_न्यून                 SHRT_MIN
+संक_पात                  SIBGABRT
+संक_भ_त्रुटि                SIGFPE
+संक_अवैध                SIGILL
+संक_विघ्न                SIGINT
+संक_अंश                  SIGSEGV
+संक_इति                  SIGTERM
+संक_पूर्व                  SIG_DFL
+संक_त्रुटि                   SIG_ERR
+संक_छोड़ो                  SIG_IGN
+क्षणिक_उच्च                TMP_MAX
+अच_अक्षर_उच्च            UCHAR_MAX
+अच_पूर्णांक_उच्च           UINT_MAX
+अच_दीर्घ_उच्च             ULONG_MAX
+अच_लघु_उच्च             USHRT_MAX
+__दिन__                   __DATE__
+__खाता__                   __FILE__
+__पंक्ति__                   __LINE__
+__मानक__                 __STDC__
+__समय__                 __TIME__
+_निकास                   _exit
+पात                        abort
+असल                        abs
+समय_ठीक                    asctime
+यंत्र                       asm
+निश्चित                   assert
+निकास_पर                   atexit
+म_से_भ                     atof
+म_से_प                     atoi
+म_से_द                     atol
+स्वतः                      auto
+अवरोध                   break
+द्वा_खोज                   bsearch
+सुस्मृति                   calloc
+हाल                       case
+पकड़ो                     catch
+उच्चमान                    ceil
+अक्षर                      char
+स_बदलो                   chdir
+श्रेणी                       class
+साफ_त्रुटि                 clearerr
+घड़ी                       clock
+घड़ी_प्रकार                 clock_t
+बंद                        close
+बंद_सूची                   closedir
+स्थिर                      const
+जारी                       continue
+स_समय                      ctime
+शेष                       default
+मिटाओ                    delete
+स_अंतर                     difftime
+स_नाम                    dirname
+भाग                       div
+भाग_प्रकार                 div_t
+करो                       do
+द्विगुन                   double
+अन्यथा                    else
+क्रमागत                   enum
+त्रुटि_सं                     errno
+निकास                    exit
+बाह्य                      extern
+भ_असल                      fabs
+ख_बंद                     fclose
+ख_पूर्ण                    feof
+ख_त्रुटि                ferror
+ख_साफ                      fflush
+ख_अक्षर_लो                 fgetc
+ख_स्थान_लो                    fgetpos
+ख_माला_लो                  fgets
+भग्न                      float
+न्यूनमान                   floor
+भ_शेष                      fmod
+ख_खोलो                    fopen
+क्रम                       for
+विभाजन                  fork
+ख_स्थान_प्रकार             fpos_t
+ख_लिखो                   fprintf
+ख_अक्षर_दो             fputc
+ख_माला_दो              fputs
+ख_पढ़ो                    fread
+मुक्त                       free
+ख_व_खोलो                    freopen
+मित्र                      friend
+ख_पूछो                    fscanf
+ख_जाओ                      fseek
+ख_स्थान_दो                   fsetpos
+ख_स्थिति                  fstat
+ख_बताओ                     ftell
+ख_डालो                     fwrite
+अ_लो                       getc
+अक्षर_लो                   getchar
+दो_पर्या                   getenv
+माला_लो                    gets
+स_जमट                      gmtime
+जाओ                       goto
+अगर                      if
+अंतरभूत                  inline
+पूर्णांक                     int
+है_अक्षर_अंक               isalnum
+है_अक्षर                    isalpha
+है_नियंत्रण                iscntrl
+है_अंक                     isdigit
+है_सीमित                   isfinite
+है_चित्र                    isgraph
+है_छोटा                     islower
+है_अष्टक                   isodigit
+है_छाप                     isprint
+है_विराम                   ispunct
+है_खाली                     isspace
+है_बड़ा                     isupper
+है_षष्ठादशक                isxdigit
+लाँघ_बफ                  jmp_buf
+समाप्त                    kill
+द_असल                      labs
+स्था_बदल                   lconv
+द_भाग                     ldiv
+द_भाग_प्रकार               ldiv_t
+क्षेत्र_बदलो               localeconv
+स_स्थानीय                  localtime
+दीर्घ                       long
+दीर्घ_लाँघ                 longjmp
+दो_स्मृति                   malloc
+स_प्रथम                    memchr
+स_भेद                      memcmp
+स_नकल                      memcpy
+स_हटाओ                     memmove
+स_रखो                      memset
+सूची_गढ़ो                  mkdir
+स_गढ़ो                     mktime
+नया                       new
+दुरत्व                      offsetof
+खोलो                       open
+सूची_खोलो                  opendir
+चालक                     operator
+छोड़ो                       pause
+लिखो_त्रुटि                perror
+घात                        pow
+म_लिखो                     printf
+निजी                      private
+रक्षित                     protected
+सूचक_भेद_प्रकार           ptrdiff_t
+खुला                       public
+अ_दो                       putc
+अक्षर_दो                   putchar
+माला_दो                    puts
+क्विक                      qsort
+उठाओ                       raise
+अक्रम                      rand
+पढ़ो                       read
+सूची_पढ़ो                  readdir
+पुनः_स्मृति                realloc
+रेजिस्टर                    register
+हटाओ                       remove
+नाम                       rename
+वापस                     return
+शुरुआत                      rewind
+सूची_शुरु                   rewinddir
+सूची_हटाओ                 rmdir
+म_पूछो                     scanf
+रखो_बफ                     setbuf
+बनाओ_लाँघ                  setjmp
+रखो_क्षेत्र                setlocale
+रखो_भबफ                    setvbuf
+लघु                       short
+संक_पूर्ण_प्रकार            sig_atomic_t
+संकेत                     signal
+चिन्हित                    signed
+संक_बाकी                  sigpending
+संक_रोको                  sigsuspend
+माप_प्रकार                 size_t
+माप                       sizeof
+प्र_लिखो                   sprintf
+वर्ग_मूल                  sqrt
+बेक्रम                     srand
+माला_पूछो                  sscanf
+अटल                        static
+मानक_त्रुटि                 stderr
+मानक_निवेश             stdin
+मानक_निकास             stdout
+म_जोड़ो                  strcat
+म_अक्षर                    strchr
+म_भेद                      strcmp
+म_नकल                strcpy
+म_खोज                      strcspn
+म_त्रुटि                   strerror
+स_माला                     strftime
+म_माप                  strlen
+म_जोड़न                    strncat
+म_भेदन                     strncmp
+म_नकलन                  strncpy
+म_खोजप                     strrchr
+म_अखोज                     strspn
+म_माला                     strstr
+म_से_भग्न               strtod
+म_मोहर                  strtok
+म_से_दीर्घ              strtol
+म_से_अदीर्घ           strtoul
+काष्ठा                      struct
+चयन                     switch
+प्रणाली                     system
+ढाँचा                       template
+यह                        this
+फेंको                       throw
+समय                     time
+समय_प्रकार               time_t
+बार                        times
+पंचांग                     tm
+क्षणिक_ख                   tmpfile
+क्षणिक                     tmpnam
+छोटे                        tolower
+बड़े                        toupper
+प्रयास                     try
+प्रकार                      typedef
+अक्षर_वापस                 ungetc
+जोड़                        union
+अचिन्हित                   unsigned
+बहु_तर्क              va_arg
+बहु_पूर्ण              va_end
+बहु_सूची              va_list /*बहु तर्क*/
+बहु_शुरू               va_start
+भख_लिखो                    vfprintf
+भव                       virtual
+व्योम                      void
+अस्थिर                     volatile
+भ_लिखो                     vprintf
+भम_लिखो                    vsprintf
+रुको                        wait
+ब_अक्षर_प्रकार             wchar_t
+जबतक                   while
+ग_लिखो                      write
+ 
+पनप्रवाह.स              iostream.h
+पनप्रवाह_स              iostream
+पन_प्रवाह                iostream
+अ_बाहर                  cout
+अ_अंदर                  cin
+डेसी                    dec
+षष्ठ                    hex
+अष्ट                    oct
+खाली                    ws
+प_पूर्ण                 endl
+म_पूर्ण                  ends
+सफाई                     flush
+पुनः_पन_झंडे             resetiosflags
+रखो_आधार                 setbase
+रखो_भरो                  setfill
+रखो_पन_झंडे              setiosflags
+रखो_सटीक                 setprecision
+रखो_चौड़ाई               setw
+पनप                      ios
+छोड़ो_खाली               skipws
+बाँए                     left
+दाँए                     right
+वैज्ञानिक               scientific
+जड़                      fixed
+बड़ा                     uppercase
+लिखो_आधार                showbase
+लिखो_बिंदु               showpoint
+लिखो_चिन्ह             showpos
+ब_प्रवाह                 ostream
+अ_प्रवाह                 istream
+खप्रवाह.स              fstream.h
+ख_प्रवाह                  fstream
+अख_प्रवाह                ifstream
+म_लो                     ins
+नत्थी                    app
+अंत_पर                   ate
+न_नया                    nocreate
+न_प्रति                noreplace
+छाँटो                    trunc
+बख_प्रवाह                ofstream
+म_दो                     outs
+अ_त्रुटि                 cerr
+लो                       get
+दो                       put
+ग_स्थान                  seekg
+हार                      fail
+खप                       eof
+सफा                      clear
+बुरा                     bad
+अच्छा                    good
+मप्रवाह.स            strstream.h
+मप्रवाह_स            sstream
+म_प्रवाह               strstream
+बम_प्रवाह                ostrstream
+अम_प्रवाह                istrstream
+लो_पंक्ति                getline
+द्विग                    binary
+प_स्थान                  seekp
+मानकपन                   stdio
+समय_लो      gettime
+समय_रखो     settime
+
+
+शैली शब्द शब्दकोष (Shaili Shabda command reference)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+श_शब्द         yylex
+श_ब_मान         yylval
+श_माला         yytext
+श_पंक्ति         yylineno
+ 
+
+शैली व्याकरण शब्दकोष (Shaili Wyaakaran command reference)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+श_शब्द         yylex
+श_ब_मान         yylval
+श_माला         yytext
+श_पंक्ति         yylineno
+व्याक         yyparse
+व्याक_त्रुटि         yyerror
+ 
+ 
+%मोहर         %token
+%बाँए         %left
+%दाँए         %right
+%बेमेल         %nonassoc
+%प्राथमिकता         %prec
+%जोड़         %union
+%पूरक         %term
+%प्रकार         %type
+%समप्रवाह         %synch
+%शुरू         %xstart
+व्याक_ढेर_प्रकार         YYSTYPE
+
+
+शैली यांत्रिक शब्दकोष (Shaili Yaantrik command reference)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+(
+ नोट: अगर निम्नलिखित प्रकार से किसी आदेश के सम्मुख खड़ी रेखा (|) हो,
+ तो इसका अर्थ है कि वह आदेश परवर्ती आदेश का समानार्थक है। उदाहरणतः,
+ आधार_सूचक तथा आस समानार्थक हैं।
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ उदाहरण:
+	आधार_सूचक              |
+	आस                      BP
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+)
+
+कउ                       AH
+कन                      AL
+कक्ष                      AX
+खउ                       BH
+खन                      BL
+खक्ष                      BX
+गउ                       CH
+गन                      CL
+गक्ष                      CX
+घउ                       DH
+घन                      DL
+घक्ष                      DX
+बकक्ष                    EAX
+बखक्ष                    EBX
+बगक्ष                    ECX
+बघक्ष                    EDX
+बआस                    EBP
+बनस                    EIP
+बतक                    EDI
+बढक                     ESI
+आधार_सूचक              |
+आस                      BP
+निर्देश_सूचक             |
+नस                      IP
+ढेर_सूचक                 |
+ढस                       SP
+कूट_खंड                   |
+कख                      CS
+तथ्य_खंड                 |
+तख                      DS
+बृहत_खंड                 |
+बख                      ES
+दूर_खंड                    |
+दख                       FS
+ग_खंड                    |
+गख                      GS
+ढेर_खंड                    |
+ढख                       SS
+तथ्य_सूचकांक            |
+तक                      DI
+ढेर_सूचकांक               |
+ढक                       SI
+ 
+ 
+             /*OPERATORS*/
+और                       AND
+बाइट                      BYTE
+टिप्पणी                   COMMENT
+बराबर      |
+बर        EQ
+दूर                        FAR
+जब                      GE
+ज्यादा         |
+जय      GT
+उच्च                      HIGH
+कम_बराबर   |
+कब      LE
+नाप                      LENGTH
+पंक्ति                      LINE
+न्यून                     LOW
+कम                      LT
+नकाब                    MASK
+शेष                      MOD
+नब                      NE
+निकट                    NEAR
+नहीं                      NOT
+कुछ_नहीं                  NOTHING
+दुरत्व                     OFFSET
+या                        OR
+सूचक                    PTR
+खंड                       SEG
+लघु                      SHORT
+माप                      SIZE
+ढेर                        STACK
+यह                       THIS
+प्रकार                     TYPE
+जबतक                  WHILE
+चौड़ाई                     WIDTH
+शब्द                      WORD
+अथवा                    XOR
+ 
+ 
+         /*dIrectives*/
+मिलाओ                   ALIGN
+.सजाओ                   .ALPHA
+मानो                      ASSUME
+.कूट                      .CODE
+साधारण                    COMM
+.स्थिर                    .CONST
+.संदर्भ                    .CREF
+.तथ्य                    .DATA
+.तथ्य?                   .DATA?
+तथ्य_बाइट                BYTE
+तब                      DB
+तथ्य_द्विगुन            DWORD
+तद                       DD
+तदूर                      DF
+तथ्य_दूर                  FWORD
+डॉसखंड                   DOSSEG
+तथ्य_चौथ                QWORD
+तच                      DQ
+दब                       DT
+दस_बाइट                  TWORD
+तथ्य_शब्द      |
+तश    DW
+अन्था                     ELSE
+पूर्ण                      END
+पूर्ण_अगर                ENDIF
+पूर्ण_सक्रिया               ENDM
+पूर्ण_क्रिया                ENDP
+पूर्ण_खंड                  ENDS
+सम                      EQU
+.त्रुटि                      .ERR
+.त्रुटि1                     .ERR1
+.त्रुटि2                     .ERR2
+.त्रुटि_सत                 .ERRE
+.त्रुटि_असत               .ERRNZ
+.त्रुटि_घोषित               .ERRDEF
+.त्रुटि_अघोषित             .ERRNDEF
+.त्रुटि_खाली                 .ERRB
+.त्रुटि_न_खाली              .ERRNB
+.त्रुटि_सम_माला            .ERRIDN
+.त्रुटि_असम_माला          .ERRDIF
+जोड़_मिल                 EVEN
+.निकास                  .EXIT
+निकासक                 EXITM
+बाह्य                     EXTRN
+.दूरतथ्य                  .FARDATA
+.दूरतथ्य?                 .FARDATA?
+समूह                     GROUP
+अगर                     IF
+अगर1                    IF1
+अगर2                    IF2
+अगर_खाली                IFB
+अगर_घोषित              IFDEF
+अगर_असम              IFDIF
+अगर_असत              IFE
+अगर_सम                IFIDN
+अगर_भरा                IFNB
+अगर_अघोषित            IFNDEF
+समावेश                  INCLUDE
+समावेश_कोष INCLUDELIB
+समाकोष  INCLUDELIB
+क्रम                      IRP
+क्रमअ                    IRPC
+मोहर                      LABEL
+.दिखाओ                   .LIST
+स्थानीय                   LOCAL
+.स्वरूप                    .MODEL
+सक्रिया                    MACRO
+नाम                      NAME
+शुरू                       ORG
+%लिखो                    %OUT
+पृष्ठ                      PAGE
+क्रिया                     PROC
+सार्व                      PUBLIC
+सीमित                    PURGE
+.आधार                    .RADIX
+अभिलेख                  RECORD
+दोहराओ                   REPT
+.मत_यंत्र                .SALL
+अखंड                       SEGMENT
+.मूल                     .SEQ
+.ढेर                       .STACK
+ढाँचा                      STRUC
+उपशीर्षक                 SUBTTL
+शीर्षक                    TITLE
+जोड़                       UNI0N
+.मत_कोई                 .XALL
+.असंदर्भ                  .XCREF
+.मत_दिखाओ              .XLIST
+प्रथम			ENTRY
+विधि			FORMAT
+प्रयोग			EXECUTABLE
+पाठक			READABLE
+लेखक			WRITEABLE
+ 
+ 
+         /*instruction*/
+जोड़_ठीक                  AAA
+जठ                      AAA 
+भाग_ठीक                 AAD
+भाठ                       AAD
+गुणा_ठीक                 |
+गठ                       AAM
+घटा_ठीक                 |
+घठ                       AAS
+जोड़_ढोओ                  |
+जढ                       ADC
+जमा                              ADD
+छूट_स्तर_ठीक        |
+छसठ      ARPL
+सीमा                            BOUND
+आगे_बिट           |
+अब      BSF
+पीछे_बिट            |
+पब      BSR
+बिट_जाँच           |
+बिटज      BT
+बिट_जाँच_विपरीत |
+बजविप    BTC
+बिट_जाँच_पुनः      |
+बजप    BTR
+बिट_जाँच_वापस    |
+बजव    BTS
+आरम्भ                          CALL
+बाइट_से_शब्द        |
+बसश    CBW
+दो_से_चार           |
+दसच     CDQ
+साफ_ढोओ_झंडा      |
+सढझ     CLC
+साफ_दिशा_झंडा      |
+सदझ         CLD
+विघ्न_बंद          |
+वब          CLI
+साफ_क्रिया_बदल    |
+सकब       CLTS
+विपरीत_ढोओ      |
+वढ          CMC
+भेद                             CMP
+भेद_माला_बाइट       |
+भमाब       CMPSB
+भेद_माला_शब्द       |
+भमाश       CMPSW
+भेद_बदल                       CMPXCHG
+भेद_बदल_8ब                   CMPXCHG8B
+शब्द_से_द्विगुन    |
+शसद        CWD
+दसम_जोड़_ठीक      |
+दजठ           DAA
+दसम_घटा_ठीक     |
+दघठ          DAS
+नफा                       DEC
+भाग                      DIV
+प्रवेश                    ENTER
+रुको                       HLT
+पूर्ण_भाग           |
+पभ     IDIV
+पूर्ण_गुणा           |
+पग     IMUL
+अंदर                      IN
+लाभ                      INC
+अंदर_माला_बाइट      |
+अमब      INSB
+अंदर_माला_शब्द      |
+अमश      INSW
+विघ्न                    INT
+विघ्न3                   INT3
+विघ्न_अति         |
+विघ्नअ      INTO
+विघ्न_वापस       |
+ववाप  IRET
+लाँघ_ऊपर          |
+लऊ       JA
+लाँघ_ऊपर_बराबर  |
+लऊब        JAE
+लाँघ_नीचे           |
+लन        JB
+लाँघ_नीचे_बराबर   |
+लनीब        JBE
+लाँघ_गक्ष_श        |
+लगश        JCXZ
+लाँघो_बराबर        |
+लब   JE
+लाँघ_बगक्ष_श      |
+लबगश        JECXZ
+लाँघो_ज्यादा          |
+लज   JG
+लाँघो_ज्यादा_बराबर  |
+लजब  JGE
+लाँघो_कम           |
+लक    JL
+लाँघो_कम_बराबर   |
+लकब  JLE
+लाँघो                |
+लाँघ   JMP
+लाँघ_न_ऊपर       |
+लनऊ        JNA
+लाँघ_न_ऊ_ब       |
+लनऊब        JNAE
+लाँघ_न_न          |
+लनन        JNB
+लाँघ_न_न_ब       |
+लननब        JNBE
+लाँघो_नहीं_बराबर   |
+लनब  JNE
+लाँघो_नहीं_ज्यादा         |
+लनज   JNG
+लाँघो_नहीं_ज्यादा_बराबर |
+लनजब    JNGE
+लाँघ_न_कम            |
+लनक        JNL
+लाँघ_न_क_ब           |
+लनकब        JNLE
+लाँघ_न_अति            |
+लनअ        JNO
+लाँघ_न_मेल            |
+लनम        JNP
+लाँघ_न_चिन्ह           |
+लनच        JNS
+लाँघो_नहीं_शून्य         |
+लनश  JNZ
+लाँघ_अति          |
+लअ        JO
+लाँघ_मेल          |
+लम        JP
+लाँघ_म_ब          |
+लमब        JPE
+लाँघ_म_अ          |
+लमअ        JPO
+लाँघ_च          |
+लच        JS
+लाँघो_शून्य     |
+लश     JZ
+भरो_कउ_झंडा  |
+भकझ        LAHF
+भरो_अनुमति |
+भअ          LAR
+भरो_तख |
+भतख             LDS
+भरो_ठिकाना |
+भठ           LEA
+निकलो                      LEAVE
+भरो_बख  |
+भबख             LES
+भदख                       LFS
+भरो_व्याख्या |
+भव्या      LGDT
+भगख                       LGS
+भरो_विघ्न |
+भविघ्न        LIDT
+भरो_स्थानीय |
+भस्था    LLDT
+भरो_यंत्र_अवस्था |
+भयअ    LMSW
+ताला                      LOCK
+भरो_माला_ब |
+भमब          LODSB
+भरो_माला_शब्द |
+भमश       LODSW
+फिर                      LOOP
+फिर_बराबर   |
+फिरबर    LOOPE
+फिर_न_बराबर |
+फिरनब            LOOPNE
+फिर_न_श   |
+फिरनश         LOOPNZ
+फिर_श     |
+फिरश         LOOPZ
+भरो_खंड_सीमा  |
+भखस      LSL
+भरो_ढेर_खंड |
+भढख         LSS
+भरो_क्रिया_रेज |
+भखर      LTR
+डालो                      MOV
+डालो_माला_ब |
+डालोमब      MOVSB
+डालो_माला_श |
+डालोमश      MOVSW
+डालो_चिन्ह_अति |
+डचअ   MOVSX
+डालो_शून्य_अति |
+डशअ      MOVZX
+गुणा                      MUL
+नकार                      NEG
+व्यर्थ_क्रिया      |
+वक्रि   NOP
+बाहर                      OUT
+बाहर_माला_ब   |
+बमब       OUTSB
+बाहर_माला_श   |
+बमश       OUTSW
+लो                        POP
+लो_सब |
+लोस               POPA
+लो_द्वि |
+लोसद            POPAD
+लो_झंडे  |
+लोझ            POPF
+लो_झंडे_द्वि |
+लोझद       POPFD
+दो                        PUSH
+दो_सब      |
+दोस          PUSHA
+दो_सब_द्वि |
+दोसद         PUSHAD
+दो_झंडे |
+दोझ             PUSHF
+दो_झंडे_द्वि |
+दोझद       PUSHFD
+घुमाओ_ढोओ_बाँए |
+घढब     RCL
+घुमाओ_ढोओ_दाँए |
+घढद      RCR
+पुनः                      REP
+पुनः_बराबर |
+पुनःब        REPE
+पुनः_न_बराबर |
+पुनःनब        REPNE
+पुनः_न_शून्य |
+पुनःनश        REPNZ
+पुनः_शून्य |
+पुनःश        REPZ
+वापस                    RET
+वापस_दूर  |
+वापद         RETF
+घुमाओ_बाँए |
+घब         ROL
+घुमाओ_दाँए |
+घद          ROR
+रखो_कउ_झंडा |
+रकझ         SAHF
+हटाओ_गणित_बाँए |
+हगब     SAL
+हटाओ_गणित_दाँए |
+हगद     SAR
+हटाओ_बाँए |
+हब     SHL
+हटाओ_दाँए |
+हद     SHR
+हटाओ_बाँए_द्वि |
+हबद     SHLD
+हटाओ_दाँए_द्वि |
+हदद     SHRD
+घटा_उधार |
+घउध             SBB
+पढ़ो_माला_ब |
+पमब         SCASB
+पढ़ो_माला_श |
+पमश         SCASW
+रखो_ऊपर          |
+रऊ       SETA
+रखो_ऊपर_बराबर  |
+रऊब        SETAE
+रखो_नीचे           |
+रन        SETB
+रखो_नीचे_बराबर   |
+रनब        SETBE
+रखो_बराबर        |
+रब   SETE
+रखो_ज्यादा          |
+रज   SETG
+रखो_ज्यादा_बराबर  |
+रजब  SETGE
+रखो_कम           |
+रक    SETL
+रखो_कम_बराबर   |
+रकब  SETLE
+रखो_न_ऊपर       |
+रनऊ        SETNA
+रखो_न_ऊ_ब       |
+रनऊब        SETNAE
+रखो_न_न          |
+रनन        SETNB
+रखो_न_न_ब       |
+रननब        SETNBE
+रखो_नहीं_बराबर   |
+रनाब  SETNE
+रखो_नहीं_ज्यादा     |
+रनज   SETNG
+रखो_नहीं_ज्यादा_बराबर SETNGE
+रनजब    SETNGE
+रखो_न_कम            SETNL
+रनक        SETNL
+रखो_न_क_ब         SETNLE
+रनकब        SETNLE
+रखो_न_अति        SETNO
+रनअ        SETNO
+रखो_न_मेल        SETNP
+रनम        SETNP
+रखो_न_चिन्ह           SETNS
+रनच        SETNS
+रखो_नहीं_शून्य         SETNZ
+रनश  SETNZ
+रखो_अति        SETO
+रअ        SETO
+रखो_मेल        SETP
+रम        SETP
+रखो_म_ब         SETPE
+रमब        SETPE
+रखो_म_अ         SETPO
+रमअ        SETPO
+रखो_च         SETS
+रच        SETS
+रखो_शून्य     SETZ
+रश     SETZ
+रखो_व्याख्या              SGDT
+रखो_विघ्न                 SIDT
+रखो_स्थानीय               SLDT
+रखो_यंत्र_अवस्था SMSW
+रयअ    SMSW
+रखो_ढोओ_झंडा STC
+रढझ        STC
+रखो_दिशा_झंडा STD
+रदझ       STD
+विघ्न_शुरू STI
+वश         STI
+रखो_माला_ब STOSB
+रखमब          STOSB
+रखो_माला_श STOSW
+रखमश          STOSW
+रखो_क्रिया_रेज STR
+रक्रिर   STR
+घटा                      SUB
+जाँच                      TEST
+सटीक_लिखो VERR
+सल            VERR
+सटीक_पढ़ो VERRW
+सप            VERRW
+विलंब                   WAIT
+बदलो_जोड़ो  XADD
+बज           XADD
+बदलो                      XCHG
+अनुवाद    XLAT
+अनु           XLAT
+ 
+ढाँचा_क्षुद्र              TINY
+ढाँचा_छोटा          SMALL
+ढाँचा_कठोर          COMPACT
+ढाँचा_बड़ा          LARGE
+ढाँचा_बृहत          HUGE
+
+
+शैली कृत्रिम शब्दकोष (Shaili Kritrim command reference)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+अणु                       {
+पूर्ण                       }
+टिप                       //
+मुख्य                      main
+
+सार                        abstract
+द्वाफल                    boolean
+अवरोध                   break
+बाईट                       byte
+हाल                       case
+पकड़ो                     catch
+अक्षर                      char
+श्रेणी                       class
+स्थिर                      const
+जारी                       continue
+शेष                       default
+करो                       do
+द्विगुन                   double
+अन्यथा                    else
+पूर्वज                     extends
+अन्तिम                    final
+अन्तिमतः                  finally
+भग्न                      float
+क्रम                       for
+जाओ                       goto
+अगर                      if
+लागु                       implements
+आयात                     import
+अवतार                    instanceof
+पूर्णांक                       int
+स्वरूप                     interface
+दीर्घ                       long
+यांत्रिक                     native
+नया                       new
+कोष                       package
+निजी                      private
+रक्षित                     protected
+खुला                       public
+वापस                     return
+लघु                       short
+जड़                        static
+दृढ़भग्न                    strictfp
+मह                        super
+चयन                     switch
+समप्रवाह                  synchronised
+यह                        this
+फेंको                       throw
+फेंकता_है             throws
+अस्थायी                    transient
+प्रयास                     try
+व्योम                      void
+अस्थिर                     volatile
+जबतक                   while
+ 
+प्रयोग_श्रेणी           Applet
+प्रयोग                  applet
+तर्क                    args
+गणित_त्रुटि            ArithmeticException
+व्यूह_सूचकांक_खेद_त्रुटि   ArrayIndexOutOfBoundsException
+व्यूह_स्थिति_त्रुटि         ArrayStateException
+ध्वनि_अंश               AudioClip
+औसंख                   awt /* औज़ार संक्षिप्त खिड़की*/
+बफर_पाठक                BufferedReader
+अक्षर_स्थान                 charAt
+श्रेणी_साँचा_त्रुटि               ClassCastException
+श्रेणी_उपलब्ध_नहीं_त्रुटि      ClassNotFoundException
+श्रेणी_निराधार_त्रुटि              ClassNotSupportedException
+नकल                      clone
+बंद                      close
+भेद                      compareTo
+संयोग                    concat
+यह_कड़ी                  currentThread
+दिन                      Date
+मिटाओ                    destroy
+माला_लिखो                drawString
+अंत_में                  endsWith
+बराबर                    equals
+बराबर_न                  equalsIgnoreCase
+खाता_प्रवेश_प्रवाह       FileInputStream
+खाता_निकास_प्रवाह        FileOutputStream
+भरो_ढेर                  fillInStackTrace
+अंतिम                    finalize
+लो_ध्वनि_अंश             getAudioClip
+लो_बाइट                  getBytes
+लो_अक्षर                 getChars
+लो_श्रेणी                getClass
+लो_अंश_माप               getContentLength
+लो_अंश_प्रकार            getContentType
+लो_दिन                   getDate
+लो_अन्त                  getExpiration
+लो_क्षेत्र_सूचकांक      GetFieldID
+लो_छवि                   getImage
+लो_प्रवेश_प्रवाह         getInputStream
+लो_पूर्ण_क्षेत्र         GetIntField
+लो_पूर्व_बदली            getLastModified
+लो_स्थानीय_संदेश        getLocalizedMessage
+लो_संकेत                 getMessage
+लो_नाम                   getName
+लो_वस्तु_श्रेणी          GetObjectClass
+लो_तर्क                  getParameter
+लो_प्राथमिक              getPriority
+चित्रांकन                Graphics
+हैश_कूट                  hashCode
+अवैध_प्रवेश_त्रुटि            IllegalAccessException
+अवैध_तर्क_त्रुटि             IllegalArgumentException
+अवैध_योजक_त्रुटि              IllegalMonitorStateException
+अवैध_स्थिति_त्रुटि            IllegalStateException
+अवैध_कड़ी_स्थिति_त्रुटि       IllegalThreadStateException
+छवि                      Image
+सूचकांक                  indexOf
+सूचकांक_भेद_त्रुटि      IndexOutOfBoundsException
+उपसर्ग                   init
+प्रवेश_प्रवाह            InputStream
+प्रवेश_प्रवाह_पाठक       InputStreamReader
+अवतारण_त्रुटि            InstantiationException
+विघ्न_त्रुटि             InterruptedException
+पन                       io
+जीवित_है                 isAlive
+कृत्रिम                  java
+मेल                      join
+पूर्व_सूचकांक           lastIndexOf
+माप                      length
+लो_कोष                   loadLibrary
+दोहराओ                   loop
+गणित                     Math
+उच्च_प्राथमिकता          MAX_PRIORITY
+न्यून_प्राथमिकता         MIN_PRIORITY
+ऋण_व्यूह_माप_त्रुटि     NegativeArraySizeException
+नेट                      net
+अगला_द्वि                nextdouble
+सामान्य_प्राथमिकता      NORM_PRIORITY
+कोई_ऐसा_क्षेत्र_नहीं_त्रुटि     NoSuchFieldException
+कोई_ऐसी_क्रिया_नहीं_त्रुटि       NoSuchMethodException
+संकेत                    notify
+संकेत_सब                 notifyAll
+शून्य_सूचक_त्रुटि      NullPointerException
+अंक_रचना-त्रुटि          NumberFormatException
+वस्तु                    Object
+खोलो_सम्बन्ध             openConnection
+बाहर                     out
+निकास_प्रवाह             OutputStream
+बनाओ                     paint
+बजाओ                     play
+म_लिखो_न                 println
+दिखाओ_ढेर                printStackTrace
+छापाकार                  PrintWriter
+अक्रम                    rand
+म_पढ़ो                   read
+पाठक                     Reader
+पंक्ति_पढ़ो              readLine
+क्षेत्र_मेल              regionMatches
+प्रतिस्थापन              replace
+पुनः_आरम्भ               resume
+आरम्भ                  run
+आरम्भ_लायक                Runnable
+सुरक्षा_त्रुटि            SecurityException
+रखो_पूर्ण_क्षेत्र         SetIntField
+रखो_नाम                  setName
+रखो_प्राथमिकता            setPriority
+सो_जाओ                    sleep
+वर्ग_मूल                 sqrt
+शुरू                     start
+शुरू_में                  startsWith
+विराम                     stop
+माला_श्रेणी             String
+माला_बफर                  StringBuffer
+माला_सूचकांक_सीमा_खेद     StringIndexOutOfBounds
+उपमाला                    substring
+स्थगित                    suspend
+प्रणाली                   System
+कड़ी                      Thread
+फेंकने_लायक               Throwable
+करो_अक्षर_व्यूह            toCharArray
+करो_छोटे                  toLowerCase
+करो_माला                  toString
+करो_बड़े                  toUpperCase
+छाँटो                     trim
+क्रिया_उपलब्ध_नहीं_त्रुटि      UnsupportedOperationException
+नया_हाल                   update
+वसंज्ञ                     URL /* व्यापक स्रोत ज्ञातक */
+वसंज्ञ_सम्बन्ध                URLConnection
+उपयोग                     util
+मान                       valueof
+रुको                      wait
+म_लिखो                      write
+लेखक                      Writer
+
+
+Technical Description
+~~~~~~~~~~~~~~~~~~~~~
+(Ref. Choudhary Abhishek, Karwa Sweta. "Hindawi - A
+Software Development System for North Indian Vernaculars", 
+Presented at CSI YITPA (East) 2004, Science City, Kolkata)
+
+Introduction and objectives of the project
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         The promises of India becoming an IT
+superpower in the near future shall bear fruit only if it
+takes into account the majority of the populace which
+has not been privileged enough to have mastered
+English, which in turn hinders them from participating
+in the larger picture of Information and
+Communication Technologies (ICT) owing to the lack
+of software development systems based on the
+vernaculars. This paper presents the design and
+development of Hindawi – a complete software
+development (programming) system for the North
+Indian vernaculars and answers many “key”
+technological issues that hinder the development of
+such a system.
+         The authors have dealt with the issue at all
+levels of systems design, having successfully
+developed technologies for console representation of
+North Indian scripts in “text-mode” without the need
+for any extra hardware and a method for compilation
+of ISCII based source code. The complete glyphs for
+the North Indian scripts have been successfully
+incorporated into extended ASCII code pages while
+maintaining the 7-bit ASCII unaltered. The
+representation also allows easy integration into
+UNICODE. The compilation of ISCII based source
+code has been achieved through the design of a non-
+ambiguous invertible case and diacritic independent
+transliteration system compatible with most compiler
+systems.
+         The use of GNU GCC as the back end has
+ensured high portability across a heterogeneous range
+of platforms. The authors have successfully developed
+programming languages based on most prevalent
+paradigms including imperative, OOP, functional, and
+logic among others; leading to the development of the
+equivalents of at least Assembly, BASIC, C, C++,
+FORTRAN, Pascal, LISP, Prolog, lex, and yacc in
+North Indian vernaculars, in languages using the
+Assomiya, Bangla, Devnagri and Gujrati scripts, with
+the Oriya and Gurmukhi scripts under development.
+This has made possible the porting of the LINUX
+kernel sources to the Hindawi programming system. A
+port to FreeDOS is also being developed. The authors’
+expertise in robotics has allowed them to apply
+Hindawi to robotics systems design. The system
+promises to be able to support South Indian languages
+soon.
+         The authors have made the complete system,
+including the design of a North Indian vernacular
+understanding robot, “Open Source” in keeping with
+the primary objective of providing India’s “vernacular
+literate” a voice in the race towards making India an IT
+superpower.
+
+Contributions of the project
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         The plethora of software being developed for
+the Indian vernaculars is generally focussed towards
+the application domain with very little or no emphasis
+on Indian languages system-software, with the
+exception of a few “shell wrappers”. This has lead to
+the situation where the majority of the populace do
+have an opportunity to become consumers of the
+products of the ICT revolution, but cannot become
+contributors to it, in any significant manner. The
+reason for this may be traced to a few technological
+bottlenecks, most of which have been answered during
+the course of this project.
+         The primary bottleneck has been that of
+compilation of Indian script source code, as there is no
+systems level support for the same. The ISCII puts the
+Indian codes in the extended half of the 8-bit code
+pages, which are not supported by most compiler
+systems. A solution to this is the use of a transliteration
+layer between the source and the language processor,
+however existing transliteration systems produce
+output incompatible with the input set of the
+processors, which in most cases introduces ambiguity
+upon inversion. The authors have been successful in
+developing a phonetically sound invertible non-
+ambiguous Roman script transliteration system that
+produces output compatible with most compilers
+thorough case and diacritic independence. This has
+allowed the development of programming languages
+for major paradigms in most North Indian vernaculars
+and allows Indian language URLs inherently.
+         A second bottleneck has been the inability to
+display Indian scripts in “text mode”. The existing
+Indian languages software generally operates in
+graphics mode or makes use of extra hardware, which
+adds to the cost of procurement. The authors have
+succeeded in developing a method for “smart”
+rendering of North Indian scripts in text-mode without
+the need for any extra hardware components. The
+semantics for Assomiya, Bangla, Devnagri and Gujrati
+scripts have been completed, while those of Oriya and
+Punjabi are at an advanced stage of development. This
+has allowed the gap between machine code and
+graphics development environments to be bridged in
+North Indian vernaculars, including machine opcode
+assembly, OS kernel and command shell. The glyphs
+have been comfortably accommodated in the extended
+ASCII code-pages with unaltered 7-bit codes. The
+rendering quality exceeds or at least equals that
+achieved in most graphics-mode systems.
+          The bottom-up approach of the project has
+allowed the authors to maintain uniformity, in
+selection of tokens (keywords) for matching language
+constructs across programming paradigms. This
+promises to increase the gradient of the learning curve
+for trainees in North Indian vernacular based systems
+development (programming), as the barrier posed by
+learning new keywords for increasingly complex
+paradigms is reduced to negligible.
+          A certain level of “literate” programming with
+support for machine translation of documentation
+across North Indian vernaculars and English has also
+been achieved. This allows for programming tasks
+specified in English to be handled by personnel trained
+in vernacular programming, with the output product
+and documentation being acceptable internationally.
+          The incorporation of higher-level paradigms
+shall allow the target populace to contribute to the ICT
+revolution in more ways than the task of simple
+application development. Logic and functional
+paradigms shall allow work in Artificial Intelligence to
+be performed in North Indian vernaculars. The
+authors’ have also applied the system to the
+development of an intelligent natural-interfaced
+robotics system.
+          The complete system, including the design of
+the Indian vernacular understanding robot, has been
+made “open-source”, with the target of meeting the
+financial objectives through support services. This
+shall allow low procurement costs for Indian
+vernacular development systems, and make the
+maintenance of the programming system a community
+effort. This shall also allow the system to be used for
+pedagogical purposes.
+
+Methodology and algorithms
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+          The algorithms developed during the course of
+the project are enumerated below, followed by a
+description of the methodology used for developing
+programming systems in North Indian vernaculars.
+1) Romenagri - a non-ambiguous invertible case and
+diacritic independent compiler acceptable
+transliteration system with the associated algorithm
+has been the sole basis for much of the project’s
+motivation. The authors have independently developed
+it and demonstrated it to be applicable to all languages
+using the North Indian composite syllabic scripts – viz.
+Assomiya, Bangla, Devnagri, Gujrati, Oriya and
+Punjabi. Romenagri utilises syllabic complements in
+Roman script for the symbols of the North Indian
+scripts. The mapping for a specific script may be a
+subset of the complete mapping owing to the absence
+of certain characters in the specific case, e.g. the wa
+and ba of Devnagri match a single symbol in Bangla
+ba. The words are formed by actively concatenating
+successive syllabic compliments, looked up from a
+table through an O(1) search achieved by using the
+normalised code for the Indian script symbol as an
+array index. The process of active concatenation uses
+the “de-voweling” operator carat (^), which forms an
+equivalent of halanta or hasanta of the Indian scripts
+and distinguishes the matra of the vowels by preceding
+the syllabic compliment of their akshara form. The
+syllabic compliment looked up from the mapping table
+is pushed onto a stack. On encountering a carat as part
+of a looked-up compliment, the last pushed vowel
+character “a” is popped out of the stack and discarded.
+The remaining part of the compliment, after the carat,
+is then pushed onto the stack. On encountering the end
+of a word, the content of the stack is popped to obtain
+the required transliteration, after which the stack is
+flushed.
+          The process of converting Romenagri back to
+the Indian script representation is more complex and is
+achieved by using a recursive descent parser. The
+authors have designed the syllabic compliment so as to
+facilitate O(n) parsing. The parser operates at 5
+levels. The word is submitted at level 1, and the initial
+syllabic compliments are consumed. Successive levels
+are entered in case of multiple possibilities with the
+ultimate level identifying a matra. All other symbols
+are identified at earlier levels. After each production
+the parser enters level 1 with the non-consumed part of
+the input.
+          The only phonetic modifier used in Romenagri
+is the underscore “_” character, which generally forms
+a part of the input set of most compilers. This allows
+rule adherent transliteration for keywords written in
+Indian scripts. The underscore characters present in the
+original Indian script text are expanded to two
+underscore characters. Hence, the inversion parser
+treats every paired underscore as a character and every
+nascent underscore as a phonetic modifier. Figure-1
+gives an instance of Romenagri transliteration.
+
+	    क  + ्र  + ि + य  + ा  = क्रिया
+            ka + ^ra + ^i + ya + ^aa = kriyaa
+   Figure 1: An instance of Romenagri transliteration
+        with corresponding syllabic compliments
+
+2) APCISR (Anamika Press Code for Indian Script
+Representation) is a complex of representational
+semantics for compositional syllabic Indian scripts
+along with the corresponding set of graphemes,
+developed independently by the authors, for use with
+fixed width console (text-mode) applications. The
+APCISR uses a 9-grid format to extract the common
+features of the Indian script symbols.
+Each feature forms a specific grapheme. The
+9-grid consists of three rows, viz. Urdha, Madhya and
+Nimna, and three columns, viz. Matrik, Lipik and
+Purak. The Indian script symbols are mapped to their
+constituent graphemes in one table, with the
+graphemes being mapped to the corresponding glyphs
+(character-codes) in another table. Hence, the process
+of conversion of codes such as ISCII to APCISR is a
+two-step procedure. The first step (synthesis) consists
+of combining the grapheme maps of the different
+Indian symbols, which is algorithmically intensive,
+while the second step is a straightforward O(1) lookup
+procedure for obtaining the character values of the
+corresponding graphemes.
+         The explanation of the synthesis step requires
+us to distinguish between the look-up map (LM) and
+the working-map (WM). The LM is a simple 9-grid
+grapheme map, while WM consists of three rows of
+three or more columns, with three cursors pointing out
+the Matrik, Lipik and Purak columns, each of which
+can move independently with respect to each other.
+The LM grapheme maps also contain other related
+properties of the Indian script symbols, such as how
+the incorporation of the LM in the WM moves the
+cursors of the WM. This forms a basis for a set of
+semantic rules for the synthesis step, such as upon
+encountering a half consonant the Matrik remains
+constant while the Lipik and Purak are right shifted by
+1 place, making the previous Purak the current Lipik
+and introducing a new column to the right of the WM,
+which becomes the new Purak. A normal consonant
+cursor shift consists of the existing Purak becoming
+the new Matrik, along with the introduction of two
+new columns to the right of the WM for the new Lipik
+and Purak. A normal matra causes no cursor shift. The
+LM grapheme table also consists of mappings for
+character combinations (sanyuktakshara or
+juktakshara), which are treated as a single symbol.
+Once the position of the cursor has been determined,
+the LM values are logically AND-ed with the
+corresponding WM values. However, some scripts
+deviate from generalisations and require the inclusion
+of specific rules, which are economically
+accommodated at the end of the synthesis step. The
+process of APCISR conversion is reversible, however
+the step of character-code rendering introduces some
+ambiguity prohibiting proper reconstruction, owing to
+the fact that more than one grapheme may use the
+same character code. This issue can be addressed by
+using larger character pages. However, as our
+objectives do not require the APCISR to be reversible,
+as the rendering is done just-in-time, and using the
+same character-code or glyph for different graphemes
+allows the extended ASCII code-page to accommodate
+the glyphs while maintaining common graphic
+symbols such as box and shaded bars, with the 7-bit
+code page remaining constant. The conversion of the
+standard international numerals to the corresponding
+script has been kept optional. APCISR is currently
+supported on VGA and compatible graphics adapters.
+         Hindawi includes a rudimentary support for
+“literate” programming, where documentation is
+generated from the comments contained in the source
+code, along with machine translation support for a
+restricted language subset. This has been achieved by
+allowing only specific sentence constructions of the
+SVO form. This is parsed using a yacc grammar
+followed by a dictionary-based translation. This
+method allows for the objective of easily convertible
+documentation to be met, but restricts expressiveness.
+         The methodology used by the authors for
+generating various compilers using Romenagri and
+APCISR consists of writing lexical analysers in lex for
+translating keywords between the Indian vernacular
+programming language and a matching programming
+language in English. Specific language constructs have
+also necessitated the writing of yacc parsers, especially
+where semantic changes are necessary. The keywords
+for matching programming constructs have been kept
+constant across paradigms. Table-1 lists the common
+paradigms and their Hindawi equivalent. Table-2 lists
+the various keywords used for the common
+programming constructs in Hindawi.
+                                
+   Programming paradigm        Hindawi shaili
+  1) Beginners                1) Prathmika
+  2) Imperative               2) Guru
+  3) Object Oriented          3) Shraenibadha
+  4) Logic                    4) Taarkika
+  5) Functional               5) Kriyaatmaka
+  6) Analyser generators      6) Shabda
+  7) Parser generators        7) Vyakarana
+ Table 1: Common programming paradigms and their
+               equivalent Hindawi shailis
+
+  For           krama         
+  While         jaba tak 
+  File          khaata        
+  Write         likho
+  Read          poocho
+  If            agar
+  Begin         anu
+  End           purna
+  Table 2: Common programming constructs and their
+              Hindawi equivalent for Hindi
+
+         GNU GCC has been used as the backend for
+almost all shailis (programming languages) of
+Hindawi, allowing portability to heterogeneous
+platforms. A driver controls the compilation procedure
+calling various filters and processors alternatively, in a
+manner similar to that performed by gcc. The specific
+order of the calls made by the driver is given below.
+a) The source code in ISCII is passed through a filter
+performing the Romenagri transliteration.
+(Under Linux this is preceeded by UTF-8 to ISCII conversion.)
+b) The Romenagri source code is then passed though
+a shaili-specific compiler to obtain gcc compatible
+source code.
+c) A final call is then made to gcc or g++ depending
+upon the shaili.
+     The authors have also developed Lekhak, an IDE
+for Hindawi, which also doubles as an Indian language
+word-processor supporting search, cut, copy, paste etc.
+along with an online help system for Hindawi
+programming. Hindawi supports graphics under DOS
+through the Allegro graphics system and support for
+printing on PCL-compatible printers has been
+independently developed by the authors. The authors
+have also enabled Hindawi to be used for robotic
+systems design and have successfully developed an
+Indian-language understanding robot using it. A
+command shell for DOS and Linux has been
+developed using Hindawi and effort is being put into
+the early completion of the translation of Linux and
+FreeDOS kernels to Hindawi.
+
+Financial and social feasibility
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         The financial objectives of Hindawi have been
+targeted to be met through support services and
+licensing of non-GPL parts for commercial
+development. Demonstrations may be downloaded
+from the authors’ website. CD-ROM version of the
+complete system is made available on request at cost
+of material and posting only.
+         The complete system along with the design of
+the Hindawi based intelligent robot has been made
+“open-source”. This has been done with the primary
+social objective of tapping into the vast “vernacular-
+literate” manpower potential in ICT by bridging the
+language barrier. The provisions for graphics and
+sound support even at beginners’ level promise to
+make Hindawi popular in a manner similar to the
+popularity BASIC has gained. The support for higher
+programming paradigms allows for serious tasks to be
+based upon Hindawi. The inbuilt “literate”
+programming and machine translation of
+documentation, though rudimentary, allow an
+international feasibility for Hindawi-based
+development. Open-source software essentially
+becomes a community maintained product. The
+authors expect Hindawi’s capabilities and popularity to
+increase with increased effort in its development. The
+copyright for Hindawi, however, has been retained by
+the authors, in conformance with GNU
+General Public Licence V2, in parts that utilise GPL
+software and only these parts of Hindawi come under
+GPL, with the sole motive of preventing the
+development process loosing its primary objective.
+Hindawi, including non-GPL parts, is free for
+all purposes.
+
+Conclusion and further work
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         A note on the selection of the title “Hindawi”
+is deserved before concluding. The word Hindawi is of
+Arabic origin, used to describe “all” regions, their
+people and languages across the Indus River. The term
+finds earliest references in the works of Amir Khusro,
+the renowned poet. The authors chose this word as it is
+the most appropriate word that may be used to denote
+“all” the languages of India.
+         The Hindawi project has yielded many
+technological benefits such as APCISR and Romenagri
+along with the feasibility of using vernacular
+programming at all levels of systems development.
+The project is currently in a stable state, but may
+indeed be considered to be in the infancy of its final
+goal. Immediate development requirements include
+completion of representational semantics for the
+remaining Indian scripts and language mappings for
+remaining vernaculars. Finally, the authors expect
+corporates and other financially sound organisations,
+interested in activities of nation building, to come
+forward and make an effort towards spreading ICT
+involvement through vernacular programming.
+Interested individuals may lend their support through
+participating in the further development and spread of
+vernacular programming.

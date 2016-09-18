@@ -1,0 +1,56 @@
+Romenagri E-Dakia Mail Release 1.0 (Linux) Version 0.1.2 Alpha
+User Guide and Reference Manual
+Copyright (C) 2006 Abhishek Choudhary
+Permission is granted to copy, distribute and / or modify this document 
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+*ALL TRADEMARKS ACKNOWLEDGED AS BELONGING TO THEIR RESPECTIVE OWNERS*
+*THIS DOCUMENT DOES NOT IMPLY ANY WARRANTY AS TO THE ACCURATENESS OF CONTENTS OR ANY COMMITMENT TO PROVIDE ANY SERVICE WHATSOEVER. IT IS ONLY INTENDED TO FACILITATE THE USER EXPERIENCE, HOWEVER NO FITNESS FOR ANY PURPOSE IS GUARANTEED, NOT EVEN THE FITNESS FOR MERCHANTABILITY.*
+
+रोमनागरी ई-डाकिया
+~~~~~~~~~~~~
+
+परिचय
+~~~~
+१. वापसी पता प्रविष्टि खण्ड (Reply to:)
+	आप जिस पते पर जवाब चाहते हैं, वह पता यहाँ लिखें। आप चाहें तो इसे खाली छोड़ सकते हैं।
+
+२. सेवा में पता प्रविष्टि खण्ड (To:)
+	मेल भेजने का पता यहाँ लिखें।
+
+३. नकल पता प्रविष्टि खण्ड (CC:)
+	इस मेल का प्रति किसि अन्य पते पर भी भेजने के लिए वह पता यहाँ लिखें। आप चाहें तो इसे खाली छोड़ सकते हैं।
+
+४. बेनाम पता प्रविष्टि खण्ड (BCC:)
+	इस मेल का बेनामी प्रति किसि अन्य पते पर भेजने के लिए वह पता यहाँ लिखें। आप चाहें तो इसे खाली छोड़ सकते हैं।
+
+५. दिनाङ्क प्रविष्टि खण्ड (Date:)
+	नया बटन दबाने पर यह स्वतः प्रविष्ट हो जाएगा।
+
+६. विषय प्रविष्टि खण्ड (Subject:)
+	यहाँ मेल का विषय लिखें।
+
+७. संदेश प्रविष्टि खण्ड (Message:)
+	यहाँ आपका संदेश लिखा।
+
+८. पढ़ें बटन (Read)
+	यह बटन दबाने पर आगन्तुक मेल दिखेंगे। कोई नया मेल नहीं आने पर केवल एक रेखा दिखेगी।
+
+९. नया बटन (New)
+	यह बटन दबाने पर सब प्रविष्टि खण्ड साफ हो जाएँगे, तथा दिनाङ्क प्रविष्टि खण्ड स्वतः भर जाएगा। नया मेल लिखने के पूर्व यह बटन अवश्य दबाएँ।
+
+१०. भेजें बटन (Send)
+	मेल भेजने के लिए यह बटन दबाएँ। इस क्रिया के उपरान्त आपको कोई संदेश नहीं दिखेगा।
+
+११. सहायता बटन (Help)
+	सहायता के लिए यह बटन दबाएँ।
+
+१२. निकास बटन (Exit)
+	निकास के लिए यह बटन दबाएँ।
+
+१३. प्रेषक अनुप्रयोग प्रविष्टि खण्ड (sendmail)
+	तकनीकि जानकारी होने पर ही इसे बदलें।
+
+१४. ग्राही अनुप्रयोग प्रविष्टि खण्ड (mail)
+	तकनीकि जानकारी होने पर ही इसे बदलें।

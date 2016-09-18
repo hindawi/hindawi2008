@@ -1,0 +1,231 @@
+%{
+/*
+Copyright (C) 2003,2004,2005,2006 Abhishek Choudhary
+This file is part of the Hindawi Indic Programming System.
+
+The Hindawi Indic Programming Systemis free software; 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the 
+Free Software Foundation; either version 2 of the License, or 
+(at your option) any later version.
+
+The Hindawi Indic Programming System is distributed in the hope 
+that it will be useful, but WITHOUT ANY WARRANTY; without 
+even the implied warranty of MERCHANTABILITY or FITNESS FOR 
+A PARTICULAR PURPOSE. See the GNU General Public License for 
+more details.
+
+You should have received a copy of the GNU General Public
+License along with this file; see the file COPYING. If
+not, write to the Free Software Foundation,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+*/
+
+/*
+Modifications: (Please maintain reverse chronological order)
+
+	dd-mmm-yyyy, Nature of modification,
+                        Name of modifier <alias>,
+			email adress of modifier
+
+        31-Jul-2006, Added the modifications section,
+                        Abhishek Choudhary <hi_pedler>,
+                        choudhary@indicybers.net
+
+End of modifications.
+*/
+%}
+
+
+%%
+ 
+\'("\\\'"|.*)*\'                       {printf("%s",yytext);}
+\"("\\\""|[^\"^\n]*)*\"                {printf("%s",yytext);}                                                                  
+अणु                       {printf("{");}
+पूर्ण                       {printf("}");}
+टिप                       {printf("//");}
+मुख्य                      {printf("main");}
+                           /*keywords*/
+सार                        {printf("abstract");}
+द्वाफल                    {printf("boolean");}
+अवरोध                   {printf("break");}
+बाईट                       {printf("byte");}
+हाल                       {printf("case");}
+पकड़ो                     {printf("catch");}
+अक्षर                      {printf("char");}
+श्रेणी                       {printf("class");}
+स्थिर                      {printf("const");}
+जारी                       {printf("continue");}
+शेष                       {printf("default");}
+करो                       {printf("do");}
+द्विगुन                   {printf("double");}
+अन्यथा                    {printf("else");}
+पूर्वज                     {printf("extends");}
+अन्तिम                    {printf("final");}
+अन्तिमतः                  {printf("finally");}
+भग्न                      {printf("float");}
+क्रम                       {printf("for");}
+जाओ                       {printf("goto");}
+अगर                      {printf("if");}
+लागु                       {printf("implements");}
+आयात                     {printf("import");}
+अवतार                    {printf("instanceof");}
+पूर्णांक                       {printf("int");}
+स्वरूप                     {printf("interface");}
+दीर्घ                       {printf("long");}
+यांत्रिक                     {printf("native");}
+नया                       {printf("new");}
+कोष                       {printf("package");}
+निजी                      {printf("private");}
+रक्षित                     {printf("protected");}
+खुला                       {printf("public");}
+वापस                     {printf("return");}
+लघु                       {printf("short");}
+जड़                        {printf("static");}
+दृढ़भग्न                    {printf("strictfp");}
+मह                        {printf("super");}
+चयन                     {printf("switch");}
+समप्रवाह                  {printf("synchronised");}
+यह                        {printf("this");}
+फेंको                       {printf("throw");}
+फेंकता_है             {printf("throws");}
+अस्थायी                    {printf("transient");}
+प्रयास                     {printf("try");}
+व्योम                      {printf("void");}
+अस्थिर                     {printf("volatile");}
+जबतक                   {printf("while");}
+ 
+प्रयोग_श्रेणी           {printf("Applet");}
+प्रयोग                  {printf("applet");}
+तर्क                    {printf("args");}
+गणित_त्रुटि            {printf("ArithmeticException");}
+व्यूह_सूचकांक_खेद_त्रुटि   {printf("ArrayIndexOutOfBoundsException");}
+व्यूह_स्थिति_त्रुटि         {printf("ArrayStateException");}
+ध्वनि_अंश               {printf("AudioClip");}
+औसंख                   {printf("awt");} /* औज़ार संक्षिप्त खिड़की*/
+बफर_पाठक                {printf("BufferedReader");}
+अक्षर_स्थान                 {printf("charAt");}
+श्रेणी_साँचा_त्रुटि               {printf("ClassCastException");}
+श्रेणी_उपलब्ध_नहीं_त्रुटि      {printf("ClassNotFoundException");}
+श्रेणी_निराधार_त्रुटि              {printf("ClassNotSupportedException");}
+नकल                      {printf("clone");}
+बंद                      {printf("close");}
+भेद                      {printf("compareTo");}
+संयोग                    {printf("concat");}
+यह_कड़ी                  {printf("currentThread");}
+दिन                      {printf("Date");}
+मिटाओ                    {printf("destroy");}
+माला_लिखो                {printf("drawString");}
+अंत_में                  {printf("endsWith");}
+बराबर                    {printf("equals");}
+बराबर_न                  {printf("equalsIgnoreCase");}
+खाता_प्रवेश_प्रवाह       {printf("FileInputStream");}
+खाता_निकास_प्रवाह        {printf("FileOutputStream");}
+भरो_ढेर                  {printf("fillInStackTrace");}
+अंतिम                    {printf("finalize");}
+लो_ध्वनि_अंश             {printf("getAudioClip");}
+लो_बाइट                  {printf("getBytes");}
+लो_अक्षर                 {printf("getChars");}
+लो_श्रेणी                {printf("getClass");}
+लो_अंश_माप               {printf("getContentLength");}
+लो_अंश_प्रकार            {printf("getContentType");}
+लो_दिन                   {printf("getDate");}
+लो_अन्त                  {printf("getExpiration");}
+लो_क्षेत्र_सूचकांक      {printf("GetFieldID");}
+लो_छवि                   {printf("getImage");}
+लो_प्रवेश_प्रवाह         {printf("getInputStream");}
+लो_पूर्ण_क्षेत्र         {printf("GetIntField");}
+लो_पूर्व_बदली            {printf("getLastModified");}
+लो_स्थानीय_संदेश        {printf("getLocalizedMessage");}
+लो_संकेत                 {printf("getMessage");}
+लो_नाम                   {printf("getName");}
+लो_वस्तु_श्रेणी          {printf("GetObjectClass");}
+लो_तर्क                  {printf("getParameter");}
+लो_प्राथमिक              {printf("getPriority");}
+चित्रांकन                {printf("Graphics");}
+हैश_कूट                  {printf("hashCode");}
+अवैध_प्रवेश_त्रुटि            {printf("IllegalAccessException");}
+अवैध_तर्क_त्रुटि             {printf("IllegalArgumentException");}
+अवैध_योजक_त्रुटि              {printf("IllegalMonitorStateException");}
+अवैध_स्थिति_त्रुटि            {printf("IllegalStateException");}
+अवैध_कड़ी_स्थिति_त्रुटि       {printf("IllegalThreadStateException");}
+छवि                      {printf("Image");}
+सूचकांक                  {printf("indexOf");}
+सूचकांक_भेद_त्रुटि      {printf("IndexOutOfBoundsException");}
+उपसर्ग                   {printf("init");}
+प्रवेश_प्रवाह            {printf("InputStream");}
+प्रवेश_प्रवाह_पाठक       {printf("InputStreamReader");}
+अवतारण_त्रुटि            {printf("InstantiationException");}
+विघ्न_त्रुटि             {printf("InterruptedException");}
+पन                       {printf("io");}
+जीवित_है                 {printf("isAlive");}
+कृत्रिम                  {printf("java");}
+मेल                      {printf("join");}
+पूर्व_सूचकांक           {printf("lastIndexOf");}
+माप                      {printf("length");}
+लो_कोष                   {printf("loadLibrary");}
+दोहराओ                   {printf("loop");}
+गणित                     {printf("Math");}
+उच्च_प्राथमिकता          {printf("MAX_PRIORITY");}
+न्यून_प्राथमिकता         {printf("MIN_PRIORITY");}
+ऋण_व्यूह_माप_त्रुटि     {printf("NegativeArraySizeException");}
+नेट                      {printf("net");}
+अगला_द्वि                {printf("nextdouble");}
+सामान्य_प्राथमिकता      {printf("NORM_PRIORITY");}
+कोई_ऐसा_क्षेत्र_नहीं_त्रुटि     {printf("NoSuchFieldException");}
+कोई_ऐसी_क्रिया_नहीं_त्रुटि       {printf("NoSuchMethodException");}
+संकेत                    {printf("notify");}
+संकेत_सब                 {printf("notifyAll");}
+शून्य_सूचक_त्रुटि      {printf("NullPointerException");}
+अंक_रचना-त्रुटि          {printf("NumberFormatException");}
+वस्तु                    {printf("Object");}
+खोलो_सम्बन्ध             {printf("openConnection");}
+बाहर                     {printf("out");}
+निकास_प्रवाह             {printf("OutputStream");}
+बनाओ                     {printf("paint");}
+बजाओ                     {printf("play");}
+म_लिखो_न                 {printf("println");}
+दिखाओ_ढेर                {printf("printStackTrace");}
+छापाकार                  {printf("PrintWriter");}
+अक्रम                    {printf("rand");}
+म_पढ़ो                   {printf("read");}
+पाठक                     {printf("Reader");}
+पंक्ति_पढ़ो              {printf("readLine");}
+क्षेत्र_मेल              {printf("regionMatches");}
+प्रतिस्थापन              {printf("replace");}
+पुनः_आरम्भ               {printf("resume");}
+आरम्भ                  {printf("run");}
+आरम्भ_लायक                {printf("Runnable");}
+सुरक्षा_त्रुटि            {printf("SecurityException");}
+रखो_पूर्ण_क्षेत्र         {printf("SetIntField");}
+रखो_नाम                  {printf("setName");}
+रखो_प्राथमिकता            {printf("setPriority");}
+सो_जाओ                    {printf("sleep");}
+वर्ग_मूल                 {printf("sqrt");}
+शुरू                     {printf("start");}
+शुरू_में                  {printf("startsWith");}
+विराम                     {printf("stop");}
+माला_श्रेणी             {printf("String");}
+माला_बफर                  {printf("StringBuffer");}
+माला_सूचकांक_सीमा_खेद     {printf("StringIndexOutOfBounds");}
+उपमाला                    {printf("substring");}
+स्थगित                    {printf("suspend");}
+प्रणाली                   {printf("System");}
+कड़ी                      {printf("Thread");}
+फेंकने_लायक               {printf("Throwable");}
+करो_अक्षर_व्यूह            {printf("toCharArray");}
+करो_छोटे                  {printf("toLowerCase");}
+करो_माला                  {printf("toString");}
+करो_बड़े                  {printf("toUpperCase");}
+छाँटो                     {printf("trim");}
+क्रिया_उपलब्ध_नहीं_त्रुटि      {printf("UnsupportedOperationException");}
+नया_हाल                   {printf("update");}
+वसंज्ञ                     {printf("URL");} /* व्यापक स्रोत ज्ञातक */
+वसंज्ञ_सम्बन्ध       {printf("URLConnection");}
+उपयोग                     {printf("util");}
+मान                       {printf("valueof");}
+रुको                      {printf("wait");}
+म_लिखो                      {printf("write");}
+लेखक                      {printf("Writer");}
+ 
+%%

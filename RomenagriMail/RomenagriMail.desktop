@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Romenagri E-Dakia (Hindi Email)
+Name[hi]=रोमनागरी ई-डाकिया (हिंदी ई-मेल)
+Comment=Send emails in Hindi using roamanagaree transliteration
+Comment[hi]=रोमनागरी अनुवादन के माद्धयम से हिंदी ई-मेल भेजें
+Categories=Application;Network;X-Red-Hat-Base;
+Exec=/usr/bin/dakia
+Icon=/usr/share/RomenagriMail/RomenagriMail.png
+Terminal=false
+Type=Application
+Encoding=UTF-8

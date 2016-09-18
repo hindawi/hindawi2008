@@ -1,0 +1,231 @@
+%{
+/*
+Copyright (C) 2003,2004,2005,2006 Abhishek Choudhary
+This file is part of the Hindawi Indic Programming System.
+
+The Hindawi Indic Programming Systemis free software; 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the 
+Free Software Foundation; either version 2 of the License, or 
+(at your option) any later version.
+
+The Hindawi Indic Programming System is distributed in the hope 
+that it will be useful, but WITHOUT ANY WARRANTY; without 
+even the implied warranty of MERCHANTABILITY or FITNESS FOR 
+A PARTICULAR PURPOSE. See the GNU General Public License for 
+more details.
+
+You should have received a copy of the GNU General Public
+License along with this file; see the file COPYING. If
+not, write to the Free Software Foundation,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+*/
+
+/*
+Modifications: (Please maintain reverse chronological order)
+
+	dd-mmm-yyyy, Nature of modification,
+                        Name of modifier <alias>,
+			email adress of modifier
+
+        31-Jul-2006, Added the modifications section,
+                        Abhishek Choudhary <hi_pedler>,
+                        choudhary@indicybers.net
+
+End of modifications.
+*/
+
+%}
+
+
+%%
+
+\'("\\\'"|.*)*\'                       {printf("%s",yytext);}
+\"("\\\""|[^\"^\n]*)*\"                {printf("%s",yytext);}                                                                  
+\{         {printf("अणु");}
+\}         {printf("पूर्ण");}
+\/\/         {printf("टिप");}
+main         {printf("मुख्य");}
+abstract         {printf("सार");}
+boolean         {printf("द्वाफल");}
+break         {printf("अवरोध");}
+byte         {printf("बाईट");}
+case         {printf("हाल");}
+catch         {printf("पकड़ो");}
+char         {printf("अक्षर");}
+class         {printf("श्रेणी");}
+const         {printf("स्थिर");}
+continue         {printf("जारी");}
+default         {printf("शेष");}
+do         {printf("करो");}
+double         {printf("द्विगुन");}
+else         {printf("अन्यथा");}
+extends         {printf("पूर्वज");}
+final         {printf("अन्तिम");}
+finally         {printf("अन्तिमतः");}
+float         {printf("भग्न");}
+for         {printf("क्रम");}
+goto         {printf("जाओ");}
+if         {printf("अगर");}
+implements         {printf("लागु");}
+import         {printf("आयात");}
+instanceof         {printf("अवतार");}
+int         {printf("पूर्णांक");}
+interface         {printf("स्वरूप");}
+long         {printf("दीर्घ");}
+native         {printf("यांत्रिक");}
+new         {printf("नया");}
+package         {printf("कोष");}
+private         {printf("निजी");}
+protected         {printf("रक्षित");}
+public         {printf("खुला");}
+return         {printf("वापस");}
+short         {printf("लघु");}
+static         {printf("जड़");}
+strictfp         {printf("दृढ़भग्न");}
+super         {printf("मह");}
+switch         {printf("चयन");}
+synchronised         {printf("समप्रवाह");}
+this         {printf("यह");}
+throw         {printf("फेंको");}
+throws         {printf("फेंकता_है");}
+transient         {printf("अस्थायी");}
+try         {printf("प्रयास");}
+void         {printf("व्योम");}
+volatile         {printf("अस्थिर");}
+while         {printf("जबतक");}
+Applet         {printf("प्रयोग_श्रेणी");}
+applet         {printf("प्रयोग");}
+args         {printf("तर्क");}
+ArithmeticException         {printf("गणित_त्रुटि");}
+ArrayIndexOutOfBoundsException         {printf("व्यूह_सूचकांक_खेद_त्रुटि");}
+ArrayStateException         {printf("व्यूह_स्थिति_त्रुटि");}
+AudioClip         {printf("ध्वनि_अंश");}
+awt         {printf("औसंख");}
+BufferedReader         {printf("बफर_पाठक");}
+charAt         {printf("अक्षर_स्थान");}
+ClassCastException         {printf("श्रेणी_साँचा_त्रुटि");}
+ClassNotFoundException         {printf("श्रेणी_उपलब्ध_नहीं_त्रुटि");}
+ClassNotSupportedException         {printf("श्रेणी_निराधार_त्रुटि");}
+clone         {printf("नकल");}
+close         {printf("बंद");}
+compareTo         {printf("भेद");}
+concat         {printf("संयोग");}
+currentThread         {printf("यह_कड़ी");}
+Date         {printf("दिन");}
+destroy         {printf("मिटाओ");}
+drawString         {printf("माला_लिखो");}
+endsWith         {printf("अंत_में");}
+equals         {printf("बराबर");}
+equalsIgnoreCase         {printf("बराबर_न");}
+FileInputStream         {printf("खाता_प्रवेश_प्रवाह");}
+FileOutputStream         {printf("खाता_निकास_प्रवाह");}
+fillInStackTrace         {printf("भरो_ढेर");}
+finalize         {printf("अंतिम");}
+getAudioClip         {printf("लो_ध्वनि_अंश");}
+getBytes         {printf("लो_बाइट");}
+getChars         {printf("लो_अक्षर");}
+getClass         {printf("लो_श्रेणी");}
+getContentLength         {printf("लो_अंश_माप");}
+getContentType         {printf("लो_अंश_प्रकार");}
+getDate         {printf("लो_दिन");}
+getExpiration         {printf("लो_अन्त");}
+GetFieldID         {printf("लो_क्षेत्र_सूचकांक");}
+getImage         {printf("लो_छवि");}
+getInputStream         {printf("लो_प्रवेश_प्रवाह");}
+GetIntField         {printf("लो_पूर्ण_क्षेत्र");}
+getLastModified         {printf("लो_पूर्व_बदली");}
+getLocalizedMessage         {printf("लो_स्थानीय_संदेश");}
+getMessage         {printf("लो_संकेत");}
+getName         {printf("लो_नाम");}
+GetObjectClass         {printf("लो_वस्तु_श्रेणी");}
+getParameter         {printf("लो_तर्क");}
+getPriority         {printf("लो_प्राथमिक");}
+Graphics         {printf("चित्रांकन");}
+hashCode         {printf("हैश_कूट");}
+IllegalAccessException         {printf("अवैध_प्रवेश_त्रुटि");}
+IllegalArgumentException         {printf("अवैध_तर्क_त्रुटि");}
+IllegalMonitorStateException         {printf("अवैध_योजक_त्रुटि");}
+IllegalStateException         {printf("अवैध_स्थिति_त्रुटि");}
+IllegalThreadStateException         {printf("अवैध_कड़ी_स्थिति_त्रुटि");}
+Image         {printf("छवि");}
+indexOf         {printf("सूचकांक");}
+IndexOutOfBoundsException         {printf("सूचकांक_भेद_त्रुटि");}
+init         {printf("उपसर्ग");}
+InputStream         {printf("प्रवेश_प्रवाह");}
+InputStreamReader         {printf("प्रवेश_प्रवाह_पाठक");}
+InstantiationException         {printf("अवतारण_त्रुटि");}
+InterruptedException         {printf("विघ्न_त्रुटि");}
+io         {printf("पन");}
+isAlive         {printf("जीवित_है");}
+java         {printf("कृत्रिम");}
+join         {printf("मेल");}
+lastIndexOf         {printf("पूर्व_सूचकांक");}
+length         {printf("माप");}
+loadLibrary         {printf("लो_कोष");}
+loop         {printf("दोहराओ");}
+Math         {printf("गणित");}
+MAX_PRIORITY         {printf("उच्च_प्राथमिकता");}
+MIN_PRIORITY         {printf("न्यून_प्राथमिकता");}
+NegativeArraySizeException         {printf("ऋण_व्यूह_माप_त्रुटि");}
+net         {printf("नेट");}
+nextdouble         {printf("अगला_द्वि");}
+NORM_PRIORITY         {printf("सामान्य_प्राथमिकता");}
+NoSuchFieldException         {printf("कोई_ऐसा_क्षेत्र_नहीं_त्रुटि");}
+NoSuchMethodException         {printf("कोई_ऐसी_क्रिया_नहीं_त्रुटि");}
+notify         {printf("संकेत");}
+notifyAll         {printf("संकेत_सब");}
+NullPointerException         {printf("शून्य_सूचक_त्रुटि");}
+NumberFormatException         {printf("अंक_रचना-त्रुटि");}
+Object         {printf("वस्तु");}
+openConnection         {printf("खोलो_सम्बन्ध");}
+out         {printf("बाहर");}
+OutputStream         {printf("निकास_प्रवाह");}
+paint         {printf("बनाओ");}
+play         {printf("बजाओ");}
+println         {printf("म_लिखो_न");}
+printStackTrace         {printf("दिखाओ_ढेर");}
+PrintWriter         {printf("छापाकार");}
+rand         {printf("अक्रम");}
+read         {printf("म_पढ़ो");}
+Reader         {printf("पाठक");}
+readLine         {printf("पंक्ति_पढ़ो");}
+regionMatches         {printf("क्षेत्र_मेल");}
+replace         {printf("प्रतिस्थापन");}
+resume         {printf("पुनः_आरम्भ");}
+run         {printf("आरम्भ");}
+Runnable         {printf("आरम्भ_लायक");}
+SecurityException         {printf("सुरक्षा_त्रुटि");}
+SetIntField         {printf("रखो_पूर्ण_क्षेत्र");}
+setName         {printf("रखो_नाम");}
+setPriority         {printf("रखो_प्राथमिकता");}
+sleep         {printf("सो_जाओ");}
+sqrt         {printf("वर्ग_मूल");}
+start         {printf("शुरू");}
+startsWith         {printf("शुरू_में");}
+stop         {printf("विराम");}
+String         {printf("माला_श्रेणी");}
+StringBuffer         {printf("माला_बफर");}
+StringIndexOutOfBounds         {printf("माला_सूचकांक_सीमा_खेद");}
+substring         {printf("उपमाला");}
+suspend         {printf("स्थगित");}
+System         {printf("प्रणाली");}
+Thread         {printf("कड़ी");}
+Throwable         {printf("फेंकने_लायक");}
+toCharArray         {printf("करो_अक्षर_व्यूह");}
+toLowerCase         {printf("करो_छोटे");}
+toString         {printf("करो_माला");}
+toUpperCase         {printf("करो_बड़े");}
+trim         {printf("छाँटो");}
+UnsupportedOperationException         {printf("क्रिया_उपलब्ध_नहीं_त्रुटि");}
+update         {printf("नया_हाल");}
+URL         {printf("वसंज्ञ");}
+URLConnection         {printf("वसंज्ञ_सम्बन्ध");}
+util         {printf("उपयोग");}
+valueof         {printf("मान");}
+wait         {printf("रुको");}
+write         {printf("म_लिखो");}
+Writer         {printf("लेखक");}
+
+%%
+

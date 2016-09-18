@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Romenagri Transliteration
+Name[hi]=रोमनागरी अनुवादन
+Comment=Transliterate from देवनागरी to roamanaagaree
+Comment[hi]=देवनागरी से roamanagaree में अनुवादन करें
+Categories=Application;Utility;X-Red-Hat-Base;
+Exec=/usr/bin/rome
+Icon=/usr/share/RomenagriUI/RomenagriTM.png
+Terminal=false
+Type=Application
+Encoding=UTF-8

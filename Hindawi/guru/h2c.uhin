@@ -1,0 +1,371 @@
+%{
+/*
+Copyright (C) 2003,2004,2005,2006 Abhishek Choudhary
+This file is part of the Hindawi Indic Programming System.
+
+The Hindawi Indic Programming Systemis free software; 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the 
+Free Software Foundation; either version 2 of the License, or 
+(at your option) any later version.
+
+The Hindawi Indic Programming System is distributed in the hope 
+that it will be useful, but WITHOUT ANY WARRANTY; without 
+even the implied warranty of MERCHANTABILITY or FITNESS FOR 
+A PARTICULAR PURPOSE. See the GNU General Public License for 
+more details.
+
+You should have received a copy of the GNU General Public
+License along with this file; see the file COPYING. If
+not, write to the Free Software Foundation,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+*/
+
+/*
+Modifications: (Please maintain reverse chronological order)
+
+	dd-mmm-yyyy, Nature of modification,
+                        Name of modifier <alias>,
+			email adress of modifier
+
+        31-Jul-2006, Added the modifications section,
+                        Abhishek Choudhary <hi_pedler>,
+                        choudhary@indicybers.net
+
+End of modifications.
+*/
+
+%}
+ 
+ 
+%%
+ 
+\'("\\\'"|.*)*\'                       {printf("%s",yytext);}
+\"("\\\""|[^\"^\n]*)*\"                {printf("%s",yytext);}
+ 
+मुख्य                     {printf("main");}
+प्राथमिक\.स                  {printf("basstub.c");}
+भाग\.स                  {printf("alloc.h");}
+निश्चित\.स              {printf("assert.h");}
+मूलप्रण\.स              {printf("bios.h");}
+पट्टपन\.स              {printf("conio.h");}
+प्रकार\.स                 {printf("ctype.h");}
+सूची\.स                  {printf("dir.h");}
+डॉस\.स                  {printf("dos.h");}
+त्रुटिसं\.स                 {printf("errno.h");}
+भग्न\.स                 {printf("float.h");}
+पन\.स                  {printf("io.h");}
+सीमा\.स                  {printf("limits.h");}
+क्षेत्र\.स                  {printf("locale.h");}
+गणित\.स                {printf("math.h");}
+स्मृति\.स                 {printf("mem.h");}
+क्रिया\.स                 {printf("process.h");}
+समलाँघ\.स              {printf("setjmp.h");}
+संकेत\.स                {printf("signal.h");}
+मानकतर्क\.स            {printf("stdarg.h");}
+मानकघोष\.स            {printf("stddef.h");}
+मानकपन\.स            {printf("stdio.h");}
+मानककोष\.स            {printf("stdlib.h");}
+माला\.स                  {printf("string.h");}
+स्थिति\.स                {printf("stat.h");}
+समय\.स                {printf("time.h");}
+ब_समय\.स             {printf("timeb.h");}
+ 
+अणु                     {printf("{");}
+पूर्ण                     {printf("}");}
+\#घोषणा                   {printf("#define");}
+\#या_अगर                 {printf("#elif");}
+\#अन्यथा                  {printf("#else");}
+\#पूर्ण_अगर               {printf("#endif");}
+\#त्रुटि                      {printf("#error");}
+\#अगर                    {printf("#if");}
+\#अगर_घोषित             {printf("#ifdef");}
+\#अगर_अघोषित           {printf("#ifndef");}
+\#समावेश                 {printf("#include");}
+\#पंक्ति                     {printf("#line");}
+\#आशय                   {printf("#pragma");}
+\#अघोषित                 {printf("#undef");}
+बफ_मान                 {printf("BUFSIZ");}
+अक्षर_बिट                {printf("CHAR_BIT");}
+अक्षर_उच्च                {printf("CHAR_MAX");}
+अक्षर_न्यून               {printf("CHAR_MIN");}
+शिशु_उच्च                {printf("CHILD_MAX");}
+घड़ी_टिक                 {printf("CLK_TCK");}
+द्विग_भग्न              {printf("DBL_DIG");}
+द्विग_अंतर              {printf("DBL_EPSILON");}
+द्विग_पूर्ण               {printf("DBL_MANT_DIG");}
+द्विग_उच्च               {printf("DBL_MAX");}
+द्विग_न्यून               {printf("DBL_MIN");}
+सूची                       {printf("DIR");}
+गलत_तर्क                {printf("EDOM");}
+खातापूर्ण                       {printf("EOF");}
+दुस्फल                     {printf("ERANGE");}
+निकास_त्रुटि                {printf("EXIT_FAILURE");}
+निकास_सफल             {printf("EXIT_SUCCESS");}
+खाता                       {printf("FILE");}
+खातानाम_उच्च              {printf("FILENAME_MAX");}
+भग्न_भग्न                {printf("FLT_DIG");}
+भग्न_अंतर                {printf("FLT_EPSILON");}
+भग्न_पूर्ण                 {printf("FLT_MANT_DIG");}
+भग्न_उच्च                 {printf("FLT_MAX");}
+भग्न_न्यून                {printf("FLT_MIN");}
+भग्न_आधार                {printf("FLT_RADIX");}
+ख_खोलो_उच्च               {printf("FOPEN_MAX");}
+विशाल_मान               {printf("HUGE_VAL");}
+अनन्त                    {printf("INFINITY");}
+पूर्णांक_उच्च                {printf("INT_MAX");}
+पूर्णांक_न्यून               {printf("INT_MIN");}
+द_द्वि_भग्न               {printf("LDBL_DIG");}
+द_द्वि_अंतर               {printf("LDBL_EPSILON");}
+द_द्वि_पूर्ण                {printf("LDBL_MANT_DIG");}
+द_द्वि_उच्च                {printf("LDBL_MAX");}
+द_द्वि_न्यून               {printf("LDBL_MIN");}
+दीर्घ_उच्च                  {printf("LONG_MAX");}
+दीर्घ_न्यून                 {printf("LONG_MIN");}
+ब_क्षणिक                  {printf("L_tmpnam");}
+न_अंक                    {printf("NAN");}
+न_संशोधन                {printf("NDEBUG");}
+शून्य                      {printf("NULL");}
+अक्रम_उच्च                {printf("RAND_MAX");}
+च_अक्षर_उच्च              {printf("SCHAR_MAX");}
+च_अक्षर_न्यून             {printf("SCHAR_MIN");}
+प्रस्तुत_से                 {printf("SEEK_CUR");}
+अंत_से                    {printf("SEEK_END");}
+शुरू_से                     {printf("SEEK_SET");}
+लघु_उच्च                  {printf("SHRT_MAX");}
+लघु_न्यून                 {printf("SHRT_MIN");}
+संक_पात                  {printf("SIBGABRT");}
+संक_भ_त्रुटि                {printf("SIGFPE");}
+संक_अवैध                {printf("SIGILL");}
+संक_विघ्न                {printf("SIGINT");}
+संक_अंश                  {printf("SIGSEGV");}
+संक_इति                  {printf("SIGTERM");}
+संक_पूर्व                  {printf("SIG_DFL");}
+संक_त्रुटि                   {printf("SIG_ERR");}
+संक_छोड़ो                  {printf("SIG_IGN");}
+क्षणिक_उच्च                {printf("TMP_MAX");}
+अच_अक्षर_उच्च            {printf("UCHAR_MAX");}
+अच_पूर्णांक_उच्च           {printf("UINT_MAX");}
+अच_दीर्घ_उच्च             {printf("ULONG_MAX");}
+अच_लघु_उच्च             {printf("USHRT_MAX");}
+\\च                       {printf("\\a");} /*चेतावनी*/
+\\म                       {printf("\\b");} /*मिटाओ*/
+\\प                       {printf("\\f");} /*पृष्ठ*/
+\\न                       {printf("\\n");} /*नई पंक्ति*/
+\\ल                       {printf("\\r");} /*लौटाओ*/
+\\ट                        {printf("\\t");} /*टैब*/
+\\ख                       {printf("\\v");} /*खड़ा टैब*/
+\\ष                       {printf("\\x");} /*षष्ठादशक - hexadecimal*/
+__दिन__                   {printf("__DATE__");}
+__खाता__                   {printf("__FILE__");}
+__पंक्ति__                   {printf("__LINE__");}
+__मानक__                 {printf("__STDC__");}
+__समय__                 {printf("__TIME__");}
+_निकास                   {printf("_exit");}
+पात                        {printf("abort");}
+असल                        {printf("abs");}
+समय_ठीक                    {printf("asctime");}
+यंत्र                       {printf("asm");}
+निश्चित                   {printf("assert");}
+निकास_पर                   {printf("atexit");}
+म_से_भ                     {printf("atof");}
+म_से_प                     {printf("atoi");}
+म_से_द                     {printf("atol");}
+स्वतः                      {printf("auto");}
+अवरोध                   {printf("break");}
+द्वा_खोज                   {printf("bsearch");}
+सुस्मृति                   {printf("calloc");}
+हाल                       {printf("case");}
+उच्चमान                    {printf("ceil");}
+अक्षर                      {printf("char");}
+स_बदलो                   {printf("chdir");}
+साफ_त्रुटि                 {printf("clearerr");}
+घड़ी                       {printf("clock");}
+घड़ी_प्रकार                 {printf("clock_t");}
+बंद                        {printf("close");}
+बंद_सूची                   {printf("closedir");}
+स्थिर                      {printf("const");}
+जारी                       {printf("continue");}
+स_समय                      {printf("ctime");}
+शेष                       {printf("default");}
+स_अंतर                     {printf("difftime");}
+स_नाम                    {printf("dirname");}
+भाग                       {printf("div");}
+भाग_प्रकार                 {printf("div_t");}
+करो                       {printf("do");}
+द्विगुन                   {printf("double");}
+अन्यथा                    {printf("else");}
+क्रमागत                   {printf("enum");}
+त्रुटि_सं                     {printf("errno");}
+निकास                    {printf("exit");}
+बाह्य                      {printf("extern");}
+भ_असल                      {printf("fabs");}
+ख_बंद                     {printf("fclose");}
+ख_पूर्ण                    {printf("feof");}
+ख_त्रुटि                {printf("ferror");}
+ख_साफ                      {printf("fflush");}
+ख_अक्षर_लो                 {printf("fgetc");}
+ख_स्थान_लो                    {printf("fgetpos");}
+ख_माला_लो                  {printf("fgets");}
+भग्न                      {printf("float");}
+न्यूनमान                   {printf("floor");}
+भ_शेष                      {printf("fmod");}
+ख_खोलो                    {printf("fopen");}
+क्रम                       {printf("for");}
+विभाजन                  {printf("fork");}
+ख_स्थान_प्रकार             {printf("fpos_t");}
+ख_लिखो                   {printf("fprintf");}
+ख_अक्षर_दो             {printf("fputc");}
+ख_माला_दो              {printf("fputs");}
+ख_पढ़ो                    {printf("fread");}
+मुक्त                       {printf("free");}
+ख_व_खोलो                    {printf("freopen");}
+मित्र                      {printf("friend");}
+ख_पूछो                    {printf("fscanf");}
+ख_जाओ                      {printf("fseek");}
+ख_स्थान_दो                   {printf("fsetpos");}
+ख_स्थिति                  {printf("fstat");}
+ख_बताओ                     {printf("ftell");}
+ख_डालो                     {printf("fwrite");}
+अ_लो                       {printf("getc");}
+अक्षर_लो                   {printf("getchar");}
+दो_पर्या                   {printf("getenv");}
+माला_लो                    {printf("gets");}
+स_जमट                      {printf("gmtime");}
+जाओ                       {printf("goto");}
+अगर                      {printf("if");}
+अंतरभूत                  {printf("inline");}
+पूर्णांक                     {printf("int");}
+है_अक्षर_अंक               {printf("isalnum");}
+है_अक्षर                    {printf("isalpha");}
+है_नियंत्रण                {printf("iscntrl");}
+है_अंक                     {printf("isdigit");}
+है_सीमित                   {printf("isfinite");}
+है_चित्र                    {printf("isgraph");}
+है_छोटा                     {printf("islower");}
+है_अष्टक                   {printf("isodigit");}
+है_छाप                     {printf("isprint");}
+है_विराम                   {printf("ispunct");}
+है_खाली                     {printf("isspace");}
+है_बड़ा                     {printf("isupper");}
+है_षष्ठादशक                {printf("isxdigit");}
+लाँघ_बफ                  {printf("jmp_buf");}
+समाप्त                    {printf("kill");}
+द_असल                      {printf("labs");}
+स्था_बदल                   {printf("lconv");}
+द_भाग                     {printf("ldiv");}
+द_भाग_प्रकार               {printf("ldiv_t");}
+क्षेत्र_बदलो               {printf("localeconv");}
+स_स्थानीय                  {printf("localtime");}
+दीर्घ                       {printf("long");}
+दीर्घ_लाँघ                 {printf("longjmp");}
+दो_स्मृति                   {printf("malloc");}
+स_प्रथम                    {printf("memchr");}
+स_भेद                      {printf("memcmp");}
+स_नकल                      {printf("memcpy");}
+स_हटाओ                     {printf("memmove");}
+स_रखो                      {printf("memset");}
+सूची_गढ़ो                  {printf("mkdir");}
+स_गढ़ो                     {printf("mktime");}
+दुरत्व                      {printf("offsetof");}
+खोलो                       {printf("open");}
+सूची_खोलो                  {printf("opendir");}
+चालक                     {printf("operator");}
+छोड़ो                       {printf("pause");}
+लिखो_त्रुटि                {printf("perror");}
+घात                        {printf("pow");}
+म_लिखो                     {printf("printf");}
+निजी                      {printf("private");}
+रक्षित                     {printf("protected");}
+सूचक_भेद_प्रकार           {printf("ptrdiff_t");}
+खुला                       {printf("public");}
+अ_दो                       {printf("putc");}
+अक्षर_दो                   {printf("putchar");}
+माला_दो                    {printf("puts");}
+क्विक                      {printf("qsort");}
+उठाओ                       {printf("raise");}
+अक्रम                      {printf("rand");}
+पढ़ो                       {printf("read");}
+सूची_पढ़ो                  {printf("readdir");}
+पुनः_स्मृति                {printf("realloc");}
+रेजिस्टर                    {printf("register");}
+हटाओ                       {printf("remove");}
+नाम                       {printf("rename");}
+वापस                     {printf("return");}
+शुरुआत                      {printf("rewind");}
+सूची_शुरु                   {printf("rewinddir");}
+सूची_हटाओ                 {printf("rmdir");}
+म_पूछो                     {printf("scanf");}
+रखो_बफ                     {printf("setbuf");}
+बनाओ_लाँघ                  {printf("setjmp");}
+रखो_क्षेत्र                {printf("setlocale");}
+रखो_भबफ                    {printf("setvbuf");}
+लघु                       {printf("short");}
+संक_पूर्ण_प्रकार            {printf("sig_atomic_t");}
+संकेत                     {printf("signal");}
+चिन्हित                    {printf("signed");}
+संक_बाकी                  {printf("sigpending");}
+संक_रोको                  {printf("sigsuspend");}
+माप_प्रकार                 {printf("size_t");}
+माप                       {printf("sizeof");}
+प्र_लिखो                   {printf("sprintf");}
+वर्ग_मूल                  {printf("sqrt");}
+बेक्रम                     {printf("srand");}
+माला_पूछो                  {printf("sscanf");}
+अटल                        {printf("static");}
+मानक_त्रुटि                 {printf("stderr");}
+मानक_निवेश             {printf("stdin");}
+मानक_निकास             {printf("stdout");}
+म_जोड़ो                  {printf("strcat");}
+म_अक्षर                    {printf("strchr");}
+म_भेद                      {printf("strcmp");}
+म_नकल                {printf("strcpy");}
+म_खोज                      {printf("strcspn");}
+म_त्रुटि                   {printf("strerror");}
+स_माला                     {printf("strftime");}
+म_माप                  {printf("strlen");}
+म_जोड़न                    {printf("strncat");}
+म_भेदन                     {printf("strncmp");}
+म_नकलन                  {printf("strncpy");}
+म_खोजप                     {printf("strrchr");}
+म_अखोज                     {printf("strspn");}
+म_माला                     {printf("strstr");}
+म_से_भग्न               {printf("strtod");}
+म_मोहर                  {printf("strtok");}
+म_से_दीर्घ              {printf("strtol");}
+म_से_अदीर्घ           {printf("strtoul");}
+काष्ठा                      {printf("struct");}
+चयन                     {printf("switch");}
+प्रणाली                     {printf("system");}
+ढाँचा                       {printf("template");}
+समय                     {printf("time");}
+समय_प्रकार               {printf("time_t");}
+बार                        {printf("times");}
+पंचाङ्ग                    |
+पंचांग                     {printf("tm");}
+क्षणिक_ख                   {printf("tmpfile");}
+क्षणिक                     {printf("tmpnam");}
+छोटे                        {printf("tolower");}
+बड़े                        {printf("toupper");}
+प्रकार                      {printf("typedef");}
+अक्षर_वापस                 {printf("ungetc");}
+जोड़                        {printf("union");}
+अचिन्हित                   {printf("unsigned");}
+बहु_तर्क              {printf("va_arg");}
+बहु_पूर्ण              {printf("va_end");}
+बहु_सूची              {printf("va_list");} /*बहु तर्क*/
+बहु_शुरू               {printf("va_start");}
+भख_लिखो                    {printf("vfprintf");}
+भव                       {printf("virtual");}
+व्योम                      {printf("void");}
+अस्थिर                     {printf("volatile");}
+भ_लिखो                     {printf("vprintf");}
+भम_लिखो                    {printf("vsprintf");}
+रुको                        {printf("wait");}
+ब_अक्षर_प्रकार             {printf("wchar_t");}
+जबतक                   {printf("while");}
+ग_लिखो                      {printf("write");}
+ 
+समय_लो      {printf("gettime");}
+समय_रखो     {printf("settime");}
+%%

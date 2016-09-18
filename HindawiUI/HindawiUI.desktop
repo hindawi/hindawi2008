@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Hindawi Indic Programming System
+Name[hi]=हिंदवी क्रमानुशीलन प्रणाली
+Comment=Write programs in Hindi C, Hindi C++, Hindi BASIC, Hindi lex, Hindi yacc etc.
+Comment[hi]=हिंदी शैली गुरु (C), शैली श्रेणी (C++), शैली प्राथमिक (BASIC), शैली व्याक (lex), शैली शब्द (yacc) आदि में प्रोग्रामिंग करें
+Categories=Application;IDE;Development;X-Red-Hat-Base;
+Exec=/usr/bin/laghu
+Icon=/usr/share/HindawiUI/hinlogo.png
+Terminal=false
+Type=Application
+Encoding=UTF-8

@@ -1,0 +1,41 @@
+ QB2C a BASIC to C translator    v. 3.43                   Date: Sep 21 1998
+
+ Thank you for obtaining this version of QB2C. You can find the latest
+ FREE/EVALUATION version of QB2C on this place:
+ http://random.com.hr/products/qb2c.html
+
+ See the file ANNOUNCEMENT for information on the commercial version
+ of this package.
+
+ QB2C translates BASIC programs into ANSI-C programs. Includes X11-based
+ graphics. It has been tested under Linux, OSF1 (DEC), Sun-OS (Solaris),
+ Aix (IBM), SGI (Silicon Graphics) and HP-UX (hp).
+ Under HP-UX screen dependent things like 'INKEY$' would not work (termios.h),
+ for other the full functionality is obtained.
+ 
+ The whole package is in the file qb2c.tgz. To install it, place
+ the file in an empty directory and type: tar zxvf qb2c.tgz
+ (if this doesn't work try in two steps: gunzip qb2c.tgz; tar xvf qb2c.tar).
+ To build executables "qb2c", "bcpp", "calib", "bhelp" and scripts "bcc", 
+ "brun" and "run" under given OS just type the name of the corresponding 
+ script:
+
+   Operating System |  script to build executables
+   -----------------+-----------------------------
+   Linux            |  doall
+   Linux with no X11|  doall_linux_noX
+   DEC-OSF          |  doall_osf
+   Sun-OS           |  doall_sun
+   IBM-Aix          |  doall_aix
+   Silicon Graphics |  doall_sgi
+   HP-UX            |  doall_hp
+
+ Executables and scripts should be put somewhere where you
+ keep your executables, for instance in ~/bin or /usr/local/bin, or
+ the directory where you compiled the QB2C should be put in the search path.
+
+ Details of operation of the package can be found in the document manual.txt,
+ which can be wieved typing the command "bhelp".
+ A keyword can be specified as a parameter to this command in order to
+ get specific help: "bhelp keyword".
+

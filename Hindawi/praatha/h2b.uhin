@@ -1,0 +1,204 @@
+%{
+/*
+Copyright (C) 2003,2004,2005,2006 Abhishek Choudhary
+This file is part of the Hindawi Indic Programming System.
+
+The Hindawi Indic Programming Systemis free software; 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the 
+Free Software Foundation; either version 2 of the License, or 
+(at your option) any later version.
+
+The Hindawi Indic Programming System is distributed in the hope 
+that it will be useful, but WITHOUT ANY WARRANTY; without 
+even the implied warranty of MERCHANTABILITY or FITNESS FOR 
+A PARTICULAR PURPOSE. See the GNU General Public License for 
+more details.
+
+You should have received a copy of the GNU General Public
+License along with this file; see the file COPYING. If
+not, write to the Free Software Foundation,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+*/
+
+/*
+Modifications: (Please maintain reverse chronological order)
+
+	dd-mmm-yyyy, Nature of modification,
+                        Name of modifier <alias>,
+			email adress of modifier
+
+        31-Jul-2006, Added the modifications section,
+                        Abhishek Choudhary <hi_pedler>,
+                        choudhary@indicybers.net
+
+End of modifications.
+*/
+%}
+ 
+%%
+ 
+\"("\\\""|[^\"^\n]*)*\"                {printf("%s",yytext);}
+ 
+टिप्पणी		|
+टिप		{printf("REM");}
+साफ		{printf("CLS");}
+स्थान             {printf("LOCATE");}
+लिखो             {printf("PRINT");}
+पूछो              {printf("INPUT");}
+रंग               {printf("COLOR");}
+रंगकोष		{printf("PALETTE");}
+चित्र_लिखो		{printf("XTEXT");}
+दिनाङ्क           |
+दिनान्क           |
+दिनांक            {printf("DATE");}
+समय            {printf("TIME");}
+खाली              {printf("SPACE");}
+बीच              {printf("MID");}
+पूर्व              {printf("LEFT");}
+अन्त             |
+अंत              {printf("RIGHT");}
+माला              {printf("STRING");}
+अंक_माला         {printf("STR");}
+लिपी             {printf("CHR");}
+बड़े               {printf("UCASE");}
+छोटे               {printf("LCASE");}
+पूर्वक्षय          {printf("LTRIM");}
+अन्तक्षय         |
+अंतक्षय          {printf("RTRIM");}
+अन्श             |
+अङ्श             |
+अंश              {printf("INSTR");}
+isc               |
+ISC               |
+इस्कि             |
+इस               {printf("ASC");}
+मान              {printf("VAL");}
+माप              {printf("LEN");}
+षष्ठ              |
+षष्ठादशक        {printf("HEX");}
+अष्ट              |
+आष्टक            {printf("OCT");}
+चाबी              |
+चाबी_दबाया        |
+च_दबाया          {printf("INKEY");}
+ 
+घड़ी              |
+समयक          {printf("TIMER");}
+बेक्रम_क्रिया      |
+अक्रम_क्रिया      {printf("RANDOMIZE");}
+ 
+मानो              {printf("LET");}
+आयाम            {printf("DIM");}
+सार्वजनिक        |
+सार्व              {printf("SHARED");}
+स्थिर             {printf("CONST");}
+ 
+अगर             {printf("IF");}
+है                 {printf("THEN");}
+हो                {printf("THEN");}
+तो                /**/
+अन्यथा           {printf("ELSE");}
+ 
+क्रम              {printf("FOR");}
+से                {printf("TO");}
+गति              {printf("STEP");}
+क्रमांत            |
+क्रमान्त           {printf("NEXT");}
+ 
+करो              {printf("DO");}
+दोहराओ           |
+फिर              {printf("LOOP");}
+ 
+जब              {printf("WHILE");}
+तक              /**/
+तब              {printf("WEND");}
+ 
+खोलो              {printf("OPEN");}
+हेतु               {printf("FOR");}
+पाठ               {printf("INPUT");}
+लेखन            {printf("OUTPUT");}
+नत्थी             {printf("APPEND");}
+पन्थ             |
+पंथ              {printf("AS");}
+बन्द              |
+बंद               {printf("CLOSE");}
+खाता_पूर्ण         |
+ख_प             {printf("EOF");}
+पूर्वासित          {printf("EXISTS");}
+खाता_लिखो        |
+ख_लिखो          {printf("PRINT"); /*print #*/}
+खाता_पढ़ो         |
+ख_पढ़ो           {printf("LINE INPUT"); /*line input #*/}
+खाता_शब्द         |
+ख_शब्द           {printf("INPUT");}
+ 
+पूर्ण              |
+इति              |
+समाप्त           {printf("END");}
+अवकाश          {printf("SHELL");}
+ 
+अगला            {printf("GOTO");}
+जाओ              {printf("GOSUB");}
+वापस            {printf("RETURN");}
+ 
+क्रिया             {printf("FUNCTION");}
+अणु              {printf("SUB");}
+निकास           {printf("EXIT SUB");}
+अवरोध          {printf("\nC break;\n");}
+जारी              {printf("\nC continue;\n");}
+रखो               /**/
+जड़               {printf("STATIC");}
+घोषणा            |
+घोष              {printf("DECLARE");}
+अनुक्रम          {printf("CALL");}
+
+लॉग              {printf("LOG");}
+साइन             {printf("SIN");}
+कॉस              {printf("COS");}
+टैन               {printf("TAN");}
+अटैन             {printf("ATN");}
+मूल              |
+वर्गमूल          {printf("SQR");}
+सम              |
+समपूर्ण          {printf("ABS");}
+प्रतिपादक         {printf("EXP");}
+चिन्ह             |
+चिंह              {printf("SGN");}
+अक्रम            |
+अक्रमांक          |
+अक्रमाङ्क         |
+अक्रमान्क         {printf("RND");}
+अङ्क             |
+अन्क             |
+अंक              {printf("INT");}
+पूर्णान्क           |
+पूर्णाङ्क           |
+पूर्णांक            {printf("CINT");}
+शेष              {printf("MOD");}
+ 
+ 
+ 
+पर्दा              {printf("SCREEN");}
+वृत              {printf("CIRCLE");}
+रेखा              {printf("LINE");}
+बिंदु              |
+बिन्दु             {printf("PSET");}
+ 
+तथा              |
+और               {printf("AND");}
+और_बिट          |
+और_ब            {printf("&");}
+या                {printf("OR");}
+या_बिट           |
+या_ब             {printf("|");}
+नहीं              {printf("NOT");}
+अथवा            |
+केवल            {printf("XOR");}
+ 
+^#गस[\x20].*           {printf("\nCH %s",yytext+4);}
+^#गम[\x20].*           {printf("\nCM %s",yytext+4);}
+^#ग[\x20].*             {printf("\nC %s",yytext+2);}
+ 
+पूर्वादेश		{printf("COMMAND");}
+%%

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Swatantra Applications
+Name[hi]=स्वतन्त्र अनुप्रयोग
+Comment=Swatantra in every field
+Comment[hi]=हर क्षेत्र में स्वतन्त्र
+Categories=Application;Utility;X-Red-Hat-Base;
+Exec=/usr/bin/swatantra
+Icon=/usr/share/HindawiLauncher/swatantra.png
+Terminal=false
+Type=Application
+Encoding=UTF-8

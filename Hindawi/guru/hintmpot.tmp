@@ -1,0 +1,371 @@
+%{
+/*
+Copyright (C) 2003,2004,2005,2006 Abhishek Choudhary
+This file is part of the Hindawi Indic Programming System.
+
+The Hindawi Indic Programming Systemis free software; 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the 
+Free Software Foundation; either version 2 of the License, or 
+(at your option) any later version.
+
+The Hindawi Indic Programming System is distributed in the hope 
+that it will be useful, but WITHOUT ANY WARRANTY; without 
+even the implied warranty of MERCHANTABILITY or FITNESS FOR 
+A PARTICULAR PURPOSE. See the GNU General Public License for 
+more details.
+
+You should have received a copy of the GNU General Public
+License along with this file; see the file COPYING. If
+not, write to the Free Software Foundation,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+*/
+
+/*
+Modifications: (Please maintain reverse chronological order)
+
+	dd-mmm-yyyy, Nature of modification,
+                        Name of modifier <alias>,
+			email adress of modifier
+
+        31-Jul-2006, Added the modifications section,
+                        Abhishek Choudhary <hi_pedler>,
+                        choudhary@indicybers.net
+
+End of modifications.
+*/
+
+%}
+ 
+ 
+%%
+ 
+\'("\\\'"|.*)*\'                       {printf("%s",yytext);}
+\"("\\\""|[^\"^\n]*)*\"                {printf("%s",yytext);}
+ 
+Ìİ´èÍ                     {printf("main");}
+ÈèÏÚÃÌÛ³\.×                  {printf("basstub.c");}
+ËÚµ\.×                  {printf("alloc.h");}
+ÆÛÕè¸ÛÂ\.×              {printf("assert.h");}
+ÌŞÑÈèÏÁ\.×              {printf("bios.h");}
+È½è½ÈÆ\.×              {printf("conio.h");}
+ÈèÏ³ÚÏ\.×                 {printf("ctype.h");}
+×Ş¸Ü\.×                  {printf("dir.h");}
+¿ç×\.×                  {printf("dos.h");}
+ÂèÏİ½Û×¢\.×                 {printf("errno.h");}
+ËµèÆ\.×                 {printf("float.h");}
+ÈÆ\.×                  {printf("io.h");}
+×ÜÌÚ\.×                  {printf("limits.h");}
+³èÖáÂèÏ\.×                  {printf("locale.h");}
+µÁÛÂ\.×                {printf("math.h");}
+×èÌßÂÛ\.×                 {printf("mem.h");}
+³èÏÛÍÚ\.×                 {printf("process.h");}
+×ÌÑÚ¡¶\.×              {printf("setjmp.h");}
+×¢³áÂ\.×                {printf("signal.h");}
+ÌÚÆ³ÂÏè³\.×            {printf("stdarg.h");}
+ÌÚÆ³¶åÖ\.×            {printf("stddef.h");}
+ÌÚÆ³ÈÆ\.×            {printf("stdio.h");}
+ÌÚÆ³³åÖ\.×            {printf("stdlib.h");}
+ÌÚÑÚ\.×                  {printf("string.h");}
+×èÃÛÂÛ\.×                {printf("stat.h");}
+×ÌÍ\.×                {printf("time.h");}
+Ê_×ÌÍ\.×             {printf("timeb.h");}
+ 
+¤Áİ                     {printf("{");}
+ÈŞÏèÁ                     {printf("}");}
+\#¶åÖÁÚ                   {printf("#define");}
+\#ÍÚ_¤µÏ                 {printf("#elif");}
+\#¤ÆèÍÃÚ                  {printf("#else");}
+\#ÈŞÏèÁ_¤µÏ               {printf("#endif");}
+\#ÂèÏİ½Û                      {printf("#error");}
+\#¤µÏ                    {printf("#if");}
+\#¤µÏ_¶åÖÛÂ             {printf("#ifdef");}
+\#¤µÏ_¤¶åÖÛÂ           {printf("#ifndef");}
+\#×ÌÚÔáÕ                 {printf("#include");}
+\#È¢³èÂÛ                     {printf("#line");}
+\#¥ÕÍ                   {printf("#pragma");}
+\#¤¶åÖÛÂ                 {printf("#undef");}
+ÊÉ_ÌÚÆ                 {printf("BUFSIZ");}
+¤³èÖÏ_ÊÛ½                {printf("CHAR_BIT");}
+¤³èÖÏ_¨¸è¸                {printf("CHAR_MAX");}
+¤³èÖÏ_ÆèÍŞÆ               {printf("CHAR_MIN");}
+ÕÛÕİ_¨¸è¸                {printf("CHILD_MAX");}
+¶¿éÜ_½Û³                 {printf("CLK_TCK");}
+ÄèÔÛµ_ËµèÆ              {printf("DBL_DIG");}
+ÄèÔÛµ_¤¢ÂÏ              {printf("DBL_EPSILON");}
+ÄèÔÛµ_ÈŞÏèÁ               {printf("DBL_MANT_DIG");}
+ÄèÔÛµ_¨¸è¸               {printf("DBL_MAX");}
+ÄèÔÛµ_ÆèÍŞÆ               {printf("DBL_MIN");}
+×Ş¸Ü                       {printf("DIR");}
+µÑÂ_ÂÏè³                {printf("EDOM");}
+´ÚÂÚÈŞÏèÁ                       {printf("EOF");}
+Äİ×èÉÑ                     {printf("ERANGE");}
+ÆÛ³Ú×_ÂèÏİ½Û                {printf("EXIT_FAILURE");}
+ÆÛ³Ú×_×ÉÑ             {printf("EXIT_SUCCESS");}
+´ÚÂÚ                       {printf("FILE");}
+´ÚÂÚÆÚÌ_¨¸è¸              {printf("FILENAME_MAX");}
+ËµèÆ_ËµèÆ                {printf("FLT_DIG");}
+ËµèÆ_¤¢ÂÏ                {printf("FLT_EPSILON");}
+ËµèÆ_ÈŞÏèÁ                 {printf("FLT_MANT_DIG");}
+ËµèÆ_¨¸è¸                 {printf("FLT_MAX");}
+ËµèÆ_ÆèÍŞÆ                {printf("FLT_MIN");}
+ËµèÆ_¥ÅÚÏ                {printf("FLT_RADIX");}
+´_´åÑå_¨¸è¸               {printf("FOPEN_MAX");}
+ÔÛÕÚÑ_ÌÚÆ               {printf("HUGE_VAL");}
+¤ÆÆèÂ                    {printf("INFINITY");}
+ÈŞÏèÁÚ¢³_¨¸è¸                {printf("INT_MAX");}
+ÈŞÏèÁÚ¢³_ÆèÍŞÆ               {printf("INT_MIN");}
+Ä_ÄèÔÛ_ËµèÆ               {printf("LDBL_DIG");}
+Ä_ÄèÔÛ_¤¢ÂÏ               {printf("LDBL_EPSILON");}
+Ä_ÄèÔÛ_ÈŞÏèÁ                {printf("LDBL_MANT_DIG");}
+Ä_ÄèÔÛ_¨¸è¸                {printf("LDBL_MAX");}
+Ä_ÄèÔÛ_ÆèÍŞÆ               {printf("LDBL_MIN");}
+ÄÜÏè¶_¨¸è¸                  {printf("LONG_MAX");}
+ÄÜÏè¶_ÆèÍŞÆ                 {printf("LONG_MIN");}
+Ê_³èÖÁÛ³                  {printf("L_tmpnam");}
+Æ_¤¢³                    {printf("NAN");}
+Æ_×¢ÕåÅÆ                {printf("NDEBUG");}
+ÕŞÆèÍ                      {printf("NULL");}
+¤³èÏÌ_¨¸è¸                {printf("RAND_MAX");}
+¸_¤³èÖÏ_¨¸è¸              {printf("SCHAR_MAX");}
+¸_¤³èÖÏ_ÆèÍŞÆ             {printf("SCHAR_MIN");}
+ÈèÏ×èÂİÂ_×á                 {printf("SEEK_CUR");}
+¤¢Â_×á                    {printf("SEEK_END");}
+ÕİÏŞ_×á                     {printf("SEEK_SET");}
+Ñ¶İ_¨¸è¸                  {printf("SHRT_MAX");}
+Ñ¶İ_ÆèÍŞÆ                 {printf("SHRT_MIN");}
+×¢³_ÈÚÂ                  {printf("SIBGABRT");}
+×¢³_Ë_ÂèÏİ½Û                {printf("SIGFPE");}
+×¢³_¤ÔâÅ                {printf("SIGILL");}
+×¢³_ÔÛ¶èÆ                {printf("SIGINT");}
+×¢³_¤¢Õ                  {printf("SIGSEGV");}
+×¢³_¦ÂÛ                  {printf("SIGTERM");}
+×¢³_ÈŞÏèÔ                  {printf("SIG_DFL");}
+×¢³_ÂèÏİ½Û                   {printf("SIG_ERR");}
+×¢³_¹å¿éå                  {printf("SIG_IGN");}
+³èÖÁÛ³_¨¸è¸                {printf("TMP_MAX");}
+¤¸_¤³èÖÏ_¨¸è¸            {printf("UCHAR_MAX");}
+¤¸_ÈŞÏèÁÚ¢³_¨¸è¸           {printf("UINT_MAX");}
+¤¸_ÄÜÏè¶_¨¸è¸             {printf("ULONG_MAX");}
+¤¸_Ñ¶İ_¨¸è¸             {printf("USHRT_MAX");}
+\\¸                       {printf("\\a");} /*¸áÂÚÔÆÜ*/
+\\Ì                       {printf("\\b");} /*ÌÛ½Ú°*/
+\\È                       {printf("\\f");} /*ÈßÖè¾*/
+\\Æ                       {printf("\\n");} /*Æ§ È¢³èÂÛ*/
+\\Ñ                       {printf("\\r");} /*Ñæ½Ú°*/
+\\½                        {printf("\\t");} /*½âÊ*/
+\\´                       {printf("\\v");} /*´¿éÚ ½âÊ*/
+\\Ö                       {printf("\\x");} /*ÖÖè¾ÚÄÕ³ - hexadecimal*/
+__ÄÛÆ__                   {printf("__DATE__");}
+__´ÚÂÚ__                   {printf("__FILE__");}
+__È¢³èÂÛ__                   {printf("__LINE__");}
+__ÌÚÆ³__                 {printf("__STDC__");}
+__×ÌÍ__                 {printf("__TIME__");}
+_ÆÛ³Ú×                   {printf("_exit");}
+ÈÚÂ                        {printf("abort");}
+¤×Ñ                        {printf("abs");}
+×ÌÍ_¾Ü³                    {printf("asctime");}
+Í¢ÂèÏ                       {printf("asm");}
+ÆÛÕè¸ÛÂ                   {printf("assert");}
+ÆÛ³Ú×_ÈÏ                   {printf("atexit");}
+Ì_×á_Ë                     {printf("atof");}
+Ì_×á_È                     {printf("atoi");}
+Ì_×á_Ä                     {printf("atol");}
+×èÔÂ£                      {printf("auto");}
+¤ÔÏåÅ                   {printf("break");}
+ÄèÔÚ_´åº                   {printf("bsearch");}
+×İ×èÌßÂÛ                   {printf("calloc");}
+ØÚÑ                       {printf("case");}
+¨¸è¸ÌÚÆ                    {printf("ceil");}
+¤³èÖÏ                      {printf("char");}
+×_ÊÄÑå                   {printf("chdir");}
+×ÚÉ_ÂèÏİ½Û                 {printf("clearerr");}
+¶¿éÜ                       {printf("clock");}
+¶¿éÜ_ÈèÏ³ÚÏ                 {printf("clock_t");}
+Ê¢Ä                        {printf("close");}
+Ê¢Ä_×Ş¸Ü                   {printf("closedir");}
+×èÃÛÏ                      {printf("const");}
+ºÚÏÜ                       {printf("continue");}
+×_×ÌÍ                      {printf("ctime");}
+ÕáÖ                       {printf("default");}
+×_¤¢ÂÏ                     {printf("difftime");}
+×_ÆÚÌ                    {printf("dirname");}
+ËÚµ                       {printf("div");}
+ËÚµ_ÈèÏ³ÚÏ                 {printf("div_t");}
+³Ïå                       {printf("do");}
+ÄèÔÛµİÆ                   {printf("double");}
+¤ÆèÍÃÚ                    {printf("else");}
+³èÏÌÚµÂ                   {printf("enum");}
+ÂèÏİ½Û_×¢                     {printf("errno");}
+ÆÛ³Ú×                    {printf("exit");}
+ÊÚØèÍ                      {printf("extern");}
+Ë_¤×Ñ                      {printf("fabs");}
+´_Ê¢Ä                     {printf("fclose");}
+´_ÈŞÏèÁ                    {printf("feof");}
+´_ÂèÏİ½Û                {printf("ferror");}
+´_×ÚÉ                      {printf("fflush");}
+´_¤³èÖÏ_Ñå                 {printf("fgetc");}
+´_×èÃÚÆ_Ñå                    {printf("fgetpos");}
+´_ÌÚÑÚ_Ñå                  {printf("fgets");}
+ËµèÆ                      {printf("float");}
+ÆèÍŞÆÌÚÆ                   {printf("floor");}
+Ë_ÕáÖ                      {printf("fmod");}
+´_´åÑå                    {printf("fopen");}
+³èÏÌ                       {printf("for");}
+ÔÛËÚºÆ                  {printf("fork");}
+´_×èÃÚÆ_ÈèÏ³ÚÏ             {printf("fpos_t");}
+´_ÑÛ´å                   {printf("fprintf");}
+´_¤³èÖÏ_Äå             {printf("fputc");}
+´_ÌÚÑÚ_Äå              {printf("fputs");}
+´_ÈÀéå                    {printf("fread");}
+Ìİ³èÂ                       {printf("free");}
+´_Ô_´åÑå                    {printf("freopen");}
+ÌÛÂèÏ                      {printf("friend");}
+´_ÈŞ¹å                    {printf("fscanf");}
+´_ºÚ°                      {printf("fseek");}
+´_×èÃÚÆ_Äå                   {printf("fsetpos");}
+´_×èÃÛÂÛ                  {printf("fstat");}
+´_ÊÂÚ°                     {printf("ftell");}
+´_¿ÚÑå                     {printf("fwrite");}
+¤_Ñå                       {printf("getc");}
+¤³èÖÏ_Ñå                   {printf("getchar");}
+Äå_ÈÏèÍÚ                   {printf("getenv");}
+ÌÚÑÚ_Ñå                    {printf("gets");}
+×_ºÌ½                      {printf("gmtime");}
+ºÚ°                       {printf("goto");}
+¤µÏ                      {printf("if");}
+¤¢ÂÏËŞÂ                  {printf("inline");}
+ÈŞÏèÁÚ¢³                     {printf("int");}
+Øâ_¤³èÖÏ_¤¢³               {printf("isalnum");}
+Øâ_¤³èÖÏ                    {printf("isalpha");}
+Øâ_ÆÛÍ¢ÂèÏÁ                {printf("iscntrl");}
+Øâ_¤¢³                     {printf("isdigit");}
+Øâ_×ÜÌÛÂ                   {printf("isfinite");}
+Øâ_¸ÛÂèÏ                    {printf("isgraph");}
+Øâ_¹å½Ú                     {printf("islower");}
+Øâ_¤Öè½³                   {printf("isodigit");}
+Øâ_¹ÚÈ                     {printf("isprint");}
+Øâ_ÔÛÏÚÌ                   {printf("ispunct");}
+Øâ_´ÚÑÜ                     {printf("isspace");}
+Øâ_Ê¿éÚ                     {printf("isupper");}
+Øâ_ÖÖè¾ÚÄÕ³                {printf("isxdigit");}
+ÑÚ¡¶_ÊÉ                  {printf("jmp_buf");}
+×ÌÚÈèÂ                    {printf("kill");}
+Ä_¤×Ñ                      {printf("labs");}
+×èÃÚ_ÊÄÑ                   {printf("lconv");}
+Ä_ËÚµ                     {printf("ldiv");}
+Ä_ËÚµ_ÈèÏ³ÚÏ               {printf("ldiv_t");}
+³èÖáÂèÏ_ÊÄÑå               {printf("localeconv");}
+×_×èÃÚÆÜÍ                  {printf("localtime");}
+ÄÜÏè¶                       {printf("long");}
+ÄÜÏè¶_ÑÚ¡¶                 {printf("longjmp");}
+Äå_×èÌßÂÛ                   {printf("malloc");}
+×_ÈèÏÃÌ                    {printf("memchr");}
+×_ËáÄ                      {printf("memcmp");}
+×_Æ³Ñ                      {printf("memcpy");}
+×_Ø½Ú°                     {printf("memmove");}
+×_Ï´å                      {printf("memset");}
+×Ş¸Ü_µÀéå                  {printf("mkdir");}
+×_µÀéå                     {printf("mktime");}
+ÄİÏÂèÔ                      {printf("offsetof");}
+´åÑå                       {printf("open");}
+×Ş¸Ü_´åÑå                  {printf("opendir");}
+¸ÚÑ³                     {printf("operator");}
+¹å¿éå                       {printf("pause");}
+ÑÛ´å_ÂèÏİ½Û                {printf("perror");}
+¶ÚÂ                        {printf("pow");}
+Ì_ÑÛ´å                     {printf("printf");}
+ÆÛºÜ                      {printf("private");}
+Ï³èÖÛÂ                     {printf("protected");}
+×Ş¸³_ËáÄ_ÈèÏ³ÚÏ           {printf("ptrdiff_t");}
+´İÑÚ                       {printf("public");}
+¤_Äå                       {printf("putc");}
+¤³èÖÏ_Äå                   {printf("putchar");}
+ÌÚÑÚ_Äå                    {printf("puts");}
+³èÔÛ³                      {printf("qsort");}
+¨¾Ú°                       {printf("raise");}
+¤³èÏÌ                      {printf("rand");}
+ÈÀéå                       {printf("read");}
+×Ş¸Ü_ÈÀéå                  {printf("readdir");}
+ÈİÆ£_×èÌßÂÛ                {printf("realloc");}
+ÏáºÛ×è½Ï                    {printf("register");}
+Ø½Ú°                       {printf("remove");}
+ÆÚÌ                       {printf("rename");}
+ÔÚÈ×                     {printf("return");}
+ÕİÏİ¥Â                      {printf("rewind");}
+×Ş¸Ü_ÕİÏİ                   {printf("rewinddir");}
+×Ş¸Ü_Ø½Ú°                 {printf("rmdir");}
+Ì_ÈŞ¹å                     {printf("scanf");}
+Ï´å_ÊÉ                     {printf("setbuf");}
+ÊÆÚ°_ÑÚ¡¶                  {printf("setjmp");}
+Ï´å_³èÖáÂèÏ                {printf("setlocale");}
+Ï´å_ËÊÉ                    {printf("setvbuf");}
+Ñ¶İ                       {printf("short");}
+×¢³_ÈŞÏèÁ_ÈèÏ³ÚÏ            {printf("sig_atomic_t");}
+×¢³áÂ                     {printf("signal");}
+¸ÛÆèØÛÂ                    {printf("signed");}
+×¢³_ÊÚ³Ü                  {printf("sigpending");}
+×¢³_Ïå³å                  {printf("sigsuspend");}
+ÌÚÈ_ÈèÏ³ÚÏ                 {printf("size_t");}
+ÌÚÈ                       {printf("sizeof");}
+ÈèÏ_ÑÛ´å                   {printf("sprintf");}
+ÔÏèµ_ÌŞÑ                  {printf("sqrt");}
+Êá³èÏÌ                     {printf("srand");}
+ÌÚÑÚ_ÈŞ¹å                  {printf("sscanf");}
+¤½Ñ                        {printf("static");}
+ÌÚÆ³_ÂèÏİ½Û                 {printf("stderr");}
+ÌÚÆ³_ÆÛÔáÕ             {printf("stdin");}
+ÌÚÆ³_ÆÛ³Ú×             {printf("stdout");}
+Ì_ºå¿éå                  {printf("strcat");}
+Ì_¤³èÖÏ                    {printf("strchr");}
+Ì_ËáÄ                      {printf("strcmp");}
+Ì_Æ³Ñ                {printf("strcpy");}
+Ì_´åº                      {printf("strcspn");}
+Ì_ÂèÏİ½Û                   {printf("strerror");}
+×_ÌÚÑÚ                     {printf("strftime");}
+Ì_ÌÚÈ                  {printf("strlen");}
+Ì_ºå¿éÆ                    {printf("strncat");}
+Ì_ËáÄÆ                     {printf("strncmp");}
+Ì_Æ³ÑÆ                  {printf("strncpy");}
+Ì_´åºÈ                     {printf("strrchr");}
+Ì_¤´åº                     {printf("strspn");}
+Ì_ÌÚÑÚ                     {printf("strstr");}
+Ì_×á_ËµèÆ               {printf("strtod");}
+Ì_ÌåØÏ                  {printf("strtok");}
+Ì_×á_ÄÜÏè¶              {printf("strtol");}
+Ì_×á_¤ÄÜÏè¶           {printf("strtoul");}
+³ÚÖè¾Ú                      {printf("struct");}
+¸ÍÆ                     {printf("switch");}
+ÈèÏÁÚÑÜ                     {printf("system");}
+ÀÚ¡¸Ú                       {printf("template");}
+×ÌÍ                     {printf("time");}
+×ÌÍ_ÈèÏ³ÚÏ               {printf("time_t");}
+ÊÚÏ                        {printf("times");}
+È¢¸Ú·èµ                    |
+È¢¸Ú¢µ                     {printf("tm");}
+³èÖÁÛ³_´                   {printf("tmpfile");}
+³èÖÁÛ³                     {printf("tmpnam");}
+¹å½á                        {printf("tolower");}
+Ê¿éá                        {printf("toupper");}
+ÈèÏ³ÚÏ                      {printf("typedef");}
+¤³èÖÏ_ÔÚÈ×                 {printf("ungetc");}
+ºå¿é                        {printf("union");}
+¤¸ÛÆèØÛÂ                   {printf("unsigned");}
+ÊØİ_ÂÏè³              {printf("va_arg");}
+ÊØİ_ÈŞÏèÁ              {printf("va_end");}
+ÊØİ_×Ş¸Ü              {printf("va_list");} /*ÊØİ ÂÏè³*/
+ÊØİ_ÕİÏŞ               {printf("va_start");}
+Ë´_ÑÛ´å                    {printf("vfprintf");}
+ËÔ                       {printf("virtual");}
+ÔèÍåÌ                      {printf("void");}
+¤×èÃÛÏ                     {printf("volatile");}
+Ë_ÑÛ´å                     {printf("vprintf");}
+ËÌ_ÑÛ´å                    {printf("vsprintf");}
+Ïİ³å                        {printf("wait");}
+Ê_¤³èÖÏ_ÈèÏ³ÚÏ             {printf("wchar_t");}
+ºÊÂ³                   {printf("while");}
+µ_ÑÛ´å                      {printf("write");}
+ 
+×ÌÍ_Ñå      {printf("gettime");}
+×ÌÍ_Ï´å     {printf("settime");}
+%%
